@@ -1,0 +1,6 @@
+package jesus.orario
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
