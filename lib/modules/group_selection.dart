@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:orario/services/setup_service.dart';
 import 'package:orario/ui.dart';
 
 class GroupSelection extends StatelessWidget {
-  List<String> test = ["БрГТУ", "БНТУ"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,11 +12,11 @@ class GroupSelection extends StatelessWidget {
         title: Text("Выберите вашу группу"),
       ),
       body: ListView.builder(
-          itemCount: 2,
+          itemCount: SetupService.groupData.length,
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                title: Text(test[index]),
+                title: Text(SetupService.groupData[index]),
               ),
             );
           }),

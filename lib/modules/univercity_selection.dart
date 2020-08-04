@@ -4,9 +4,9 @@ import 'package:orario/ui.dart';
 import 'package:orario/modules/group_selection.dart';
 
 class UniversitySelection extends StatelessWidget {
-  List<String> test = ["БрГТУ", "БНТУ"];
   @override
   Widget build(BuildContext context) {
+    SetupService.getUnivercityData();
     return Scaffold(
       backgroundColor: OrarioColors.backGround,
       appBar: AppBar(
@@ -19,6 +19,7 @@ class UniversitySelection extends StatelessWidget {
             return Card(
               child: ListTile(
                 onTap: () {
+                  SetupService.getGroupData(SetupService.univercityData[index]);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

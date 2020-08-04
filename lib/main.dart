@@ -10,7 +10,6 @@ void main() {
 class Orario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SetupService().getData();
     return new MaterialApp(home: HomeScreen());
   }
 }
