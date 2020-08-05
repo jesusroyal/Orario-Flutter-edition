@@ -10,8 +10,7 @@ class SetupService {
   static Map<String, String> _univercityDict = Map<String, String>();
   static Map<String, String> _groupDict = Map<String, String>();
 
-  static Map<int, Map<int, Map<int, Lesson>>> lessonTable =
-      Map<int, Map<int, Map<int, Lesson>>>();
+  static var lessonDict = Map<String, Lesson>();
 
   static void getUnivercityData() {
     ref.once().then((snapshot) {
@@ -41,37 +40,30 @@ class SetupService {
     });
   }
 
+  static var didFinish = false;
+
   static void setGroupTo(String group) {
     ref = ref.child(_groupDict[group]).child("timetable");
-    ref.once().then((value) => print(value.value));
     ref.once().then((snapshot) {
       for (int week = 0; week < 2; week++) {
-        for (int day = 0; day < 7; day++) {
-          for (int lesson = 0; lesson < 6; lesson++) {
-            if (snapshot.value[
-                    "${week.toString()}/${day.toString()}/${lesson.toString()}/name"] !=
-                null) {
-              lessonTable[week][day][lesson] = Lesson(
-                snapshot.value[
-                        "${week.toString()}/${day.toString()}/${lesson.toString()}/name"]
-                    .toString(),
-                snapshot.value[
-                        "${week.toString()}/${day.toString()}/${lesson.toString()}/location"]
-                    .toString(),
-                snapshot.value[
-                        "${week.toString()}/${day.toString()}/${lesson.toString()}/don"]
-                    .toString(),
-                int.parse(snapshot.value[
-                        "${week.toString()}/${day.toString()}/${lesson.toString()}/type"]
-                    .toString()),
-              );
-              print(lessonTable[week][day][lesson]);
+        for (int day = 0; day < snapshot.value[week.toString()].length; day++) {
+          for (int lesson = 0;
+              lesson < snapshot.value[week.toString()][day].length;
+              lesson++) {
+            if (snapshot.value[week.toString()][day][lesson] != null) {
+              var data = snapshot.value[week.toString()][day][lesson];
+              print(data);
+              lessonDict["$week/$day/$lesson"] = Lesson(
+                  data["name"].toString(),
+                  data["location"].toString(),
+                  data["don"].toString(),
+                  int.parse(data["type"].toString()));
             }
           }
         }
       }
-    });
 
-    print(lessonTable);
+      didFinish = true;
+    });
   }
 }

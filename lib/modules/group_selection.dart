@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/modules/list_screen.dart';
 import 'package:orario/services/setup_service.dart';
 import 'package:orario/ui.dart';
 
@@ -18,6 +19,8 @@ class GroupSelection extends StatelessWidget {
               child: ListTile(
                 onTap: () {
                   SetupService.setGroupTo(SetupService.groupData[index]);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ListScreen()));
                 },
                 title: Text(SetupService.groupData[index]),
               ),
