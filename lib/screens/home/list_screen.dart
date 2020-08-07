@@ -23,11 +23,9 @@ class ListScreen extends StatelessWidget {
         return Container(
           child: Padding(
             padding: EdgeInsets.all(8),
-            child: Text(SetupService.didFinish == true
-                ? (SetupService.lessonDict["0/$section/$row"] != null
-                    ? SetupService.lessonDict["0/$section/$row"].name
-                    : "Нет пар")
-                : ("нет данных")),
+            child: Text(SetupService.lessonDict["0/$section/$row"] != null
+                ? SetupService.lessonDict["0/$section/$row"].name
+                : "Нет пар"),
           ),
         );
       },
