@@ -6,7 +6,6 @@ import 'package:orario/modules/group_selection.dart';
 class UniversitySelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SetupService.getUnivercityData();
     return Scaffold(
       backgroundColor: OrarioColors.backGround,
       appBar: AppBar(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orario/ui.dart';
 import 'package:orario/modules/univercity_selection.dart';
+import 'package:orario/services/setup_service.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -32,11 +33,33 @@ class HomeScreen extends StatelessWidget {
                   color: OrarioColors.darkAccent,
                   child: Text("Search"),
                   onPressed: () {
-                    print("object");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UniversitySelection()));
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SimpleDialog(
+                          children: <Widget>[
+                            Center(
+                              child: Column(children: [
+                                CircularProgressIndicator(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Please Wait....",
+                                  style: TextStyle(color: Colors.blueAccent),
+                                )
+                              ]),
+                            )
+                          ],
+                        );
+                      },
+                    );
+                    SetupService.getUnivercityData(ready: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UniversitySelection()));
+                    });
                   },
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(30.0),

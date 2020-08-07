@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:orario/services/lesson.dart';
 
 class SetupService {
@@ -12,13 +13,14 @@ class SetupService {
 
   static var lessonDict = Map<String, Lesson>();
 
-  static void getUnivercityData() {
+  static void getUnivercityData({ready()}) {
     ref.once().then((snapshot) {
       Map<dynamic, dynamic> unilist = snapshot.value['unilist'];
       unilist.forEach((key, value) {
         univercityData.add(value.toString());
         _univercityDict[value.toString()] = key.toString();
       });
+      ready();
     });
     print(_univercityDict);
   }
