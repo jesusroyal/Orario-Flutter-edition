@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:orario/modules/welcome.dart';
+import 'package:orario/screens/login/welcome_screen.dart';
+import 'package:orario/screens/home/home_screen.dart';
 import 'package:orario/services/setup_service.dart';
 
 void main() {
@@ -10,6 +11,12 @@ void main() {
 class Orario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(home: HomeScreen());
+    return new MaterialApp(
+      initialRoute: '/welcome',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/welcome': (context) => WelcomeScreen()
+      },
+    );
   }
 }

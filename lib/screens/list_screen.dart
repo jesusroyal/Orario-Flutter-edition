@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/services/setup_service.dart';
-import 'package:orario/modules/sectioned_list.dart';
+import 'package:orario/screens/sectioned_list.dart';
 
 class ListScreen extends StatefulWidget {
   ListScreen({this.title});

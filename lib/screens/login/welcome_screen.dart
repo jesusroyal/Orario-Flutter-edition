@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:orario/modules/loading_dialog.dart';
+import 'package:orario/screens/loading_dialog.dart';
 import 'package:orario/ui.dart';
-import 'package:orario/modules/univercity_selection.dart';
+import 'package:orario/screens/login/univercity_selection.dart';
 import 'package:orario/services/setup_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
