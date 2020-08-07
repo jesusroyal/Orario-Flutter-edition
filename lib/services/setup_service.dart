@@ -14,6 +14,7 @@ class SetupService {
   static var lessonDict = Map<String, Lesson>();
 
   static void getUnivercityData({ready()}) {
+    univercityData.clear();
     ref.once().then((snapshot) {
       Map<dynamic, dynamic> unilist = snapshot.value['unilist'];
       unilist.forEach((key, value) {
@@ -25,8 +26,8 @@ class SetupService {
     print(_univercityDict);
   }
 
-  static void getGroupData(String univercity) {
-    print(univercity);
+  static void getGroupDataFor({String univercity, ready()}) {
+    groupData.clear();
     var univercityPath = _univercityDict[univercity];
     ref = FirebaseDatabase.instance
         .reference()
@@ -39,12 +40,13 @@ class SetupService {
         groupData.add(value.toString());
         _groupDict[value.toString()] = key.toString();
       });
+      ready();
     });
   }
 
   static var didFinish = false;
 
-  static void setGroupTo(String group) {
+  static void setGroupTo({String group, ready()}) {
     ref = ref.child(_groupDict[group]).child("timetable");
     ref.once().then((snapshot) {
       for (int week = 0; week < 2; week++) {
@@ -64,8 +66,7 @@ class SetupService {
           }
         }
       }
-
-      didFinish = true;
+      ready();
     });
   }
 }

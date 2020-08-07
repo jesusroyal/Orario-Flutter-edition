@@ -18,9 +18,14 @@ class GroupSelection extends StatelessWidget {
             return Card(
               child: ListTile(
                 onTap: () {
-                  SetupService.setGroupTo(SetupService.groupData[index]);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ListScreen()));
+                  SetupService.setGroupTo(
+                      group: SetupService.groupData[index],
+                      ready: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListScreen()));
+                      });
                 },
                 title: Text(SetupService.groupData[index]),
               ),

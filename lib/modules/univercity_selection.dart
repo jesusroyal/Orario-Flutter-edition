@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/modules/loading_dialog.dart';
 import 'package:orario/services/setup_service.dart';
 import 'package:orario/ui.dart';
 import 'package:orario/modules/group_selection.dart';
@@ -18,11 +19,17 @@ class UniversitySelection extends StatelessWidget {
             return Card(
               child: ListTile(
                 onTap: () {
-                  SetupService.getGroupData(SetupService.univercityData[index]);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GroupSelection()));
+                  showDialog(
+                      context: context, builder: (context) => LoadingDialog());
+                  SetupService.getGroupDataFor(
+                      univercity: SetupService.univercityData[index],
+                      ready: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GroupSelection()));
+                      });
                 },
                 title: Text(SetupService.univercityData[index]),
               ),

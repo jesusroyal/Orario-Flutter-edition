@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/modules/loading_dialog.dart';
 import 'package:orario/ui.dart';
 import 'package:orario/modules/univercity_selection.dart';
 import 'package:orario/services/setup_service.dart';
@@ -34,27 +35,14 @@ class HomeScreen extends StatelessWidget {
                   child: Text("Search"),
                   onPressed: () {
                     showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (context) {
-                        return SimpleDialog(
-                          children: <Widget>[
-                            Center(
-                              child: Column(children: [
-                                CircularProgressIndicator(),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Please Wait....",
-                                  style: TextStyle(color: Colors.blueAccent),
-                                )
-                              ]),
-                            )
-                          ],
-                        );
+                        return LoadingDialog();
                       },
                     );
                     SetupService.getUnivercityData(ready: () {
+                      Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
