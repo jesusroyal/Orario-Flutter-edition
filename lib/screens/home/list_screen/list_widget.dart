@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:orario/services/lesson.dart';
 
 class ListWidget extends StatelessWidget {
-  Lesson _lesson;
+  Lesson lesson;
 
-  //ListWidget(this._lesson);
+  ListWidget({this.lesson});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +21,18 @@ class ListWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Название предмета",
+                    lesson.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   Row(
                     children: <Widget>[
                       Text(
-                        "Расположение",
+                        lesson.location,
                         textAlign: TextAlign.left,
                       ),
                       Text(
-                        "Препод",
+                        lesson.don,
                         textAlign: TextAlign.right,
                       )
                     ],

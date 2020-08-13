@@ -31,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onTap: (index) {
           setState(() {
-            print(SetupService.lessonDict);
             _currentIndex = index;
           });
         },

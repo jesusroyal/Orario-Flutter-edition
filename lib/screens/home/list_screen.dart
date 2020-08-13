@@ -16,7 +16,9 @@ class ListScreen extends StatelessWidget {
         return ListSection(section);
       },
       rowWidget: (section, row) {
-        return ListWidget();
+        return ListWidget(
+          lesson: SetupService.lessonDict['0/$section/$row'],
+        );
       },
     );
   }
