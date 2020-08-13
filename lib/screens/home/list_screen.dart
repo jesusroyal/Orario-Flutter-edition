@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/sectioned_list.dart';
 import 'package:orario/services/setup_service.dart';
+import 'package:orario/screens/home/list_screen/section_widget.dart';
+import 'package:orario/screens/home/list_screen/list_widget.dart';
 
 class ListScreen extends StatelessWidget {
   @override
@@ -11,23 +13,10 @@ class ListScreen extends StatelessWidget {
         return 3;
       },
       sectionWidget: (section) {
-        return Container(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text('Section $section'),
-          ),
-          color: Colors.grey,
-        );
+        return ListSection(section);
       },
       rowWidget: (section, row) {
-        return Container(
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Text(SetupService.lessonDict["0/$section/$row"] != null
-                ? SetupService.lessonDict["0/$section/$row"].name
-                : "Нет пар"),
-          ),
-        );
+        return ListWidget();
       },
     );
   }
