@@ -8,39 +8,78 @@ class ListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.camera),
-              SizedBox(
-                width: 30,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    lesson.name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        lesson.location,
-                        textAlign: TextAlign.left,
-                      ),
-                      Text(
-                        lesson.don,
-                        textAlign: TextAlign.right,
-                      )
-                    ],
-                  )
-                ],
-              )
-            ],
-          )),
-    );
+    if (lesson == null) {
+      return Container(
+        child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.camera),
+                SizedBox(
+                  width: 30,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "нет",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          "нет",
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "нет",
+                          textAlign: TextAlign.right,
+                        )
+                      ],
+                    )
+                  ],
+                )
+              ],
+            )),
+      );
+    } else {
+      return Container(
+        child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.camera),
+                SizedBox(
+                  width: 30,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      lesson.name,
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          lesson.location,
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          lesson.don,
+                          textAlign: TextAlign.right,
+                        )
+                      ],
+                    )
+                  ],
+                )
+              ],
+            )),
+      );
+    }
   }
 }

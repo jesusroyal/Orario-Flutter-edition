@@ -1,6 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
 import 'package:orario/services/lesson.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SetupService {
   static var ref = FirebaseDatabase.instance.reference().child('uni');
@@ -28,12 +28,9 @@ class SetupService {
 
   static void getGroupDataFor({String univercity, ready()}) {
     groupData.clear();
-    var univercityPath = _univercityDict[univercity];
-    ref = FirebaseDatabase.instance
-        .reference()
-        .child('uni')
-        .child(univercityPath);
-    print(univercityPath);
+    _path = _univercityDict[univercity];
+    ref = FirebaseDatabase.instance.reference().child('uni').child(_path);
+    print(_path);
     ref.once().then((snapshot) {
       Map<dynamic, dynamic> grouplist = snapshot.value['grouplist'];
       grouplist.forEach((key, value) {
@@ -46,7 +43,57 @@ class SetupService {
 
   static var didFinish = false;
 
+  static String _path;
+
+  static void init({
+    ready(bool needsLogin),
+  }) {
+    getPath();
+    bool needsLogin;
+    if (_path == null) {
+      needsLogin = false;
+      ready(needsLogin);
+    } else {
+      needsLogin = true;
+      _getData(ready: ready(needsLogin));
+    }
+  }
+
+  static void _getData({ready()}) {
+    ref.child(_path).child('timetable');
+
+    ref.once().then((snapshot) {
+      for (int week = 0; week < 2; week++) {
+        for (int day = 0; day < snapshot.value[week.toString()].length; day++) {
+          for (int lesson = 0;
+              lesson < snapshot.value[week.toString()][day].length;
+              lesson++) {
+            if (snapshot.value[week.toString()][day][lesson] != null) {
+              var data = snapshot.value[week.toString()][day][lesson];
+              print(data);
+              lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
+            }
+          }
+        }
+      }
+      ready();
+    });
+  }
+
+  static getPath() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String stringValue = prefs.getString('path');
+    _path = stringValue;
+  }
+
+  static Future<void> setPath() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('path', _path);
+  }
+
   static void setGroupTo({String group, ready()}) {
+    _path += '/' + _groupDict[group];
+    setPath();
     ref = ref.child(_groupDict[group]).child("timetable");
     ref.once().then((snapshot) {
       for (int week = 0; week < 2; week++) {
@@ -57,11 +104,8 @@ class SetupService {
             if (snapshot.value[week.toString()][day][lesson] != null) {
               var data = snapshot.value[week.toString()][day][lesson];
               print(data);
-              lessonDict["$week/$day/$lesson"] = Lesson(
-                  data["name"].toString(),
-                  data["location"].toString(),
-                  data["don"].toString(),
-                  int.parse(data["type"].toString()));
+              lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
+              print(lessonDict["$week/$day/$lesson"]);
             }
           }
         }
