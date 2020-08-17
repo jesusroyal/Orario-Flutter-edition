@@ -3,7 +3,9 @@ import 'package:orario/services/lesson.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SetupService {
-  static var ref = FirebaseDatabase.instance.reference().child('uni');
+  static FirebaseDatabase database = FirebaseDatabase.instance;
+
+  static var ref = database.reference().child('uni');
 
   static String _path;
   static var lessonDict = Map<String, Lesson>();
@@ -98,6 +100,10 @@ class SetupService {
   }
 
   static void _getData({ready()}) {
+    database = FirebaseDatabase.instance;
+    database.setPersistenceEnabled(true);
+    database.setPersistenceCacheSizeBytes(10000000);
+
     ref.child(_path).child('timetable');
 
     ref = FirebaseDatabase.instance
