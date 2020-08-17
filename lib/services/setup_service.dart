@@ -11,14 +11,32 @@ class SetupService {
   static void init({
     ready(bool needsLogin),
   }) {
-    bool needsLogin;
-    if (_path == null) {
-      needsLogin = false;
-      ready(needsLogin);
-    } else {
-      needsLogin = true;
-      _getData(ready: ready(needsLogin));
-    }
+    SharedPreferences.getInstance().then((sp) {
+      var sharedPreferences = sp;
+      _path = sharedPreferences.getString('DBPath');
+      print(_path);
+      bool needsLogin;
+      if (_path == null) {
+        needsLogin = false;
+        ready(needsLogin);
+      } else {
+        needsLogin = true;
+        _getData(ready: ready(needsLogin));
+      }
+    });
+  }
+
+  static void getPath() {
+    SharedPreferences.getInstance().then((sp) {
+      var sharedPreferences = sp;
+      _path = sharedPreferences.getString('DBPath');
+    });
+    print(_path);
+  }
+
+  static Future setPath() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('DBPath', _path);
   }
 
   static List<String> univercityData = List<String>();
@@ -56,29 +74,38 @@ class SetupService {
 
   static void setGroupTo({String group, ready()}) {
     _path += '/' + _groupDict[group];
-    ref = ref.child(_groupDict[group]).child("timetable");
-    ref.once().then((snapshot) {
-      for (int week = 0; week < 2; week++) {
-        for (int day = 0; day < snapshot.value[week.toString()].length; day++) {
-          for (int lesson = 0;
-              lesson < snapshot.value[week.toString()][day].length;
-              lesson++) {
-            if (snapshot.value[week.toString()][day][lesson] != null) {
-              var data = snapshot.value[week.toString()][day][lesson];
-              print(data);
-              lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
-              print(lessonDict["$week/$day/$lesson"]);
+    setPath().then((value) {
+      ref.child(_groupDict[group]).child("timetable").once().then((snapshot) {
+        for (int week = 0; week < 2; week++) {
+          for (int day = 0;
+              day < snapshot.value[week.toString()].length;
+              day++) {
+            for (int lesson = 0;
+                lesson < snapshot.value[week.toString()][day].length;
+                lesson++) {
+              if (snapshot.value[week.toString()][day][lesson] != null) {
+                var data = snapshot.value[week.toString()][day][lesson];
+                print(data);
+                lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
+                print(lessonDict["$week/$day/$lesson"]);
+              }
             }
           }
         }
-      }
-      ready();
+        ready();
+      });
     });
   }
 
   static void _getData({ready()}) {
     ref.child(_path).child('timetable');
 
+    ref = FirebaseDatabase.instance
+        .reference()
+        .child('uni')
+        .child(_path)
+        .child('timetable');
+
     ref.once().then((snapshot) {
       for (int week = 0; week < 2; week++) {
         for (int day = 0; day < snapshot.value[week.toString()].length; day++) {
@@ -93,7 +120,9 @@ class SetupService {
           }
         }
       }
-      ready();
+      if (ready != null) {
+        ready();
+      }
     });
   }
 }

@@ -4,15 +4,23 @@ import 'package:orario/screens/home/home_screen.dart';
 import 'package:orario/services/setup_service.dart';
 
 void main() {
-  // SetupService().getData();
-  runApp(Orario());
+  WidgetsFlutterBinding.ensureInitialized();
+  SetupService.init(
+    ready: (needsLogin) {
+      runApp(Orario(needsLogin));
+    },
+  );
 }
 
 class Orario extends StatelessWidget {
+  bool needsLogin;
+
+  Orario(this.needsLogin);
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      initialRoute: '/welcome',
+      initialRoute: needsLogin ? '/' : '/welcome',
       routes: {
         '/': (context) => HomeScreen(),
         '/welcome': (context) => WelcomeScreen()

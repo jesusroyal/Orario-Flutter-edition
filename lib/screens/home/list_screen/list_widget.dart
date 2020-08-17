@@ -61,7 +61,7 @@ class ListWidget extends StatelessWidget {
                       lesson.name,
                       textAlign: TextAlign.center,
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 5, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: <Widget>[
