@@ -4,6 +4,30 @@ class Lesson {
   String don;
   LessonType type;
 
+  String get shortName {
+    if (this.name.length <= 10) {
+      return this.name;
+    }
+
+    if (this.name.length > 25) {
+      String output = '';
+      List<String> words = this.name.split(" ");
+
+      words.forEach((word) {
+        output += word[0];
+      });
+      return output;
+    }
+
+    String output = '';
+    List<String> words = this.name.split(" ");
+
+    words.forEach((word) {
+      output += (word.substring(0, 4) + '. ');
+    });
+    return output;
+  }
+
   Lesson({this.name, this.location, this.don, int type}) {
     switch (type) {
       case 0:

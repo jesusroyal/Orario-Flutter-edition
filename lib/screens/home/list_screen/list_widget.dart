@@ -58,10 +58,10 @@ class ListWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      lesson.name,
+                      lesson.shortName,
                       textAlign: TextAlign.center,
                       style:
-                          TextStyle(fontSize: 5, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: <Widget>[
