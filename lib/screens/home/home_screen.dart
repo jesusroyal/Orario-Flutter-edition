@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home/list_screen.dart';
-import 'package:orario/services/setup_service.dart';
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;

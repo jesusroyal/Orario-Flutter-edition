@@ -1,5 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
-
 class Lesson {
   String name;
   String location;

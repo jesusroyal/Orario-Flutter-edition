@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListSection extends StatelessWidget {
-  int _section;
+  final int _section;
 
   final _sectionArray = [
     "Понедельник",

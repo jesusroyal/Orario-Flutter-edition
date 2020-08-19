@@ -13,7 +13,7 @@ void main() {
 }
 
 class Orario extends StatelessWidget {
-  bool needsLogin;
+  final bool needsLogin;
 
   Orario(this.needsLogin);
 

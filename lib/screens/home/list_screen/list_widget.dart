@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:orario/services/lesson.dart';
 
 class ListWidget extends StatelessWidget {
-  Lesson lesson;
+  final Lesson lesson;
 
   ListWidget({this.lesson});
 
