@@ -16,7 +16,6 @@ class SetupService {
     SharedPreferences.getInstance().then((sp) {
       var sharedPreferences = sp;
       _path = sharedPreferences.getString('DBPath');
-      print(_path);
       bool needsLogin;
       if (_path == null) {
         needsLogin = false;
@@ -33,7 +32,6 @@ class SetupService {
       var sharedPreferences = sp;
       _path = sharedPreferences.getString('DBPath');
     });
-    print(_path);
   }
 
   static Future setPath() async {
@@ -87,7 +85,6 @@ class SetupService {
                 lesson++) {
               if (snapshot.value[week.toString()][day][lesson] != null) {
                 var data = snapshot.value[week.toString()][day][lesson];
-                print(data);
                 lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
                 print(lessonDict["$week/$day/$lesson"]);
               }
@@ -120,7 +117,6 @@ class SetupService {
               lesson++) {
             if (snapshot.value[week.toString()][day][lesson] != null) {
               var data = snapshot.value[week.toString()][day][lesson];
-              print(data);
               lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
             }
           }

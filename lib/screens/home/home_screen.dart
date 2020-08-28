@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home/list_screen.dart';
+import 'package:orario/screens/home/settings_screen/settings_screen.dart';
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
@@ -9,9 +10,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Text("Дома"),
     ),
     ListScreen(),
-    Center(
-      child: Text("Настройки"),
-    ),
+    SettingsScreen(),
   ];
 
   @override
