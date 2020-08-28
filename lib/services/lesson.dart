@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Lesson {
   String name;
   String location;
@@ -84,3 +86,17 @@ class Lesson {
 }
 
 enum LessonType { lecture, lab, seminar }
+
+extension LessonIcon on LessonType {
+  AssetImage get icon {
+    switch (this) {
+      case LessonType.lab:
+        return AssetImage('assets/orariologo.png');
+      case LessonType.lecture:
+        return AssetImage('assets/orariologo.png');
+      case LessonType.seminar:
+        return AssetImage('assets/orariologo.png');
+    }
+    return null;
+  }
+}

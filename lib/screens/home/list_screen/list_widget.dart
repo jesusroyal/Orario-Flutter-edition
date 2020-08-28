@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/services/lesson.dart';
+import 'package:orario/ui.dart';
 
 class ListWidget extends StatelessWidget {
   final Lesson lesson;
@@ -10,76 +11,34 @@ class ListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (lesson == null) {
       return Container(
-        child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.camera),
-                SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "нет",
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "нет",
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          "нет",
-                          textAlign: TextAlign.right,
-                        )
-                      ],
-                    )
-                  ],
-                )
-              ],
-            )),
+        height: 0.0,
       );
     } else {
       return Container(
-        child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.camera),
-                SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+          height: 100.0,
+          color: Colors.white,
+          margin: EdgeInsets.symmetric(vertical: 5.0),
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Icon(Icons.cake),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
                     Text(
                       lesson.shortName,
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          lesson.location,
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          lesson.don,
-                          textAlign: TextAlign.right,
-                        )
-                      ],
+                    Text(
+                      lesson.location,
+                      textAlign: TextAlign.right,
                     )
                   ],
-                )
-              ],
-            )),
-      );
+                ),
+              ),
+            ],
+          ));
     }
   }
 }
