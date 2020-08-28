@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:orario/screens/home/settings_screen/settings_sevice.dart';
-import 'package:orario/ui.dart';
+import 'package:orario/screens/ui_constants.dart';
+import 'package:orario/services/orario_service.dart';
 
 class SettingsScreen extends StatelessWidget {
   final List<String> _settingsTitles = [
     'Сброс настроек',
     'Редактирование расписания'
   ];
-
-  void _resetSettings(BuildContext context) {
-    SettingsService.resetSettings();
-    Navigator.of(context).pushNamedAndRemoveUntil('/welcome', (route) => false);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +20,9 @@ class SettingsScreen extends StatelessWidget {
               onTap: () {
                 switch (index) {
                   case 0:
-                    _resetSettings(context);
+                    OrarioService.resetSettings();
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil('/welcome', (route) => false);
                     break;
                   default:
                 }

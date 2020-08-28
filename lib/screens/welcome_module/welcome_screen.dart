@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:orario/screens/loading_dialog.dart';
-import 'package:orario/ui.dart';
-import 'package:orario/screens/login/univercity_selection.dart';
-import 'package:orario/services/setup_service.dart';
+import 'package:orario/screens/widgets/loading_widget.dart';
+import 'package:orario/screens/ui_constants.dart';
+import 'package:orario/screens/welcome_module/univercity_selection.dart';
+import 'package:orario/services/orario_service.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -32,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: RaisedButton(
                   textColor: Colors.white,
                   color: OrarioColors.darkAccent,
-                  child: Text("Search"),
+                  child: Text('Начать'),
                   onPressed: () {
                     showDialog(
                       barrierDismissible: false,
@@ -41,16 +41,18 @@ class WelcomeScreen extends StatelessWidget {
                         return LoadingDialog();
                       },
                     );
-                    SetupService.getUnivercityData(ready: () {
+                    OrarioService.fetchUniversities().then((uniMap) {
                       Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => UniversitySelection()));
+                              builder: (context) => UniversitySelection(
+                                    uniMap: uniMap,
+                                  )));
                     });
                   },
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                 ),
               )

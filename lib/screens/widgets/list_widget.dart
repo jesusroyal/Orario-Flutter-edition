@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orario/services/lesson.dart';
-import 'package:orario/ui.dart';
+import 'package:orario/services/lesson_model.dart';
 
 class ListWidget extends StatelessWidget {
   final Lesson lesson;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends StatelessWidget {
+  final String message = 'Пожалуйста подождите';
+
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
@@ -12,7 +14,7 @@ class LoadingDialog extends StatelessWidget {
               width: 30,
             ),
             Text(
-              "Пожалуйста подождите",
+              message,
               style: TextStyle(color: Colors.black),
             )
           ]),

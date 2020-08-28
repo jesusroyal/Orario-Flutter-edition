@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:orario/screens/sectioned_list.dart';
-import 'package:orario/services/setup_service.dart';
-import 'package:orario/screens/home/list_screen/section_widget.dart';
-import 'package:orario/screens/home/list_screen/list_widget.dart';
-import 'package:orario/ui.dart';
+import 'package:orario/screens/widgets/sectioned_list_widget.dart';
+import 'package:orario/services/orario_service.dart';
+import 'package:orario/screens/widgets/section_widget.dart';
+import 'package:orario/screens/widgets/list_widget.dart';
+import 'package:orario/screens/ui_constants.dart';
 
 class ListScreen extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class ListScreen extends StatelessWidget {
         },
         rowWidget: (section, row) {
           return ListWidget(
-            lesson: SetupService.lessonDict['0/$section/$row'],
+            lesson: OrarioService.lessonDict['0/$section/$row'],
           );
         },
       ),
