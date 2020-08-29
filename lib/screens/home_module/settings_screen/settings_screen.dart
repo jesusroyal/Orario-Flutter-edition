@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/screens/home_module/list_screen/list_screen.dart';
 import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/services/orario_service.dart';
 
@@ -23,6 +24,13 @@ class SettingsScreen extends StatelessWidget {
                     OrarioService.resetSettings();
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil('/welcome', (route) => false);
+                    break;
+                  case 1:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ListScreen(isEditor: true),
+                        ));
                     break;
                   default:
                 }

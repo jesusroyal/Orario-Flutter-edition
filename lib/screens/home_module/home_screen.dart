@@ -9,7 +9,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Center(
       child: Text("Дома"),
     ),
-    ListScreen(),
+    ListScreen(isEditor: false),
     SettingsScreen(),
   ];
 

@@ -3,14 +3,14 @@ Orario ToDo-Update List
 
     v0.0.1 Alpha
         [x] Welcom screen
-        [ ] Setup procces
-        [ ] Settings persistency
-        [ ] Timetable list view
+        [x] Setup procces
+        [x] Settings persistency
+        [x] Timetable list view
     
     v0.0.2 Alpha
-        [ ] Refactoring
-        [ ] List design
-        [ ] Complete navigation
+        [x] Refactoring
+        [x] List design
+        [x] Complete navigation
 
     v0.0.3 Beta
         [ ] Home tile 
