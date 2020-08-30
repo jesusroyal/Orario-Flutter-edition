@@ -49,14 +49,28 @@ class ListWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    lesson.shortName,
-                    textAlign: TextAlign.center,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        lesson.shortName,
+                        textAlign: TextAlign.center,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            lesson.don,
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            lesson.location,
+                            textAlign: TextAlign.right,
+                          )
+                        ],
+                      )
+                    ],
                   ),
-                  Text(
-                    lesson.location,
-                    textAlign: TextAlign.right,
-                  )
                 ],
               ),
             ),
