@@ -22,7 +22,8 @@ class TokenVerification extends StatelessWidget {
           return LoadingDialog();
         },
       );
-      OrarioService.setupGroup(group: group, title: _title).then((value) {
+      OrarioService.setupGroup(group: group, title: _title, token: _token)
+          .then((value) {
         Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
         Navigator.push(
             context,

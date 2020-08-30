@@ -56,10 +56,13 @@ class OrarioService {
     return tokenlist;
   }
 
-  static Future<void> setupGroup({String group, String title}) async {
+  static Future<void> setupGroup(
+      {String group, String title, String token}) async {
     final ref = FirebaseDatabase.instance.reference().child('uni/$_path');
     await ref.child('grouplist').update({group: title});
     await ref.child('tokens').update({group: null});
+
+    ref.child('$group/token').set(token);
 
     for (int week = 0; week <= 1; week++) {
       for (int day = 0; day <= 6; day++) {
@@ -108,6 +111,19 @@ class OrarioService {
       }
     });
     return;
+  }
+
+  static Future<bool> verify({String token}) async {
+    final db = FirebaseDatabase.instance;
+    final ref = db.reference().child('uni/$_path/token');
+
+    bool isValid = false;
+    await ref.once().then((value) {
+      if (value.value.toString() == token) {
+        isValid = true;
+      }
+    });
+    return isValid;
   }
 
   static Future<void> updateChanges() async {
