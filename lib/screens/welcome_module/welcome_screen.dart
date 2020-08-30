@@ -48,6 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => UniversitySelection(
                                     uniMap: uniMap,
+                                    isAddingGroup: false,
                                   )));
                     });
                   },
@@ -55,6 +56,21 @@ class WelcomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                 ),
+              ),
+              MaterialButton(
+                child: Text('У меня есть токен!'),
+                onPressed: () {
+                  OrarioService.fetchUniversities().then((uniMap) {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UniversitySelection(
+                                  uniMap: uniMap,
+                                  isAddingGroup: true,
+                                )));
+                  });
+                },
               )
             ],
           )),

@@ -25,7 +25,11 @@ class Lesson {
     List<String> words = this.name.split(" ");
 
     words.forEach((word) {
-      output += (word.substring(0, 4) + '. ');
+      if (word.length > 4) {
+        output += (word.substring(0, 4) + '. ');
+      } else {
+        output += word;
+      }
     });
     return output;
   }

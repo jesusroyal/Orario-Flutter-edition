@@ -44,6 +44,35 @@ class OrarioService {
     return grouplist;
   }
 
+  static Future<Map<String, String>> fetchTokensFor({String university}) async {
+    _path = '$university/';
+    Map<String, String> tokenlist;
+    final ref = FirebaseDatabase.instance.reference().child('uni/$university');
+
+    await ref.once().then((snapshot) {
+      final Map<dynamic, dynamic> snapshotData = snapshot.value['tokens'];
+      tokenlist = snapshotData.cast<String, String>();
+    });
+    return tokenlist;
+  }
+
+  static Future<void> setupGroup({String group, String title}) async {
+    final ref = FirebaseDatabase.instance.reference().child('uni/$_path');
+    await ref.child('grouplist').update({group: title});
+    await ref.child('tokens').update({group: null});
+
+    for (int week = 0; week <= 1; week++) {
+      for (int day = 0; day <= 6; day++) {
+        for (int lesson = 0; lesson <= 7; lesson++) {
+          ref.child('$group/timetable/$week/$day/$lesson').set('no');
+        }
+      }
+    }
+    _path += group;
+    await _getData();
+    return;
+  }
+
   static Future<void> fetchDataFor({String group}) async {
     _path += group;
 
@@ -70,7 +99,7 @@ class OrarioService {
           for (int lesson = 0;
               lesson < snapshot.value[week][day].length;
               lesson++) {
-            if (snapshot.value[week][day][lesson] != null) {
+            if (snapshot.value[week][day][lesson] != 'no') {
               var data = snapshot.value[week][day][lesson];
               lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
             }
@@ -79,6 +108,38 @@ class OrarioService {
       }
     });
     return;
+  }
+
+  static Future<void> updateChanges() async {
+    final db = FirebaseDatabase.instance;
+    final ref = db.reference().child('uni/$_path/timetable');
+    print(_path);
+    // ref.set({'test': 'i work'}).catchError((e) => print('error $e'));
+
+    for (int week = 0; week <= 2; week++) {
+      for (int day = 0; day <= 6; day++) {
+        for (int lesson = 0; lesson <= 8; lesson++) {
+          if (lessonDict['$week/$day/$lesson'] == null) {
+            ref
+                .child(week.toString())
+                .child(day.toString())
+                .update({'$lesson': 'no'});
+          } else {
+            ref
+                .child(week.toString())
+                .child(day.toString())
+                .child(lesson.toString())
+                .set({
+              'name': lessonDict['$week/$day/$lesson'].name,
+              'location': lessonDict['$week/$day/$lesson'].location,
+              'don': lessonDict['$week/$day/$lesson'].don,
+              'type': lessonDict['$week/$day/$lesson'].type.index,
+            });
+          }
+          ;
+        }
+      }
+    }
   }
 
   static void resetSettings() {

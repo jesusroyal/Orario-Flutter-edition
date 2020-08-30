@@ -17,6 +17,14 @@ class ListWidget extends StatelessWidget {
     );
   }
 
+  Widget _noLesson() {
+    return Container(
+      height: 100.0,
+      color: Colors.red,
+      child: Text('Пары нет'),
+    );
+  }
+
   Widget _lessonWidget() {
     return Container(
         height: 100.0,
@@ -56,7 +64,12 @@ class ListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (lesson == null) {
-      return _emptyWidget();
+      return allowEdition
+          ? GestureDetector(
+              child: _noLesson(),
+              onTap: () => _edit(context),
+            )
+          : _emptyWidget();
     } else {
       return allowEdition
           ? GestureDetector(

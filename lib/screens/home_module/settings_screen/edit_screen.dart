@@ -15,15 +15,18 @@ class EditScreen extends StatelessWidget {
 
   void _tapSaved() {
     print('Нажал сохранить$_name,$_location');
-    OrarioService.lessonDict[path].name = _name;
+    OrarioService.lessonDict[path] =
+        Lesson(name: _name, location: _location, don: _don, type: 1);
     //Доделать каждый пункт
   }
 
   void _initBuffer() {
-    _name = lesson.name;
-    _location = lesson.location;
-    _don = lesson.don;
-    _type = lesson.type;
+    if (lesson != null) {
+      _name = lesson.name;
+      _location = lesson.location;
+      _don = lesson.don;
+      _type = lesson.type;
+    }
   }
 
 //Добавить выбор типа
@@ -37,17 +40,17 @@ class EditScreen extends StatelessWidget {
           children: [
             Text('Название'),
             TextFormField(
-              initialValue: lesson.name,
+              initialValue: _name,
               onChanged: (name) => _name = name,
             ),
             Text('Расположение'),
             TextFormField(
-              initialValue: lesson.location,
+              initialValue: _location,
               onChanged: (location) => _location = location,
             ),
             Text('Преподаватель'),
             TextFormField(
-              initialValue: lesson.don,
+              initialValue: _don,
               onChanged: (don) => _don = don,
             ),
             MaterialButton(
