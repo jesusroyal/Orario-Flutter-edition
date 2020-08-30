@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/list_screen/list_screen.dart';
+import 'package:orario/screens/widgets/loading_widget.dart';
 import 'package:orario/services/orario_service.dart';
 
 class TokenVerification extends StatelessWidget {
@@ -14,6 +15,13 @@ class TokenVerification extends StatelessWidget {
     String group = tokenMap.keys
         .firstWhere((k) => tokenMap[k] == _token, orElse: () => null);
     if (group != null) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return LoadingDialog();
+        },
+      );
       OrarioService.setupGroup(group: group, title: _title).then((value) {
         Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
         Navigator.push(
@@ -22,6 +30,15 @@ class TokenVerification extends StatelessWidget {
               builder: (context) => ListScreen(isEditor: true),
             ));
       });
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            children: [Text('Неправильный токен')],
+          );
+        },
+      );
     }
   }
 

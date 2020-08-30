@@ -60,6 +60,13 @@ class WelcomeScreen extends StatelessWidget {
               MaterialButton(
                 child: Text('У меня есть токен!'),
                 onPressed: () {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return LoadingDialog();
+                    },
+                  );
                   OrarioService.fetchUniversities().then((uniMap) {
                     Navigator.pop(context);
                     Navigator.push(
