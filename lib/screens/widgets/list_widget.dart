@@ -25,6 +25,17 @@ class ListWidget extends StatelessWidget {
     );
   }
 
+  IconData get _lessonIcon {
+    switch (lesson.type) {
+      case LessonType.lab:
+        return Icons.computer;
+      case LessonType.lecture:
+        return Icons.book;
+      case LessonType.seminar:
+        return Icons.brush;
+    }
+  }
+
   Widget _lessonWidget() {
     return Container(
         height: 100.0,
@@ -33,7 +44,7 @@ class ListWidget extends StatelessWidget {
         padding: EdgeInsets.all(10.0),
         child: Row(
           children: [
-            Icon(Icons.cake),
+            Icon(_lessonIcon),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

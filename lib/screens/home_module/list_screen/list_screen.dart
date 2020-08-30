@@ -16,8 +16,12 @@ class ListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(isEditor ? 'Редактирование' : 'Расписание'),
       ),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () => OrarioService.updateChanges()),
+      floatingActionButton: isEditor
+          ? FloatingActionButton(
+              onPressed: () => OrarioService.updateChanges(),
+              child: Icon(Icons.save),
+            )
+          : null,
       body: Container(
         color: OrarioColors.backGround,
         child: FlutterSectionListView(
