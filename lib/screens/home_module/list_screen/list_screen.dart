@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/screens/home_module/settings_screen/edit_screen.dart';
 import 'package:orario/screens/widgets/sectioned_list_widget.dart';
 import 'package:orario/services/orario_service.dart';
 import 'package:orario/screens/widgets/section_widget.dart';
@@ -19,6 +20,14 @@ class _ListScreenState extends State<ListScreen> {
   final bool isEditor;
 
   _ListScreenState({Key key, this.isEditor});
+
+  void _edit({BuildContext context, String path}) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditScreen(path: path),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +71,15 @@ class _ListScreenState extends State<ListScreen> {
             return ListWidget(
               path: '$currentWeek/$section/$row',
               allowEdition: isEditor,
+              onTap: () async {
+                await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          EditScreen(path: '$currentWeek/$section/$row'),
+                    ));
+                setState(() {});
+              },
             );
           },
         ),

@@ -22,9 +22,11 @@ class SettingsScreen extends StatelessWidget {
               onTap: () {
                 switch (index) {
                   case 0:
-                    OrarioService.resetSettings();
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/welcome', (route) => false);
+                    OrarioService.resetSettings().then((value) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/welcome', (route) => false);
+                    });
+
                     break;
                   case 1:
                     showDialog(

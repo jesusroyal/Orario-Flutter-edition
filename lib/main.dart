@@ -19,6 +19,7 @@ class Orario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: needsLogin ? '/welcome' : '/',
       routes: {
         '/': (context) => HomeScreen(),

@@ -158,8 +158,12 @@ class OrarioService {
     }
   }
 
-  static void resetSettings() {
-    SharedPreferences.getInstance().then((sp) {
+  static Future<void> resetSettings() async {
+    final db = FirebaseDatabase.instance;
+
+    await db.setPersistenceEnabled(false);
+    lessonDict.clear();
+    await SharedPreferences.getInstance().then((sp) {
       sp.clear();
     });
   }

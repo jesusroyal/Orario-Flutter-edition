@@ -8,7 +8,9 @@ class ListWidget extends StatelessWidget {
   final Lesson lesson;
   final bool allowEdition;
 
-  ListWidget({this.path, this.allowEdition})
+  final VoidCallback onTap;
+
+  ListWidget({this.path, this.allowEdition, this.onTap})
       : lesson = OrarioService.lessonDict[path];
 
   Widget _emptyWidget() {
@@ -93,14 +95,14 @@ class ListWidget extends StatelessWidget {
       return allowEdition
           ? GestureDetector(
               child: _noLesson(),
-              onTap: () => _edit(context),
+              onTap: () => onTap(),
             )
           : _emptyWidget();
     } else {
       return allowEdition
           ? GestureDetector(
               child: _lessonWidget(),
-              onTap: () => _edit(context),
+              onTap: () => onTap(),
             )
           : _lessonWidget();
     }
