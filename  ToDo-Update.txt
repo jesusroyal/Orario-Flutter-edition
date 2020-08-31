@@ -13,10 +13,18 @@ Orario ToDo-Update List
         [x] Complete navigation
 
     v0.0.3 Beta
-        [ ] Home tile 
-        [ ] Tomorrow list
-        [ ] Settings screen
+        [x] Token system
+        [x] Editing system
+        [x] Settings screen
+	[x] Data persistency
     
-    v0.1 Tibet
-        [ ] Complete design
-        [ ] Timetable cache
+    v0.0.4 Beta
+	[ ] No lesson button
+	[ ] Add icon and rename app
+	[ ] List design
+	[ ] Author tile in settings
+	[ ] New design for settings
+	[ ] Time managment
+	[ ] Home screen under construction etc.
+	[ ] Design pop-ups and dialogs
+	[ ] 
