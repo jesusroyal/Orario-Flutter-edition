@@ -5,15 +5,41 @@ import 'package:orario/screens/widgets/section_widget.dart';
 import 'package:orario/screens/widgets/list_widget.dart';
 import 'package:orario/screens/ui_constants.dart';
 
-class ListScreen extends StatelessWidget {
+class ListScreen extends StatefulWidget {
   final bool isEditor;
 
   const ListScreen({Key key, this.isEditor}) : super(key: key);
 
   @override
+  _ListScreenState createState() => _ListScreenState(isEditor: isEditor);
+}
+
+class _ListScreenState extends State<ListScreen> {
+  int currentWeek = 0;
+  final bool isEditor;
+
+  _ListScreenState({Key key, this.isEditor});
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Text('A'),
+              onPressed: () {
+                setState(() {
+                  currentWeek = 0;
+                });
+              }),
+          IconButton(
+              icon: Text('B'),
+              onPressed: () {
+                setState(() {
+                  currentWeek = 1;
+                });
+              })
+        ],
         title: Text(isEditor ? 'Редактирование' : 'Расписание'),
       ),
       floatingActionButton: isEditor
@@ -34,7 +60,7 @@ class ListScreen extends StatelessWidget {
           },
           rowWidget: (section, row) {
             return ListWidget(
-              path: '0/$section/$row',
+              path: '$currentWeek/$section/$row',
               allowEdition: isEditor,
             );
           },

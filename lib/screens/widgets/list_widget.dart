@@ -52,6 +52,7 @@ class ListWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      Text(path.split('/')[2]),
                       Text(
                         lesson.shortName,
                         textAlign: TextAlign.center,
