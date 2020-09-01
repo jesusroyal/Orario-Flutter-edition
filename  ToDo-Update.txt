@@ -20,11 +20,11 @@ Orario ToDo-Update List
     
     v0.0.4 Beta
 	[ ] No lesson button
-	[ ] Add icon and rename app
+	[x] Add icon and rename app
 	[ ] List design
 	[ ] Author tile in settings
 	[ ] New design for settings
 	[ ] Time managment
 	[ ] Home screen under construction etc.
 	[ ] Design pop-ups and dialogs
-	[ ] 
+	[ ] Fix group creation
