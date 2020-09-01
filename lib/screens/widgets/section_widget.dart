@@ -17,10 +17,10 @@ class ListSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.fromLTRB(10.0, 20.0, 0, 5.0),
         child: Text(
           _sectionArray[_section],
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
           style: TextStyle(fontSize: 20),
         ),
       ),

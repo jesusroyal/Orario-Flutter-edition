@@ -23,7 +23,7 @@ Orario ToDo-Update List
 	[x] Add icon and rename app
 	[ ] List design
 	[ ] Author tile in settings
-	[ ] New design for settings
+	[x] New design for settings
 	[ ] Time managment
 	[ ] Home screen under construction etc.
 	[ ] Design pop-ups and dialogs

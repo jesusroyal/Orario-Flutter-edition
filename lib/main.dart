@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/screens/welcome_module/welcome_screen.dart';
 import 'package:orario/screens/home_module/home_screen.dart';
 import 'package:orario/services/orario_service.dart';
@@ -19,6 +20,11 @@ class Orario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(color: OrarioColors.darkAccent),
+          backgroundColor: OrarioColors.backGround,
+          scaffoldBackgroundColor: OrarioColors.backGround,
+          accentColor: OrarioColors.darkAccent),
       debugShowCheckedModeBanner: false,
       initialRoute: needsLogin ? '/welcome' : '/',
       routes: {

@@ -27,58 +27,76 @@ class ListWidget extends StatelessWidget {
     );
   }
 
-  IconData get _lessonIcon {
+  Color get _lessonColor {
     switch (lesson.type) {
       case LessonType.lab:
-        return Icons.computer;
+        return Colors.redAccent;
       case LessonType.lecture:
-        return Icons.book;
+        return Colors.greenAccent;
       case LessonType.seminar:
-        return Icons.brush;
+        return Colors.blueAccent;
     }
+    return Colors.white;
   }
 
   Widget _lessonWidget() {
-    return Container(
-        height: 100.0,
-        color: Colors.white,
-        margin: EdgeInsets.symmetric(vertical: 5.0),
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Icon(_lessonIcon),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Card(
+      margin: EdgeInsets.all(2.0),
+      child: Container(
+          height: 70.0,
+          color: Colors.white,
+          margin: EdgeInsets.all(7.0),
+          child: Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(path.split('/')[2]),
-                      Text(
-                        lesson.shortName,
-                        textAlign: TextAlign.center,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            lesson.don,
-                            textAlign: TextAlign.left,
-                          ),
-                          Text(
-                            lesson.location,
-                            textAlign: TextAlign.right,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
+                  Text('11:30'),
+                  Text(
+                    '12:30',
+                    style: TextStyle(color: Colors.grey),
+                  )
                 ],
               ),
-            ),
-          ],
-        ));
+              VerticalDivider(
+                color: _lessonColor,
+                thickness: 1.0,
+              ),
+              SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          lesson.shortName,
+                          style: TextStyle(
+                              fontSize: 25.0, fontWeight: FontWeight.normal),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          lesson.don,
+                          textAlign: TextAlign.right,
+                          style: TextStyle(fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      lesson.location,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )),
+    );
   }
 
   void _edit(BuildContext context) {

@@ -33,6 +33,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: OrarioColors.darkAccent,
         actions: [
           IconButton(
               icon: Text('A'),
