@@ -15,10 +15,8 @@ class EditScreen extends StatelessWidget {
   EditScreen({Key key, this.path}) : lesson = OrarioService.lessonDict[path];
 
   void _tapSaved() {
-    print('Нажал сохранить$_name,$_location');
     OrarioService.lessonDict[path] =
         Lesson(name: _name, location: _location, don: _don, type: _type);
-    //Доделать каждый пункт
   }
 
   void _initBuffer() {
@@ -35,7 +33,23 @@ class EditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _initBuffer();
     return Scaffold(
-      appBar: AppBar(title: Text('Номер пары')), //Вставить номер пары
+      appBar: AppBar(
+        title: Text('Пара №${int.parse(path.split('/')[2]) + 1}'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                OrarioService.lessonDict[path] = null;
+                Navigator.pop(context);
+              }),
+          IconButton(
+              icon: Icon(Icons.save),
+              onPressed: () {
+                _tapSaved();
+                Navigator.pop(context);
+              })
+        ],
+      ),
       body: Container(
         child: Column(
           children: [
@@ -61,13 +75,6 @@ class EditScreen extends StatelessWidget {
                 _type = value;
               },
             ),
-            MaterialButton(
-              child: Text('Сохранить'),
-              onPressed: () {
-                _tapSaved();
-                Navigator.pop(context);
-              },
-            )
           ],
         ),
       ),

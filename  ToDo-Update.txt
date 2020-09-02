@@ -19,12 +19,12 @@ Orario ToDo-Update List
 	[x] Data persistency
     
     v0.0.4 Beta
-	[ ] No lesson button
+	[x] No lesson button
 	[x] Add icon and rename app
-	[ ] List design
-	[ ] Author tile in settings
+	[x] List design
+	[x] Author tile in settings
 	[x] New design for settings
-	[ ] Time managment
+	[x] Time managment
 	[ ] Home screen under construction etc.
-	[ ] Design pop-ups and dialogs
-	[ ] Fix group creation
+	[>] Design pop-ups and dialogs
+	[-] Fix group creation

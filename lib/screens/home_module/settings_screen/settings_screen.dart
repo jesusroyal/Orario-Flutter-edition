@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/list_screen/list_screen.dart';
+import 'package:orario/screens/home_module/settings_screen/timetable_screen.dart';
 import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/screens/widgets/loading_widget.dart';
 import 'package:orario/services/orario_service.dart';
@@ -7,8 +8,34 @@ import 'package:orario/services/orario_service.dart';
 class SettingsScreen extends StatelessWidget {
   final List<String> _settingsTitles = [
     'Сброс настроек',
-    'Редактирование расписания'
+    'Редактирование расписания',
+    'Редактирование времени'
   ];
+
+  Widget aboutTile() {
+    return Card(
+      child: Container(
+        margin: EdgeInsets.all(8.0),
+        height: 70.0,
+        child: Row(
+          children: [
+            Image(image: AssetImage('assets/orariologo.png')),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Orario v0.0.4',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                ),
+                Text('Твой учебный ассистент!'),
+                Text('telegram: @shevelinsky'),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,74 +44,127 @@ class SettingsScreen extends StatelessWidget {
         title: Text('Настройки'),
       ),
       body: ListView.builder(
-          itemCount: 2,
+          itemCount: 4,
           itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                title: Text(_settingsTitles[index]),
-                onTap: () {
-                  switch (index) {
-                    case 0:
-                      OrarioService.resetSettings().then((value) {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/welcome', (route) => false);
-                      });
+            if (index == 0) {
+              return aboutTile();
+            } else {
+              return Card(
+                child: ListTile(
+                  title: Text(_settingsTitles[index - 1]),
+                  onTap: () {
+                    switch (index) {
+                      case 1:
+                        OrarioService.resetSettings().then((value) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/welcome', (route) => false);
+                        });
 
-                      break;
-                    case 1:
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          String _token;
-                          return SimpleDialog(
-                            children: [
-                              Text('Введите токен'),
-                              TextField(
-                                onChanged: (value) => _token = value,
-                              ),
-                              RaisedButton(
-                                child: Text('Войти'),
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => LoadingDialog(),
-                                  );
-                                  OrarioService.verify(token: _token)
-                                      .then((valid) {
-                                    if (valid) {
-                                      Navigator.pop(context);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ListScreen(isEditor: true),
-                                          ));
-                                    } else {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return SimpleDialog(
-                                            children: [
-                                              Text('Неправильный токен')
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }
-                                  });
-                                },
-                              )
-                            ],
-                          );
-                        },
-                      );
+                        break;
+                      case 2:
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            String _token;
+                            return SimpleDialog(
+                              children: [
+                                Text('Введите токен'),
+                                TextField(
+                                  onChanged: (value) => _token = value,
+                                ),
+                                RaisedButton(
+                                  child: Text('Войти'),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => LoadingDialog(),
+                                    );
+                                    OrarioService.verify(token: _token)
+                                        .then((valid) {
+                                      if (valid) {
+                                        Navigator.pop(context);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ListScreen(isEditor: true),
+                                            ));
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return SimpleDialog(
+                                              children: [
+                                                Text('Неправильный токен')
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
+                                    });
+                                  },
+                                )
+                              ],
+                            );
+                          },
+                        );
 
-                      break;
-                    default:
-                  }
-                },
-              ),
-            );
+                        break;
+                      case 3:
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            String _token;
+                            return SimpleDialog(
+                              children: [
+                                Text('Введите токен'),
+                                TextField(
+                                  onChanged: (value) => _token = value,
+                                ),
+                                RaisedButton(
+                                  child: Text('Войти'),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => LoadingDialog(),
+                                    );
+                                    OrarioService.verify(token: _token)
+                                        .then((valid) {
+                                      if (valid) {
+                                        Navigator.pop(context);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  TimeTableEditor(),
+                                            ));
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return SimpleDialog(
+                                              children: [
+                                                Text('Неправильный токен')
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
+                                    });
+                                  },
+                                )
+                              ],
+                            );
+                          },
+                        );
+
+                        break;
+                      default:
+                    }
+                  },
+                ),
+              );
+            }
           }),
     );
   }

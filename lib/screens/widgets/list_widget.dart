@@ -20,10 +20,31 @@ class ListWidget extends StatelessWidget {
   }
 
   Widget _noLesson() {
-    return Container(
-      height: 100.0,
-      color: Colors.red,
-      child: Text('Пары нет'),
+    return Card(
+      color: Colors.redAccent,
+      child: ListTile(
+        title: Row(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  start,
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  end,
+                  style: TextStyle(color: Colors.grey[300]),
+                )
+              ],
+            ),
+            SizedBox(
+              width: 15.0,
+            ),
+            Text('Добавить пару', style: TextStyle(color: Colors.white)),
+          ],
+        ),
+      ),
     );
   }
 
@@ -39,6 +60,26 @@ class ListWidget extends StatelessWidget {
     return Colors.white;
   }
 
+  String get start {
+    int index = int.parse(path.split('/')[2]);
+    var time = OrarioService.timeDict[index];
+    if (time != null) {
+      return time.startString;
+    } else {
+      return '${index + 1}';
+    }
+  }
+
+  String get end {
+    int index = int.parse(path.split('/')[2]);
+    var time = OrarioService.timeDict[index];
+    if (time != null) {
+      return time.endString;
+    } else {
+      return '';
+    }
+  }
+
   Widget _lessonWidget() {
     return Card(
       margin: EdgeInsets.all(2.0),
@@ -51,9 +92,9 @@ class ListWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('11:30'),
+                  Text(start),
                   Text(
-                    '12:30',
+                    end,
                     style: TextStyle(color: Colors.grey),
                   )
                 ],
