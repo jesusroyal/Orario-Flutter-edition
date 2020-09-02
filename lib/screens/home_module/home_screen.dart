@@ -7,7 +7,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = [
     Center(
-      child: Text("Дома"),
+      child: Text(
+        "Домашний экран находится ещё в разработке, но как только я его доделаю он будет очень крутым. \n \nХочешь помочь?  \nНапиши мне",
+        style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.center,
+      ),
     ),
     ListScreen(isEditor: false),
     SettingsScreen(),
