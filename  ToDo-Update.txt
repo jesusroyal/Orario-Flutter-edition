@@ -25,6 +25,20 @@ Orario ToDo-Update List
 	[x] Author tile in settings
 	[x] New design for settings
 	[x] Time managment
-	[ ] Home screen under construction etc.
+	[x] Home screen under construction etc.
 	[>] Design pop-ups and dialogs
 	[-] Fix group creation
+    v0.0.5 Beta
+	[ ] Home scree
+	   [ ] Home tile
+	   [ ] Tomorrow list
+	[ ] Design pop-ups and dialogs
+	[ ] Time format bug
+	[ ] Silence all warnings
+	[ ] Change A/B to I/II
+	[ ] BNTU has different times
+	[ ] Sub groups
+	[ ] Set main as future
+	[ ] Shortening fix 
+	[ ] Start refactoring design
+	[ ] Default list on time

@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/list_screen/list_screen.dart';
+import 'package:orario/screens/home_module/main_screen/main_screen.dart';
 import 'package:orario/screens/home_module/settings_screen/settings_screen.dart';
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final tabs = [
-    Center(
-      child: Text(
-        "Домашний экран находится ещё в разработке, но как только я его доделаю он будет очень крутым. \n \nХочешь помочь?  \nНапиши мне",
-        style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
-      ),
-    ),
+    MainScreen(),
     ListScreen(isEditor: false),
     SettingsScreen(),
   ];
