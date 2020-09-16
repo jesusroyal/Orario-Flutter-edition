@@ -164,7 +164,6 @@ class OrarioService {
               'type': lessonDict['$week/$day/$lesson'].type.index,
             });
           }
-          ;
         }
       }
     }

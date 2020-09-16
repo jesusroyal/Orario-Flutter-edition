@@ -22,6 +22,7 @@ class TimeMoment {
     return (end.hour * 60) + end.minute;
   }
 
+  // ignore: non_constant_identifier_names
   Map<String, String> get FBDict {
     return {
       'start': '${(start.hour * 60) + start.minute}',

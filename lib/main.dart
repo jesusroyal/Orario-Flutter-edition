@@ -3,7 +3,6 @@ import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/screens/welcome_module/welcome_screen.dart';
 import 'package:orario/screens/home_module/home_screen.dart';
 import 'package:orario/services/orario_service.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

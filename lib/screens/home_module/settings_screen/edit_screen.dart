@@ -3,6 +3,7 @@ import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/services/lesson_model.dart';
 import 'package:orario/services/orario_service.dart';
 
+// ignore: must_be_immutable
 class EditScreen extends StatelessWidget {
   final String path;
   final Lesson lesson;

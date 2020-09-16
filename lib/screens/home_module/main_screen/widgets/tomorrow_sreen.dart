@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/main_screen/widgets/tomorrow_screen_widgets.dart';
 import 'package:orario/screens/ui_constants.dart';
 
+// ignore: must_be_immutable
 class TomorrowWidget extends StatelessWidget {
   int day = DateTime.now().weekday;
   int week;

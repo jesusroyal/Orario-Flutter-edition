@@ -3,6 +3,7 @@ import 'package:orario/screens/home_module/list_screen/list_screen.dart';
 import 'package:orario/screens/widgets/loading_widget.dart';
 import 'package:orario/services/orario_service.dart';
 
+// ignore: must_be_immutable
 class TokenVerification extends StatelessWidget {
   final Map<String, String> tokenMap;
 

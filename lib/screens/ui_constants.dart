@@ -8,7 +8,8 @@ class OrarioColors {
 
 class OrarioText {
   static const TextStyle h1 = TextStyle(fontSize: 35.0);
-  static const TextStyle h2 = TextStyle(fontSize: 20.0);
+  static const TextStyle h2 =
+      TextStyle(fontSize: 25.0, fontWeight: FontWeight.normal);
   static const TextStyle h4 =
       TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
 }

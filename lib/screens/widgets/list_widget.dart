@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:orario/screens/home_module/settings_screen/edit_screen.dart';
 import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/services/lesson_model.dart';
 import 'package:orario/services/orario_service.dart';
@@ -138,14 +137,6 @@ class ListWidget extends StatelessWidget {
             ],
           )),
     );
-  }
-
-  void _edit(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => EditScreen(path: path),
-        ));
   }
 
   @override

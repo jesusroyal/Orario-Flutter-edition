@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/list_screen/list_screen.dart';
 import 'package:orario/screens/home_module/settings_screen/timetable_screen.dart';
-import 'package:orario/screens/ui_constants.dart';
 import 'package:orario/screens/widgets/loading_widget.dart';
 import 'package:orario/services/orario_service.dart';
 

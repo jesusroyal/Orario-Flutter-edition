@@ -21,14 +21,6 @@ class _ListScreenState extends State<ListScreen> {
 
   _ListScreenState({Key key, this.isEditor});
 
-  void _edit({BuildContext context, String path}) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => EditScreen(path: path),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
