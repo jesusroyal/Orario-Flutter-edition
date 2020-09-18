@@ -7,11 +7,11 @@ class TimeMoment {
   int breakDuration = 0;
 
   String get startString {
-    return '${start.hour}:${start.minute}';
+    return '${start.hour}:${start.minute == 0 ? "00" : start.minute}';
   }
 
   String get endString {
-    return '${end.hour}:${end.minute}';
+    return '${end.hour}:${end.minute == 0 ? "00" : end.minute}';
   }
 
   int get startInt {
