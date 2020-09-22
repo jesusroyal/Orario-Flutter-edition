@@ -12,4 +12,5 @@ class OrarioText {
       TextStyle(fontSize: 25.0, fontWeight: FontWeight.normal);
   static const TextStyle h4 =
       TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
+  static const TextStyle h5 = TextStyle(fontSize: 15.0);
 }

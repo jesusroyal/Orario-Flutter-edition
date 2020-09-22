@@ -28,14 +28,14 @@ class _ListScreenState extends State<ListScreen> {
         backgroundColor: OrarioColors.darkAccent,
         actions: [
           IconButton(
-              icon: Text('A'),
+              icon: Text('I'),
               onPressed: () {
                 setState(() {
                   currentWeek = 0;
                 });
               }),
           IconButton(
-              icon: Text('B'),
+              icon: Text('II'),
               onPressed: () {
                 setState(() {
                   currentWeek = 1;

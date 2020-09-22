@@ -16,29 +16,30 @@ Orario ToDo-Update List
         [x] Token system
         [x] Editing system
         [x] Settings screen
-	[x] Data persistency
+		[x] Data persistency
     
     v0.0.4 Beta
-	[x] No lesson button
-	[x] Add icon and rename app
-	[x] List design
-	[x] Author tile in settings
-	[x] New design for settings
-	[x] Time managment
-	[x] Home screen under construction etc.
-	[>] Design pop-ups and dialogs
-	[-] Fix group creation
+		[x] No lesson button
+		[x] Add icon and rename app
+		[x] List design
+		[x] Author tile in settings
+		[x] New design for settings
+		[x] Time managment
+		[x] Home screen under construction etc.
+		[>] Design pop-ups and dialogs
+		[-] Fix group creation
+
     v0.0.5 Beta
-	[ ] Home scree
-	   [ ] Home tile
-	   [ ] Tomorrow list
-	[ ] Design pop-ups and dialogs
-	[ ] Time format bug
-	[ ] Silence all warnings
-	[ ] Change A/B to I/II
-	[ ] BNTU has different times
-	[ ] Sub groups
-	[ ] Set main as future
-	[ ] Shortening fix 
-	[ ] Start refactoring design
-	[ ] Default list on time
+		[ ] Home scree
+	   		[ ] Home tile
+	   		[x] Tomorrow list
+		[ ] Design pop-ups and dialogs
+		[x] Time format bug
+		[ ] Silence all warnings
+		[x] Change A/B to I/II
+		[ ] BNTU has different times
+		[ ] Sub groups
+		[ ] Set main as future
+		[ ] Shortening fix 
+		[ ] Start refactoring design
+		[ ] Default list on time

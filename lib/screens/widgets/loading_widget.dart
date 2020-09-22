@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/screens/ui_constants.dart';
 
 class LoadingDialog extends StatelessWidget {
   final String message = 'Пожалуйста подождите';
@@ -7,17 +8,20 @@ class LoadingDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleDialog(
       children: <Widget>[
-        Center(
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            CircularProgressIndicator(),
-            SizedBox(
-              width: 30,
-            ),
-            Text(
-              message,
-              style: TextStyle(color: Colors.black),
-            )
-          ]),
+        Container(
+          padding: EdgeInsets.all(5.0),
+          child: Center(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              CircularProgressIndicator(),
+              SizedBox(
+                width: 30,
+              ),
+              Text(
+                message,
+                style: OrarioText.h5,
+              )
+            ]),
+          ),
         )
       ],
     );
