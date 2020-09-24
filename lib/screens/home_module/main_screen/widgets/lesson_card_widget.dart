@@ -1,7 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/ui_constants.dart';
+import 'package:orario/services/lesson_model.dart';
+import 'package:orario/services/time_model.dart';
 
 class LessonCard extends StatelessWidget {
+  final TimeOfDay now = TimeOfDay.now();
+  final Lesson lesson;
+  final TimeMoment time;
+
+  LessonCard({Key key, @required this.lesson, @required this.time})
+      : super(key: key);
+
+  String get estimated {
+    int nowMinutes = now.hour * 60 + now.minute;
+
+    if (nowMinutes < time.startInt) {
+      return 'Пара начнется через ${time.startInt - nowMinutes} мин.';
+    }
+
+    if (nowMinutes > time.endInt) {
+      return 'Пара закочилась ${nowMinutes - time.endInt} мин. назад';
+    }
+
+    if (nowMinutes >= time.startInt && nowMinutes < time.endInt) {
+      return 'Пара закочится чере ${time.endInt - nowMinutes} мин.';
+    }
+
+    return '';
+  }
+
+  double get progress {
+    int nowMinutes = (now.hour * 60 + now.minute) - time.startInt;
+    int duration = time.endInt - time.startInt;
+
+    return nowMinutes / duration;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,7 +47,7 @@ class LessonCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Пара закончится через 30 минут',
+              estimated,
               style: OrarioText.h4,
             ),
             Row(
@@ -22,7 +56,7 @@ class LessonCard extends StatelessWidget {
                 DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.blueAccent,
+                    color: OrarioColors.darkAccent,
                   ),
                   child: Container(
                     width: 120.0,
@@ -30,11 +64,11 @@ class LessonCard extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          '228-8',
+                          lesson.location,
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Иванов И. И.',
+                          lesson.don,
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -42,7 +76,7 @@ class LessonCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'МСиСвРЭ',
+                  lesson.shortName,
                   style: OrarioText.h1,
                   textAlign: TextAlign.right,
                 ),
@@ -52,15 +86,14 @@ class LessonCard extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('11:30'), Text('11:40')],
+                  children: [Text(time.startString), Text(time.endString)],
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 5.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.blueAccent,
+                  child: LinearProgressIndicator(
+                    minHeight: 10.0,
+                    value: progress,
                   ),
-                  height: 10.0,
                 )
               ],
             ),

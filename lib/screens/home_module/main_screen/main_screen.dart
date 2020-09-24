@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:orario/screens/home_module/main_screen/widgets/lesson_card_widget.dart';
+import 'package:orario/screens/home_module/main_screen/widgets/lesson_card_container.dart';
 import 'package:orario/screens/home_module/main_screen/widgets/tomorrow_sreen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                child: LessonCard(),
+                child: LessonCardContainer(),
                 height: constraints.maxHeight * (0.45),
               ),
               Container(
