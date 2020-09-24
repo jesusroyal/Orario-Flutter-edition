@@ -33,7 +33,7 @@ Orario ToDo-Update List
 		[ ] Home scree
 	   		[ ] Home tile
 	   		[x] Tomorrow list
-		[ ] Design pop-ups and dialogs
+		[x] Design pop-ups and dialogs
 		[x] Time format bug
 		[ ] Silence all warnings
 		[x] Change A/B to I/II
