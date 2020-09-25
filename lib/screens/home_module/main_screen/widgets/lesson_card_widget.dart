@@ -8,8 +8,7 @@ class LessonCard extends StatelessWidget {
   final Lesson lesson;
   final TimeMoment time;
 
-  LessonCard({Key key, @required this.lesson, @required this.time})
-      : super(key: key);
+  LessonCard({@required this.lesson, @required this.time});
 
   String get estimated {
     int nowMinutes = now.hour * 60 + now.minute;
@@ -80,6 +79,9 @@ class LessonCard extends StatelessWidget {
                   style: OrarioText.h1,
                   textAlign: TextAlign.right,
                 ),
+                SizedBox(
+                  width: 3.0,
+                )
               ],
             ),
             Column(

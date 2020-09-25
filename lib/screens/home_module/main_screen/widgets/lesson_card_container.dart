@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:orario/screens/home_module/main_screen/widgets/lesson_card_widget.dart';
+import 'package:orario/services/lesson_model.dart';
 import 'package:orario/services/orario_service.dart';
 import 'package:orario/services/time_model.dart';
 import 'package:orario/services/time_service.dart';
@@ -12,25 +14,17 @@ class LessonCardContainer extends StatefulWidget {
 }
 
 class _LessonCardContainerState extends State<LessonCardContainer> {
+  static List<int> paths = [];
+
   int getCurrentLesson() {
-    int minutes = TimeService.minutes;
     int week = TimeService.week;
     int day = TimeService.day;
 
-    for (int i = 0; i < 8; i++) {
-      TimeMoment time = OrarioService.timeDict[i];
-      if (minutes > time.startInt &&
-          minutes < time.endInt &&
-          OrarioService.lessonDict['$week/$day/$i'] != null) {
-        return i;
-      }
-      if (minutes > time.endInt &&
-          minutes < time.endInt + time.breakDuration &&
-          OrarioService.lessonDict['$week/$day/${i + 1}'] != null) {
-        return i + 1;
+    for (int lesson = 0; lesson < 8; lesson++) {
+      if (OrarioService.lessonDict['$week/$day/$lesson'] != null) {
+        paths.add(lesson);
       }
     }
-    return 0;
   }
 
   @override
@@ -38,9 +32,18 @@ class _LessonCardContainerState extends State<LessonCardContainer> {
     int index = getCurrentLesson();
     int week = TimeService.week;
     int day = TimeService.day;
-    return LessonCard(
-      lesson: OrarioService.lessonDict['$week/$day/$index'],
-      time: OrarioService.timeDict[index],
+    return Swiper(
+      scrollDirection: Axis.vertical,
+      loop: false,
+      itemCount: paths.length,
+      pagination: SwiperPagination(),
+      control: null,
+      itemBuilder: (BuildContext context, int index) {
+        return LessonCard(
+          lesson: OrarioService.lessonDict['$week/$day/${paths[index]}'],
+          time: OrarioService.timeDict[paths[index]],
+        );
+      },
     );
   }
 }
