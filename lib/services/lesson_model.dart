@@ -91,15 +91,15 @@ class Lesson {
 
 enum LessonType { lecture, lab, seminar }
 
-extension LessonIcon on LessonType {
-  AssetImage get icon {
+extension LessonColor on LessonType {
+  Color get color {
     switch (this) {
       case LessonType.lab:
-        return AssetImage('assets/orariologo.png');
+        return Colors.redAccent;
       case LessonType.lecture:
-        return AssetImage('assets/orariologo.png');
+        return Colors.greenAccent;
       case LessonType.seminar:
-        return AssetImage('assets/orariologo.png');
+        return Colors.blueAccent;
     }
     return null;
   }

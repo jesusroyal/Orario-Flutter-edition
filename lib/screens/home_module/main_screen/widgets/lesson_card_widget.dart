@@ -55,7 +55,7 @@ class LessonCard extends StatelessWidget {
                 DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: OrarioColors.darkAccent,
+                    color: lesson.type.color,
                   ),
                   child: Container(
                     width: 120.0,

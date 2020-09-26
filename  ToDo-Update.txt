@@ -30,8 +30,8 @@ Orario ToDo-Update List
 		[-] Fix group creation
 
     v0.0.5 Beta
-		[ ] Home scree
-	   		[ ] Home tile
+		[x] Home screen
+	   		[x] Home tile
 	   		[x] Tomorrow list
 		[x] Design pop-ups and dialogs
 		[x] Time format bug
