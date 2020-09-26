@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/main_screen/widgets/tomorrow_screen_widgets.dart';
 import 'package:orario/screens/ui_constants.dart';
+import 'package:orario/services/time_service.dart';
 
 // ignore: must_be_immutable
 class TomorrowWidget extends StatelessWidget {
-  int day = DateTime.now().weekday;
-  int week;
-
-  TomorrowWidget() {
-    String date = DateTime.now().toString();
-    String firstDay = date.substring(0, 7) + '01' + date.substring(10);
-    int weekDay = DateTime.parse(firstDay).weekday;
-    int currentWeek;
-    if (weekDay == 7) {
-      currentWeek = (DateTime.now().day / 7).ceil();
-    } else {
-      currentWeek = ((DateTime.now().day + weekDay) / 7).ceil();
-    }
-    week = currentWeek.isEven ? 1 : 0;
-    if (day == 7) {
-      day = 0;
-    }
-  }
+  int day = (TimeService.day + 1 == 6 || TimeService.day == 6)
+      ? 0
+      : TimeService.day + 1;
+  int week = TimeService.week;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +19,7 @@ class TomorrowWidget extends StatelessWidget {
           Container(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
-                'Завтра',
+                TimeService.day + 1 == 6 ? 'Послезавтра' : 'Завтра',
                 style: OrarioText.h4,
               )),
           Expanded(
