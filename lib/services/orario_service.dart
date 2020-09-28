@@ -66,7 +66,7 @@ class OrarioService {
 
     ref.child('$group/token').set(token);
 
-    for (int week = 0; week <= 1; week++) {
+    for (int week = 0; week <= 3; week++) {
       for (int day = 0; day <= 6; day++) {
         for (int lesson = 0; lesson <= 7; lesson++) {
           ref.child('$group/timetable/$week/$day/$lesson').set('no');
@@ -99,7 +99,7 @@ class OrarioService {
     var ref = db.reference().child('uni/$_path/timetable');
 
     await ref.once().then((snapshot) {
-      for (int week = 0; week < 2; week++) {
+      for (int week = 0; week <= 1; week++) {
         for (int day = 0; day < snapshot.value[week].length; day++) {
           for (int lesson = 0;
               lesson < snapshot.value[week][day].length;

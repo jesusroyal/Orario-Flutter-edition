@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/list_screen/list_screen.dart';
+import 'package:orario/screens/home_module/settings_screen/subgroup_switch.dart';
 import 'package:orario/screens/home_module/settings_screen/timetable_screen.dart';
 import 'package:orario/screens/widgets/loading_widget.dart';
 import 'package:orario/screens/widgets/token_dialog.dart';
 import 'package:orario/services/orario_service.dart';
+import 'package:orario/services/orario_settings.dart';
 
 class SettingsScreen extends StatelessWidget {
   final List<String> _settingsTitles = [
@@ -47,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
           itemCount: 4,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return aboutTile();
+              return SubgroupTile();
             } else {
               return Card(
                 child: ListTile(
