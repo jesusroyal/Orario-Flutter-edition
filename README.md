@@ -9,7 +9,8 @@ The open timetable app.
 
 Version history
 
-v0.0.1 Alpha
+
+    v0.0.1 Alpha
         [x] Welcom screen
         [x] Setup procces
         [x] Settings persistency
