@@ -13,7 +13,7 @@ Version history
     v0.0.1 Alpha
         [x] Welcom screen
         [x] Setup procces
-        [x] Settings persistency
+        [x] Settings persistence
         [x] Timetable list view
     
     v0.0.2 Alpha
@@ -25,7 +25,7 @@ Version history
         [x] Token system
         [x] Editing system
         [x] Settings screen
-		[x] Data persistency
+		[x] Data persistence
     
     v0.0.4 Beta
 		[x] No lesson button
