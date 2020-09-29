@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:orario/services/lesson_model.dart';
+import 'package:orario/services/orario_settings.dart';
 import 'package:orario/services/time_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -195,6 +196,32 @@ class OrarioService {
     timeDict = List<TimeMoment>.filled(8, null);
     await SharedPreferences.getInstance().then((sp) {
       sp.clear();
+    });
+  }
+
+  static Future<void> updateForNewSettings() async {
+    final db = FirebaseDatabase.instance;
+
+    db.setPersistenceEnabled(true);
+    db.setPersistenceCacheSizeBytes(10000000);
+    lessonDict.clear();
+    int weekStart = OrarioSettings.isSubgroup ? 2 : 0;
+    int weekEnd = OrarioSettings.isSubgroup ? 3 : 1;
+    var ref = db.reference().child('uni/$_path/timetable');
+
+    await ref.once().then((snapshot) {
+      for (int week = weekStart; week <= weekEnd; week++) {
+        for (int day = 0; day < snapshot.value[week].length; day++) {
+          for (int lesson = 0;
+              lesson < snapshot.value[week][day].length;
+              lesson++) {
+            if (snapshot.value[week][day][lesson] != 'no') {
+              var data = snapshot.value[week][day][lesson];
+              lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
+            }
+          }
+        }
+      }
     });
   }
 }

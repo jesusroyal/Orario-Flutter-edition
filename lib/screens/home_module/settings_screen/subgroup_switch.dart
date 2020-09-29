@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/services/orario_service.dart';
 import 'package:orario/services/orario_settings.dart';
 
 class SubgroupTile extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SubgroupTileState extends State<SubgroupTile> {
                 onChanged: (value) {
                   setState(() {
                     OrarioSettings.isSubgroup = value;
-                    print(value);
+                    OrarioService.updateForNewSettings();
                   });
                 }),
           ],
