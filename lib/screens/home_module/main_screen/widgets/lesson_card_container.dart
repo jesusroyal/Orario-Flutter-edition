@@ -20,6 +20,7 @@ class _LessonCardContainerState extends State<LessonCardContainer> {
   int day = TimeService.day == 6 ? 0 : TimeService.day;
 
   void getCurrentLesson() {
+    paths.clear();
     for (int lesson = 0; lesson < 8; lesson++) {
       if (OrarioService.lessonDict['$week/$day/$lesson'] != null) {
         paths.add(lesson);
