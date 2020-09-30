@@ -46,9 +46,11 @@ class SettingsScreen extends StatelessWidget {
         title: Text('Настройки'),
       ),
       body: ListView.builder(
-          itemCount: 4,
+          itemCount: 5,
           itemBuilder: (context, index) {
             if (index == 0) {
+              return aboutTile();
+            } else if (index == 4) {
               return SubgroupTile();
             } else {
               return Card(
