@@ -46,7 +46,7 @@ Version history
 		[x] Time format bug
 		[ ] Silence all warnings
 		[x] Change A/B to I/II
-		[ ] BNTU has different times
+		[>] BNTU has different times
 		[x] Sub groups
 		[x] Set main as future
 		[x>] Shortening fix 
