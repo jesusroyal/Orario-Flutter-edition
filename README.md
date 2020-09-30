@@ -38,13 +38,13 @@ Version history
 		[>] Design pop-ups and dialogs
 		[-] Fix group creation
 
-    v0.0.5 Beta
+    v0.0.5 Beta Homejoy
 		[x] Home screen
 	   		[x] Home tile
 	   		[x] Tomorrow list
 		[x] Design pop-ups and dialogs
 		[x] Time format bug
-		[ ] Silence all warnings
+		[x] Silence all warnings
 		[x] Change A/B to I/II
 		[>] BNTU has different times
 		[x] Sub groups
@@ -52,3 +52,7 @@ Version history
 		[x>] Shortening fix 
 		[x] Start refactoring design
 		[x] Default list on time
+
+	v0.0.6 Beta Refactoria
+		[ ] Dark theme
+		[ ] Refactoring
