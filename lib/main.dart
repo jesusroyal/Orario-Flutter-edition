@@ -4,12 +4,13 @@ import 'package:orario/screens/welcome_module/welcome_screen.dart';
 import 'package:orario/screens/home_module/home_screen.dart';
 import 'package:orario/services/orario_service.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  OrarioService.setupApp().then((needsLogin) => runApp(Orario(
-        needsLogin: needsLogin,
-      )));
+  bool needsLogin = await OrarioService.setupApp();
+  runApp(Orario(
+    needsLogin: needsLogin,
+  ));
 }
 
 class Orario extends StatelessWidget {
