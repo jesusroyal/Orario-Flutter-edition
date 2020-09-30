@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/services/string_extension.dart';
 
 class Lesson {
   String name;
@@ -7,31 +8,7 @@ class Lesson {
   LessonType type;
 
   String get shortName {
-    if (this.name.length <= 10) {
-      return this.name;
-    }
-
-    if (this.name.length > 25) {
-      String output = '';
-      List<String> words = this.name.split(" ");
-
-      words.forEach((word) {
-        output += word[0];
-      });
-      return output;
-    }
-
-    String output = '';
-    List<String> words = this.name.split(" ");
-
-    words.forEach((word) {
-      if (word.length > 4) {
-        output += (word.substring(0, 4) + '. ');
-      } else {
-        output += word;
-      }
-    });
-    return output;
+    return this.name.short;
   }
 
   Lesson({this.name, this.location, this.don, int type}) {
