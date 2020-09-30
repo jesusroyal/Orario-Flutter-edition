@@ -16,7 +16,10 @@ class OrarioService {
       _path = sp.getString('DBPath');
       if (_path == null) {
         needsLogin = true;
+        sp.setBool('subgroup', false);
       } else {
+        bool _subgroup = sp.getBool('subgroup');
+        OrarioSettings.isSubgroup = _subgroup;
         await _getData().then((value) {
           needsLogin = false;
         });
@@ -96,18 +99,26 @@ class OrarioService {
 
     db.setPersistenceEnabled(true);
     db.setPersistenceCacheSizeBytes(10000000);
+    int weekStart = OrarioSettings.isSubgroup ? 2 : 0;
+    int weekEnd = OrarioSettings.isSubgroup ? 3 : 1;
 
     var ref = db.reference().child('uni/$_path/timetable');
 
     await ref.once().then((snapshot) {
-      for (int week = 0; week <= 1; week++) {
+      for (int week = weekStart; week <= weekEnd; week++) {
         for (int day = 0; day < snapshot.value[week].length; day++) {
           for (int lesson = 0;
               lesson < snapshot.value[week][day].length;
               lesson++) {
             if (snapshot.value[week][day][lesson] != 'no') {
               var data = snapshot.value[week][day][lesson];
-              lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
+              lessonDict[
+                      "${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson"] =
+                  Lesson.fromDynamicMap(data);
+            } else {
+              lessonDict[
+                      "${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson"] =
+                  null;
             }
           }
         }
@@ -143,12 +154,16 @@ class OrarioService {
 
   static Future<void> updateChanges() async {
     final db = FirebaseDatabase.instance;
+    int weekStart = OrarioSettings.isSubgroup ? 2 : 0;
+    int weekEnd = OrarioSettings.isSubgroup ? 3 : 1;
     final ref = db.reference().child('uni/$_path/timetable');
 
-    for (int week = 0; week <= 2; week++) {
+    for (int week = weekStart; week <= weekEnd; week++) {
       for (int day = 0; day <= 6; day++) {
         for (int lesson = 0; lesson <= 8; lesson++) {
-          if (lessonDict['$week/$day/$lesson'] == null) {
+          if (lessonDict[
+                  '${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson'] ==
+              null) {
             ref
                 .child(week.toString())
                 .child(day.toString())
@@ -159,10 +174,19 @@ class OrarioService {
                 .child(day.toString())
                 .child(lesson.toString())
                 .set({
-              'name': lessonDict['$week/$day/$lesson'].name,
-              'location': lessonDict['$week/$day/$lesson'].location,
-              'don': lessonDict['$week/$day/$lesson'].don,
-              'type': lessonDict['$week/$day/$lesson'].type.index,
+              'name': lessonDict[
+                      '${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson']
+                  .name,
+              'location': lessonDict[
+                      '${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson']
+                  .location,
+              'don': lessonDict[
+                      '${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson']
+                  .don,
+              'type': lessonDict[
+                      '${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson']
+                  .type
+                  .index,
             });
           }
         }
@@ -217,7 +241,9 @@ class OrarioService {
               lesson++) {
             if (snapshot.value[week][day][lesson] != 'no') {
               var data = snapshot.value[week][day][lesson];
-              lessonDict["$week/$day/$lesson"] = Lesson.fromDynamicMap(data);
+              lessonDict[
+                      "${OrarioSettings.isSubgroup ? week - 2 : week}/$day/$lesson"] =
+                  Lesson.fromDynamicMap(data);
             }
           }
         }

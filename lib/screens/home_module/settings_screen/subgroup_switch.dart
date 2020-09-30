@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orario/services/orario_service.dart';
 import 'package:orario/services/orario_settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SubgroupTile extends StatefulWidget {
   @override
@@ -22,6 +23,9 @@ class _SubgroupTileState extends State<SubgroupTile> {
                   setState(() {
                     OrarioSettings.isSubgroup = value;
                     OrarioService.updateForNewSettings();
+                    SharedPreferences.getInstance().then((sp) {
+      sp.setBool('subgroup', OrarioSettings.isSubgroup);
+    });
                   });
                 }),
           ],
