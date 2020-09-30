@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Orario v0.0.4',
+                  'Orario v0.0.5 Homejoy',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
                 ),
                 Text('Твой учебный ассистент!'),
