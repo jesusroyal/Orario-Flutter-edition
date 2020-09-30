@@ -47,8 +47,8 @@ Version history
 		[ ] Silence all warnings
 		[x] Change A/B to I/II
 		[ ] BNTU has different times
-		[ ] Sub groups
+		[x] Sub groups
 		[ ] Set main as future
-		[ ] Shortening fix 
-		[ ] Start refactoring design
-		[ ] Default list on time
+		[x>] Shortening fix 
+		[x] Start refactoring design
+		[x] Default list on time

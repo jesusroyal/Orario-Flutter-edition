@@ -5,6 +5,7 @@ import 'package:orario/services/orario_service.dart';
 import 'package:orario/screens/widgets/section_widget.dart';
 import 'package:orario/screens/widgets/list_widget.dart';
 import 'package:orario/screens/ui_constants.dart';
+import 'package:orario/services/time_service.dart';
 
 class ListScreen extends StatefulWidget {
   final bool isEditor;
@@ -16,7 +17,7 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  int currentWeek = 0;
+  int currentWeek = TimeService.week;
   final bool isEditor;
 
   _ListScreenState({Key key, this.isEditor});
@@ -28,14 +29,21 @@ class _ListScreenState extends State<ListScreen> {
         backgroundColor: OrarioColors.darkAccent,
         actions: [
           IconButton(
-              icon: Text('I'),
+              icon: Text(
+                'I',
+                style: currentWeek == 0 ? TextStyle(fontSize: 20.0) : null,
+              ),
+              color: Colors.green,
               onPressed: () {
                 setState(() {
                   currentWeek = 0;
                 });
               }),
           IconButton(
-              icon: Text('II'),
+              icon: Text(
+                'II',
+                style: currentWeek == 1 ? TextStyle(fontSize: 20.0) : null,
+              ),
               onPressed: () {
                 setState(() {
                   currentWeek = 1;
