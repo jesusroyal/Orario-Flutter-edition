@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:orario/screens/home_module/main_screen/widgets/lesson_card_widget.dart';
 import 'package:orario/screens/ui_constants.dart';
-import 'package:orario/services/lesson_model.dart';
 import 'package:orario/services/orario_service.dart';
-import 'package:orario/services/time_model.dart';
 import 'package:orario/services/time_service.dart';
 
 class LessonCardContainer extends StatefulWidget {

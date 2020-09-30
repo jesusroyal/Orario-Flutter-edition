@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:orario/screens/home_module/list_screen/list_screen.dart';
 import 'package:orario/screens/home_module/main_screen/main_screen.dart';
 import 'package:orario/screens/home_module/settings_screen/settings_screen.dart';
-import 'package:orario/screens/widgets/token_dialog.dart';
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;

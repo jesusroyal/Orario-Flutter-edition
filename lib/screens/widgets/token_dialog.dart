@@ -4,6 +4,7 @@ import 'package:orario/services/orario_service.dart';
 
 import 'loading_widget.dart';
 
+// ignore: must_be_immutable
 class TokenDialog extends StatelessWidget {
   String _token = '';
 
