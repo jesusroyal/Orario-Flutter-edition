@@ -21,11 +21,7 @@ class Orario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(color: OrarioColors.darkAccent),
-          backgroundColor: OrarioColors.backGround,
-          scaffoldBackgroundColor: OrarioColors.backGround,
-          accentColor: OrarioColors.darkAccent),
+      theme: OrarioUI.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: needsLogin ? '/welcome' : '/',
       routes: {

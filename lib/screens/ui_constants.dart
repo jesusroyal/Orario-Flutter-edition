@@ -14,3 +14,11 @@ class OrarioText {
       TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
   static const TextStyle h5 = TextStyle(fontSize: 15.0);
 }
+
+class OrarioUI {
+  static ThemeData theme = ThemeData(
+      appBarTheme: AppBarTheme(color: OrarioColors.darkAccent),
+      backgroundColor: OrarioColors.backGround,
+      scaffoldBackgroundColor: OrarioColors.backGround,
+      accentColor: OrarioColors.darkAccent);
+}
