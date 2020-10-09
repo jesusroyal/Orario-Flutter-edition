@@ -3,12 +3,12 @@ import 'package:orario/services/orario_service.dart';
 import 'package:orario/services/orario_settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SubgroupTile extends StatefulWidget {
+class SubgroupSettingsTile extends StatefulWidget {
   @override
-  _SubgroupTileState createState() => _SubgroupTileState();
+  _SubgroupSettingsTileState createState() => _SubgroupSettingsTileState();
 }
 
-class _SubgroupTileState extends State<SubgroupTile> {
+class _SubgroupSettingsTileState extends State<SubgroupSettingsTile> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,8 +24,8 @@ class _SubgroupTileState extends State<SubgroupTile> {
                     OrarioSettings.isSubgroup = value;
                     OrarioService.updateForNewSettings();
                     SharedPreferences.getInstance().then((sp) {
-      sp.setBool('subgroup', OrarioSettings.isSubgroup);
-    });
+                      sp.setBool('subgroup', OrarioSettings.isSubgroup);
+                    });
                   });
                 }),
           ],
