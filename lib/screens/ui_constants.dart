@@ -21,4 +21,8 @@ class OrarioUI {
       backgroundColor: OrarioColors.backGround,
       scaffoldBackgroundColor: OrarioColors.backGround,
       accentColor: OrarioColors.darkAccent);
+  static ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    /* dark theme settings */
+  );
 }
