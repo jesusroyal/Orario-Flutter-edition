@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:orario/services/lesson_model.dart';
+import 'package:orario/data/api/model/lesson.dart';
 import 'package:orario/services/orario_settings.dart';
-import 'package:orario/services/time_model.dart';
+import 'package:orario/data/api/model/time.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 

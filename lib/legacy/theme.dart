@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orario/core/ui/colors.dart';
+import 'package:orario/legacy/colors.dart';
 
 class OrarioTheme {
   static final _colors = OrarioColors();

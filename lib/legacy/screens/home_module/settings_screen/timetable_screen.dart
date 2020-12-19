@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/services/orario_service.dart';
-import 'package:orario/services/time_model.dart';
+import 'package:orario/data/api/model/time.dart';
 
 class TimeTableEditor extends StatefulWidget {
   @override

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:orario/core/ui/ui_constants.dart';
+import 'package:orario/legacy/ui_constants.dart';
 
-import 'loading_screen.dart';
-import 'screens/base_screens.dart';
+import '../legacy/loading_screen.dart';
+import '../screens/base_screens.dart';
 
-import 'init_stream/init_bloc.dart';
+import '../init_stream/init_bloc.dart';
 
 class OrarioApp extends StatelessWidget {
   final bloc = AppStream();
