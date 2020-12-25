@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orario/screens/ui_constants.dart';
-import 'package:orario/data/api/model/lesson.dart';
-import 'package:orario/data/api/model/time.dart';
+import 'package:orario/legacy/lesson.dart';
+import 'package:orario/legacy/time.dart';
 
 class LessonCard extends StatelessWidget {
   final TimeOfDay now = TimeOfDay.now();

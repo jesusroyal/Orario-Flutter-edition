@@ -1,0 +1,1 @@
+enum LessonType { lecture, lab, seminar }

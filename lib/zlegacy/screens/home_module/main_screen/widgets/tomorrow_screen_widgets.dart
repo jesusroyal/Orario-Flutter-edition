@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/services/orario_service.dart';
-import 'package:orario/data/api/model/lesson.dart';
+import 'package:orario/legacy/lesson.dart';
 
 class TomorrowScreenLessonWidget extends StatelessWidget {
   final String path;

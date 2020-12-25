@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orario/legacy/ui_constants.dart';
 
-import '../legacy/loading_screen.dart';
+import 'loading_screen.dart';
 import '../screens/base_screens.dart';
 
 import '../init_stream/init_bloc.dart';
