@@ -1,0 +1,12 @@
+class ApiLesson {
+  final String name;
+  final String location;
+  final String don;
+  final int type;
+
+  ApiLesson.fromApi(Map<String, dynamic> map)
+    : name = map['name'],
+      location = map['location'],
+      don = map['don'],
+      type = map['type'];
+}
