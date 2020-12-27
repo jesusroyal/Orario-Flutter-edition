@@ -3,9 +3,9 @@ import 'package:orario/domain/bloc/setup/setup_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:orario/domain/bloc/setup/setup_event.dart';
 import 'package:orario/domain/bloc/setup/setup_state.dart';
-import 'package:orario/presentation/home_page.dart';
+import 'package:orario/presentation/home/home_page.dart';
 import 'package:orario/presentation/splash_page.dart';
-import 'package:orario/presentation/welcome_page.dart';
+import 'package:orario/presentation/welcome/welcome_page.dart';
 
 class Application extends StatefulWidget {
   @override
