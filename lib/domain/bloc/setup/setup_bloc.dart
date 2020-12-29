@@ -24,7 +24,7 @@ class SetupBloc extends Bloc<SetupEvent, SetupState> {
     yield SetupLoading();
     try {
       await Future.delayed(Duration(milliseconds: 5500)); // a simulated delay
-      final currentUser = 2;
+      final currentUser = null;
 
       if (currentUser != null) {
         yield SetupCompleted();
