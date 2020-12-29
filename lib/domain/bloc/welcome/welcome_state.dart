@@ -19,4 +19,13 @@ class UniversityLoaded extends WelcomeState {
   List<Object> get props => [universities];
 }
 
-class GropsLoading extends WelcomeState {}
+class GroupsLoading extends WelcomeState {}
+
+class GroupsLoaded extends WelcomeState {
+  final List<String> groups;
+
+  GroupsLoaded({@required this.groups});
+
+  @override
+  List<Object> get props => [groups];
+}

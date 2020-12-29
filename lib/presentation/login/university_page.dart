@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:orario/domain/bloc/welcome/welcome_bloc.dart';
 import 'package:orario/domain/bloc/welcome/welcome_event.dart';
 import 'package:orario/domain/bloc/welcome/welcome_state.dart';
+import 'package:orario/presentation/login/group_page.dart';
 
 class UniversityPage extends StatefulWidget {
   @override
@@ -18,8 +19,6 @@ class _UniversityPageState extends State<UniversityPage> {
     welcomeBloc.add(WelcomePressed());
     super.initState();
   }
-
-  String test = 'No data';
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +43,22 @@ class _UniversityPageState extends State<UniversityPage> {
                     child: ListTile(
                       title: Text(state.universities[index]),
                       onTap: () {
-                        welcomeBloc.add(WelcomeUniversityPressed(index: index));
+                        welcomeBloc.add(UniversityPressed(index: index));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GroupPage(
+                              welcomeBloc: welcomeBloc,
+                            ),
+                          ),
+                        );
                       },
                     ),
                   );
                 },
               );
             }
-            return Text('fuck');
+            return Text('Something went wrong');
           }),
         ));
   }

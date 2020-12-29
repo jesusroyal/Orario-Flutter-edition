@@ -11,18 +11,18 @@ abstract class WelcomeEvent extends Equatable {
 
 class WelcomePressed extends WelcomeEvent {}
 
-class WelcomeUniversityPressed extends WelcomeEvent {
+class UniversityPressed extends WelcomeEvent {
   final int index;
 
-  WelcomeUniversityPressed({@required this.index});
+  UniversityPressed({@required this.index});
   @override
   List<Object> get props => [index];
 }
 
-class WelcomeGroupPressed extends WelcomeEvent {
+class GroupPressed extends WelcomeEvent {
   final int index;
 
-  WelcomeGroupPressed({@required this.index});
+  GroupPressed({@required this.index});
   @override
   List<Object> get props => [index];
 }

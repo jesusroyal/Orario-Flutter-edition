@@ -1,5 +1,3 @@
-import 'package:orario/presentation/welcome/welcome_page.dart';
-
 import 'welcome_event.dart';
 import 'welcome_state.dart';
 import 'package:bloc/bloc.dart';
@@ -9,13 +7,15 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
 
   @override
   Stream<WelcomeState> mapEventToState(WelcomeEvent event) async* {
-    print('Got event $event');
-    yield WelcomeLoading();
-    await Future.delayed(Duration(milliseconds: 5500));
-    yield UniversityLoaded(universities: ['Test']);
-  }
-
-  Stream<WelcomeState> _mapEventToState(WelcomePressed event) async* {
-    yield WelcomeLoading();
+    if (event is WelcomePressed) {
+      yield WelcomeLoading();
+      await Future.delayed(Duration(milliseconds: 5500));
+      yield UniversityLoaded(universities: ['Test']);
+    }
+    if (event is UniversityPressed) {
+      yield GroupsLoading();
+      await Future.delayed(Duration(milliseconds: 5500));
+      yield GroupsLoaded(groups: ['test']);
+    }
   }
 }
