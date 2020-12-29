@@ -3,6 +3,7 @@ import 'package:orario/domain/bloc/setup/setup_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:orario/domain/bloc/setup/setup_event.dart';
 import 'package:orario/domain/bloc/setup/setup_state.dart';
+import 'package:orario/internal/theme.dart';
 import 'package:orario/presentation/home/home_page.dart';
 import 'package:orario/presentation/splash_page.dart';
 import 'package:orario/presentation/welcome/welcome_page.dart';
@@ -25,6 +26,7 @@ class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: OrarioUI.ref.lightTheme,
       home: BlocProvider(
         create: (_) => setupBloc,
         child: BlocListener<SetupBloc, SetupState>(
