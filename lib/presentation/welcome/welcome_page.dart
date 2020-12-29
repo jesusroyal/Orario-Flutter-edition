@@ -1,19 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:orario/internal/theme.dart';
+import 'package:orario/presentation/login/university_page.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Text('Добро пожаловать блаблабла'),
-            Image(image: AssetImage('assets/logo.png')),
-            Text('Ваш персональный ассистент'),
-            RaisedButton(
-              child: Text('Button'),
-            )
-          ],
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Orario',
+                    style: TextStyle(fontSize: 64, fontWeight: FontWeight.w900),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    'Твой персональный \n ассистент',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w200),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              SvgPicture.asset(
+                'assets/logo.svg',
+                width: 300.0,
+              ),
+              RaisedButton(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  'Выбрать ВУЗ',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UniversityPage()));
+                },
+                color: OrarioUI.colors.green,
+              )
+            ],
+          ),
         ),
       ),
     );
