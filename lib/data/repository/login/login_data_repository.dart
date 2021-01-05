@@ -9,4 +9,9 @@ class LoginDataRepository extends LoginRepository {
   Future<Map<String, String>> getUniversities() {
     return _loginService.getUniversities();
   }
+
+  @override
+  Future<Map<String, String>> getGroups({String university}) {
+    return _loginService.getGroups(university: university);
+  }
 }
