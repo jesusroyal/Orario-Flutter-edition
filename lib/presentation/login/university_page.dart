@@ -43,7 +43,6 @@ class _UniversityPageState extends State<UniversityPage> {
                     child: ListTile(
                       title: Text(state.universities[index]),
                       onTap: () {
-                        welcomeBloc.add(UniversityPressed(index: index));
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -52,6 +51,7 @@ class _UniversityPageState extends State<UniversityPage> {
                             ),
                           ),
                         );
+                        welcomeBloc.add(UniversityPressed(index: index));
                       },
                     ),
                   );
