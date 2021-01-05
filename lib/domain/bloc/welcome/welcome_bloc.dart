@@ -12,6 +12,7 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
 
   @override
   Stream<WelcomeState> mapEventToState(WelcomeEvent event) async* {
+    //TODO: Refactor
     if (event is WelcomePressed) {
       yield WelcomeLoading();
       var map = await loginRepository.getUniversities();
@@ -23,8 +24,24 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
     }
     if (event is UniversityPressed) {
       yield GroupsLoading();
-      await Future.delayed(Duration(milliseconds: 5500));
-      yield GroupsLoaded(groups: ['test']);
+
+      var mapUni = await loginRepository.getUniversities();
+      List<String> listUni = [];
+      mapUni.forEach((key, value) {
+        listUni.add(value);
+      });
+
+      var index = mapUni.keys.firstWhere(
+          (k) => mapUni[k] == listUni[event.index],
+          orElse: () => null);
+
+      var map = await loginRepository.getGroups(university: index);
+      List<String> list = [];
+      map.forEach((key, value) {
+        list.add(value);
+      });
+
+      yield GroupsLoaded(groups: list);
     }
   }
 }
