@@ -43,5 +43,9 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
 
       yield GroupsLoaded(groups: list);
     }
+
+    if (event is GroupPressed) {
+      yield WelcomeComplete();
+    }
   }
 }

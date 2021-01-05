@@ -29,3 +29,5 @@ class GroupsLoaded extends WelcomeState {
   @override
   List<Object> get props => [groups];
 }
+
+class WelcomeComplete extends WelcomeState {}
