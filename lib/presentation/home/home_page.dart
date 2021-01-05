@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'list_page.dart';
-import 'main_page.dart';
+import 'main/main_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         items: [
