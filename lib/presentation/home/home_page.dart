@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+import 'list_page.dart';
+import 'main_page.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  final tabs = [MainPage(), ListPage()];
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Home Page'),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Сейчас"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Пары"),
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
     );
   }
 }
