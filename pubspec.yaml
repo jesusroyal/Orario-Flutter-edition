@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^6.1.1
   equatable: ^1.2.5
   flutter_svg: ^0.18.0
+  group_list_view: ^1.0.6
 
 flutter_icons:
   android: "launcher_icon"
