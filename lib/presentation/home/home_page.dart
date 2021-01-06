@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'list_page.dart';
+import 'list/list_page.dart';
 import 'main/main_page.dart';
 
 class HomePage extends StatefulWidget {
