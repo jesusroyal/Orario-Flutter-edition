@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:orario/domain/model/model_export.dart';
 
 class LessonCard extends StatelessWidget {
   @override
