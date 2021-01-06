@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:orario/data/api/service/login/login_service.dart';
 import 'package:orario/data/api/service/settings/settings_service.dart';
 import 'package:orario/data/repository/login/login_data_repository.dart';
