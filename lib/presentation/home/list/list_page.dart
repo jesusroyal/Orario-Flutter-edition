@@ -36,11 +36,11 @@ class _ListPageState extends State<ListPage> {
             }
             if (state is HomeListLoaded) {
               return GroupListView(
-                countOfItemInSection: (count) => 1,
-                sectionsCount: 1,
+                countOfItemInSection: (count) => state.lessons[count].length,
+                sectionsCount: state.lessons.entries.length,
                 itemBuilder: (context, index) {
                   return ListWidget(
-                    lessonPair: state.lessons[index.index],
+                    lessonPair: state.lessons[index.section][index.index],
                   );
                 },
                 groupHeaderBuilder: (context, section) {
