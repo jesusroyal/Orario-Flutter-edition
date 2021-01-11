@@ -24,19 +24,17 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
     List<LessonTime> time = await timeRepository.getLessonTime(path: path);
     Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
 
-    for (int week = 0; week <= 1; week++) {
-      for (int day = 0; day <= 5; day++) {
-        List<LessonPair> oneDay = [];
-        for (int lesson = 0; lesson <= 8; lesson++) {
-          if (lessons[week][day][lesson] != null) {
-            var pair = LessonPair(
-                lesson: lessons[week][day][lesson], time: time[lesson]);
-            oneDay.add(pair);
-          }
+    for (int day = 0; day <= 5; day++) {
+      List<LessonPair> oneDay = [];
+      for (int lesson = 0; lesson <= 8; lesson++) {
+        if (lessons[0][day][lesson] != null) {
+          var pair =
+              LessonPair(lesson: lessons[0][day][lesson], time: time[lesson]);
+          oneDay.add(pair);
         }
-        map[day] = oneDay;
-        oneDay = List<LessonPair>();
       }
+      map[day] = oneDay;
+      oneDay = List<LessonPair>();
     }
 
     return map;
