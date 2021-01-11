@@ -10,7 +10,7 @@ abstract class HomeListState extends Equatable {
 class HomeListLoading extends HomeListState {}
 
 class HomeListLoaded extends HomeListState {
-  final List<LessonPair> lessons;
+  final Map<int, List<LessonPair>> lessons;
   final int currentLesson;
 
   HomeListLoaded({@required this.lessons, @required this.currentLesson});
