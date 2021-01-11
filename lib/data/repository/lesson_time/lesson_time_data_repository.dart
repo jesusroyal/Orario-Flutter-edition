@@ -11,7 +11,8 @@ class LessonTimeDataRepository extends LessonTimeRepository {
 
   @override
   Future<List<LessonTime>> getLessonTime({String path}) async {
-    List<ApiLessonTime> apiList = await service.getLessonTime(path: path);
+    List<ApiLessonTime> apiList = [];
+    apiList = await service.getLessonTime(path: path);
 
     List<LessonTime> list = [];
 
