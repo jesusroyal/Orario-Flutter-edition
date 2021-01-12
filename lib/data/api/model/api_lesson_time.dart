@@ -6,6 +6,5 @@ class ApiLessonTime {
   ApiLessonTime.fromApi(dynamic map)
       : start = int.parse(map['start']),
         end = int.parse(map['end']),
-        breakDuration = int.parse(
-            map['break']); //TODO: Check Firebase for correct break duration key
+        breakDuration = int.parse(map['break']);
 }
