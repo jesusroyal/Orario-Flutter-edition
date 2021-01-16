@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:orario/domain/model/lesson_pair.dart';
 
 class LessonCard extends StatelessWidget {
+  final LessonPair lesson;
+
+  const LessonCard({Key key, @required this.lesson}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -12,7 +16,7 @@ class LessonCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Ostaloc',
+              'Осталось',
               style: null,
             ),
             Row(
@@ -29,11 +33,11 @@ class LessonCard extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'lesson.location',
+                          lesson.lesson.location,
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'lesson.don',
+                          lesson.lesson.don,
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -41,7 +45,7 @@ class LessonCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'lesson title',
+                  lesson.lesson.name,
                   style: null,
                   textAlign: TextAlign.right,
                 ),
@@ -54,7 +58,10 @@ class LessonCard extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('start'), Text('end')],
+                  children: [
+                    Text(lesson.time.start.format(context)),
+                    Text(lesson.time.end.format(context))
+                  ],
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 5.0),
