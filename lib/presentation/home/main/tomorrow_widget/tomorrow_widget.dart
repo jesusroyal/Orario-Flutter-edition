@@ -29,6 +29,11 @@ class _HomeTomorrowListWidgetState extends State<HomeTomorrowListWidget> {
             if (state is HomeTomorrowListLoading) {
               return CircularProgressIndicator();
             }
+            if (state is HomeTomorrowListNoLessons) {
+              return Center(
+                child: Text('Завтра выходной!'),
+              );
+            }
             if (state is HomeTomorrowListLoaded) {
               return ListView.builder(
                   scrollDirection: Axis.horizontal,

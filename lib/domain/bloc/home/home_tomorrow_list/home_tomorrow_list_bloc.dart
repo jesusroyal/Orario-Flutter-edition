@@ -40,10 +40,19 @@ class HomeTomorrowListBloc
     return list;
   }
 
+  bool tomorrowIsWeekend() {
+    DateTime now = DateTime.now();
+    return now.weekday == 6;
+  }
+
   @override
   Stream<HomeTomorrowListState> mapEventToState(event) async* {
     yield HomeTomorrowListLoading();
-    var list = await getPairs();
-    yield HomeTomorrowListLoaded(lessons: list);
+    if (tomorrowIsWeekend()) {
+      yield HomeTomorrowListNoLessons();
+    } else {
+      var list = await getPairs();
+      yield HomeTomorrowListLoaded(lessons: list);
+    }
   }
 }
