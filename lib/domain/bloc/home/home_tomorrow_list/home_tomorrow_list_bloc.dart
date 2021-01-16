@@ -7,7 +7,7 @@ import 'package:orario/data/repository/lesson_time/lesson_time_data_repository.d
 import 'package:orario/data/repository/settings/settings_data_repository.dart';
 import 'package:orario/domain/bloc/home/home_tomorrow_list/home_tomorrow_list_state.dart';
 import 'package:orario/domain/model/model_export.dart';
-
+import 'package:orario/internal/extensions.dart';
 import 'home_tomorrow_list_event.dart';
 
 class HomeTomorrowListBloc
@@ -19,18 +19,6 @@ class HomeTomorrowListBloc
   LessonDataRepository lessonRepository = LessonDataRepository(LessonService());
   SettingsDataRepository settings =
       SettingsDataRepository(settingsService: SettingsService());
-//TODO: Refactor
-  int weekNumber(DateTime date) {
-    final startOfYear = DateTime(date.year, 1, 1, 0, 0);
-    final firstMonday = startOfYear.weekday;
-    final daysInFirstWeek = 8 - firstMonday;
-    final diff = date.difference(startOfYear);
-    var weeks = ((diff.inDays - daysInFirstWeek) / 7).ceil();
-    if (daysInFirstWeek > 3) {
-      weeks += 1;
-    }
-    return weeks;
-  }
 
 //TODO: Add weekend exeption
   Future<List<LessonPair>> getPairs() async {
@@ -40,7 +28,7 @@ class HomeTomorrowListBloc
     List<LessonPair> list = [];
     List<LessonTime> time = await timeRepository.getLessonTime(path: path);
     Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
-    var week = weekNumber(now).isEven ? 1 : 0;
+    var week = now.weekNumber.isEven ? 1 : 0;
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][now.weekday][lesson] != null) {
         var pair = LessonPair(
