@@ -17,3 +17,5 @@ class HomeTomorrowListLoaded extends HomeTomorrowListState {
   @override
   List<Object> get props => [lessons];
 }
+
+class HomeTomorrowListNoLessons extends HomeTomorrowListState {}
