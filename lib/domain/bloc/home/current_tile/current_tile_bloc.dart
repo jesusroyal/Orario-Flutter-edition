@@ -51,10 +51,19 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
     return list;
   }
 
+  bool isWeekend() {
+    DateTime now = DateTime.now();
+    return now.weekday == 7;
+  }
+
   @override
   Stream<CurrentTileState> mapEventToState(CurrentTileEvent event) async* {
     yield CurrentTileLoading();
-    var pairs = await getPairs();
-    yield CurrentTileLoaded(lessons: pairs, currentLesson: 0);
+    if (isWeekend()) {
+      yield CurrentTileNoLessons();
+    } else {
+      var pairs = await getPairs();
+      yield CurrentTileLoaded(lessons: pairs, currentLesson: 0);
+    }
   }
 }
