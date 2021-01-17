@@ -8,3 +8,7 @@ abstract class SettingsState extends Equatable {
 class SettingsOpened extends SettingsState {}
 
 class ResetSettingsState extends SettingsState {}
+
+class OpenAdminPanel extends SettingsState {}
+
+class TokenError extends SettingsState {}
