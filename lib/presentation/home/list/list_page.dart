@@ -26,16 +26,16 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => homeListBloc,
-      child: Scaffold(
-        body: BlocBuilder<HomeListBloc, HomeListState>(
-          builder: (context, state) {
-            if (state is HomeListLoading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is HomeListLoaded) {
-              return GroupListView(
+      child: BlocBuilder<HomeListBloc, HomeListState>(
+        builder: (context, state) {
+          if (state is HomeListLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is HomeListLoaded) {
+            return Scaffold(
+              body: GroupListView(
                 countOfItemInSection: (count) => state.lessons[count].length,
                 sectionsCount: state.lessons.entries.length,
                 itemBuilder: (context, index) {
@@ -46,14 +46,21 @@ class _ListPageState extends State<ListPage> {
                 groupHeaderBuilder: (context, section) {
                   return ListSection(section);
                 },
-              );
-            }
-            return Center(child: Text('Something went wrong'));
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(
-            onPressed: null, label: Text('Неделя II')),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              floatingActionButton: FloatingActionButton.extended(
+                  onPressed: () {
+                    homeListBloc.add(HomeListDidChooseWeek(
+                        isSecondWeek: !state.isSecondWeek));
+                  },
+                  label: state.isSecondWeek
+                      ? Text('Неделя II')
+                      : Text('Неделя I')),
+            );
+          }
+          return Center(child: Text('Something went wrong'));
+        },
       ),
     );
   }

@@ -12,8 +12,12 @@ class HomeListLoading extends HomeListState {}
 class HomeListLoaded extends HomeListState {
   final Map<int, List<LessonPair>> lessons;
   final int currentLesson;
+  final bool isSecondWeek;
 
-  HomeListLoaded({@required this.lessons, @required this.currentLesson});
+  HomeListLoaded(
+      {@required this.isSecondWeek,
+      @required this.lessons,
+      @required this.currentLesson});
   @override
   List<Object> get props => [lessons, currentLesson];
 }

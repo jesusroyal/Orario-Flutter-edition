@@ -18,7 +18,7 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
   SettingsDataRepository settings =
       SettingsDataRepository(settingsService: SettingsService());
 
-  Future<Map<int, List<LessonPair>>> getPairs() async {
+  Future<Map<int, List<LessonPair>>> getPairs(int week) async {
     String path = await settings.getPath();
     Map<int, List<LessonPair>> map = {};
     List<LessonTime> time = await timeRepository.getLessonTime(path: path);
@@ -27,9 +27,9 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
     for (int day = 0; day <= 5; day++) {
       List<LessonPair> oneDay = [];
       for (int lesson = 0; lesson <= 8; lesson++) {
-        if (lessons[0][day][lesson] != null) {
-          var pair =
-              LessonPair(lesson: lessons[0][day][lesson], time: time[lesson]);
+        if (lessons[week][day][lesson] != null) {
+          var pair = LessonPair(
+              lesson: lessons[week][day][lesson], time: time[lesson]);
           oneDay.add(pair);
         }
       }
@@ -44,8 +44,20 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
   Stream<HomeListState> mapEventToState(HomeListEvent event) async* {
     if (event is HomeListOpened) {
       yield HomeListLoading();
-      var map = await getPairs();
-      yield HomeListLoaded(lessons: map, currentLesson: 2);
+      var map = await getPairs(0);
+      yield HomeListLoaded(isSecondWeek: false, lessons: map, currentLesson: 2);
+    }
+    if (event is HomeListDidChooseWeek) {
+      yield HomeListLoading();
+      if (event.isSecondWeek) {
+        var map = await getPairs(1);
+        yield HomeListLoaded(
+            isSecondWeek: true, lessons: map, currentLesson: 2);
+      } else {
+        var map = await getPairs(0);
+        yield HomeListLoaded(
+            isSecondWeek: false, lessons: map, currentLesson: 2);
+      }
     }
   }
 }
