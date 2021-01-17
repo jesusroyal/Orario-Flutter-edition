@@ -12,4 +12,10 @@ class SettingsService {
     SharedPreferences sp = await SharedPreferences.getInstance();
     return sp.setString('path', path);
   }
+
+  Future<void> resetPath() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    await sp.setString('path', null);
+    return;
+  }
 }

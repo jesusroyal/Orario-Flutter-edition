@@ -16,4 +16,9 @@ class SettingsDataRepository extends SettingsRepository {
   Future<bool> setPath({String path}) {
     return settingsService.setPath(path: path);
   }
+
+  @override
+  Future<void> resetPath() {
+    return settingsService.resetPath();
+  }
 }
