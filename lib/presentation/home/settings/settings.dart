@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:orario/data/repository/settings/settings_data_repository.dart';
 import 'package:orario/domain/bloc/settings/settings_bloc.dart';
 import 'package:orario/domain/bloc/settings/settings_event.dart';
 import 'package:orario/domain/bloc/settings/settings_state.dart';

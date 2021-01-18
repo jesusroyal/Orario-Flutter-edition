@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:orario/domain/bloc/home/home_tomorrow_list/home_tomorrow_list_bloc.dart';
 import 'package:orario/presentation/home/main/current_widget/current_swiper.dart';
 import 'package:orario/presentation/home/main/tomorrow_widget/tomorrow_widget.dart';
 import 'package:orario/presentation/home/settings/settings.dart';
