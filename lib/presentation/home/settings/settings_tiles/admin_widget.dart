@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class AdminTile extends StatelessWidget {
   String _value = "";
 
-  final void Function({String token}) onSubmit;
+  final void Function(String token) onSubmit;
 
   AdminTile({Key key, @required this.onSubmit}) : super(key: key);
 
   AlertDialog dialog(BuildContext context) {
     return AlertDialog(
-      title: Text('Vvedite token'),
+      title: Text('Введите ваш токен'),
       content: TextField(
+        obscureText: true,
+        autofocus: true,
         onChanged: (value) {
           _value = value;
         },
@@ -18,14 +20,15 @@ class AdminTile extends StatelessWidget {
       actions: [
         FlatButton(
             onPressed: () {
-              onSubmit(token: _value);
+              Navigator.pop(context);
+              onSubmit(_value);
             },
-            child: Text('Ok')),
+            child: Text('Ок')),
         FlatButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Otmena'))
+            child: Text('Отмена'))
       ],
     );
   }
@@ -34,7 +37,7 @@ class AdminTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
-            title: Text('Zajti v admin dwij'),
+            title: Text('Войти в панель администрирования'),
             onTap: () {
               showDialog(
                   context: context, builder: (context) => dialog(context));
