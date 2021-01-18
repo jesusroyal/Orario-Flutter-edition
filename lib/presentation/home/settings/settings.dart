@@ -59,20 +59,34 @@ class _SettingsPageState extends State<SettingsPage> {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text('Zagruzka'),
+                    title: Row(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Загрузки'),
+                      ],
+                    ),
                   );
                 });
           }
           if (state is TokenError) {
+            Navigator.pop(context); //TODO: Find safe way to dismiss alert
             showDialog(
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text('Owibka'),
+                    title: Text('Неправильный токен'),
+                    actions: [
+                      FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Ок'))
+                    ],
                   );
                 });
           }
           if (state is OpenAdminPanel) {
+            Navigator.pop(context); //TODO: Find safe way to dismiss alert
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AdminPage()));
           }
