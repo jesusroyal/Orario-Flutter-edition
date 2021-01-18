@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/domain/model/lesson_pair.dart';
+import 'package:orario/internal/theme.dart';
 
 class LessonCard extends StatelessWidget {
   final LessonPair lesson;
@@ -17,7 +18,7 @@ class LessonCard extends StatelessWidget {
           children: [
             Text(
               'Осталось',
-              style: null,
+              style: OrarioUI.text.h3Light,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +47,7 @@ class LessonCard extends StatelessWidget {
                 ),
                 Text(
                   lesson.lesson.name,
-                  style: null,
+                  style: OrarioUI.text.h2Bold,
                   textAlign: TextAlign.right,
                 ),
                 SizedBox(

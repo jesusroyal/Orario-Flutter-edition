@@ -20,12 +20,12 @@ class WelcomePage extends StatelessWidget {
                 children: [
                   Text(
                     'Orario',
-                    style: TextStyle(fontSize: 64, fontWeight: FontWeight.w900),
+                    style: OrarioUI.text.h1Bold,
                     textAlign: TextAlign.left,
                   ),
                   Text(
                     'Твой персональный \n ассистент',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w200),
+                    style: OrarioUI.text.h3Light,
                     textAlign: TextAlign.left,
                   ),
                 ],
