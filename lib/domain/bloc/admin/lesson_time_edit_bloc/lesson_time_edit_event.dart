@@ -8,4 +8,6 @@ abstract class LessonTimeEditEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class LessonTimeOpened extends LessonTimeEditEvent {}
+
 class LessonTimePressSave extends LessonTimeEditEvent {}
