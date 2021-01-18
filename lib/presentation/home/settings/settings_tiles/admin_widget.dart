@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class AdminTile extends StatelessWidget {
   String _value = "";
 
+  final void Function({String token}) onSubmit;
+
+  AdminTile({Key key, @required this.onSubmit}) : super(key: key);
+
   AlertDialog dialog(BuildContext context) {
     return AlertDialog(
       title: Text('Vvedite token'),
@@ -12,8 +16,16 @@ class AdminTile extends StatelessWidget {
         },
       ),
       actions: [
-        FlatButton(onPressed: () {}, child: Text('Ok')),
-        FlatButton(onPressed: () {}, child: Text('Otmena'))
+        FlatButton(
+            onPressed: () {
+              onSubmit(token: _value);
+            },
+            child: Text('Ok')),
+        FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Otmena'))
       ],
     );
   }
