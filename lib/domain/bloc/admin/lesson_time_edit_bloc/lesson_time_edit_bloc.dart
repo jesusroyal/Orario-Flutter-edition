@@ -1,0 +1,34 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:orario/data/api/service/lesson_time/lesson_time_service.dart';
+import 'package:orario/data/api/service/settings/settings_service.dart';
+import 'package:orario/data/repository/lesson_time/lesson_time_data_repository.dart';
+import 'package:orario/data/repository/settings/settings_data_repository.dart';
+import 'package:orario/domain/model/model_export.dart';
+
+import 'lesson_time_edit_event.dart';
+import 'lesson_time_edit_state.dart';
+
+class LessonTimeEditBloc
+    extends Bloc<LessonTimeEditEvent, LessonTimeEditState> {
+  LessonTimeEditBloc() : super(LessonTimeEditOpened());
+
+  LessonTimeDataRepository timeRepository =
+      LessonTimeDataRepository(LessonTimeService());
+
+  SettingsDataRepository settings =
+      SettingsDataRepository(settingsService: SettingsService());
+
+  Future<List<LessonTime>> getList() async {
+    String path = await settings.getPath();
+    List<LessonTime> time = await timeRepository.getLessonTime(path: path);
+    return time;
+  }
+
+  @override
+  Stream<LessonTimeEditState> mapEventToState(
+      LessonTimeEditEvent event) async* {
+    yield LessonTimeEditLoading();
+    var time = await getList();
+    yield LessonTimeEditLoaded(time);
+  }
+}
