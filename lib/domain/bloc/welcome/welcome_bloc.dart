@@ -58,7 +58,6 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
           (k) => groupMap[k] == groupList[event.index],
           orElse: () => null);
       await settings.setPath(path: '$uni/$group');
-      print('$uni/$group');
       yield WelcomeComplete();
     }
   }

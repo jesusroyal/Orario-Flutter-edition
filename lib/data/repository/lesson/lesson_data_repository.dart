@@ -10,7 +10,6 @@ class LessonDataRepository extends LessonRepository {
 
   @override
   Future<Map<int, Map>> getLessons(String path, int subGroup) async {
-    print('got to data repository');
     Map<int, Map> apiLessons = await service.getLessons(path, subGroup);
     Map<int, Map> lessons = {};
 
@@ -32,7 +31,6 @@ class LessonDataRepository extends LessonRepository {
       lessons[week] = weekLessons;
       weekLessons = Map<int, Map>();
     }
-    print(lessons);
     return lessons;
   }
 }
