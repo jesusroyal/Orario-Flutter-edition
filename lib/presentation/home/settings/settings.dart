@@ -5,6 +5,7 @@ import 'package:orario/domain/bloc/settings/settings_bloc.dart';
 import 'package:orario/domain/bloc/settings/settings_event.dart';
 import 'package:orario/domain/bloc/settings/settings_state.dart';
 import 'package:orario/presentation/home/settings/settings_tiles/about_widget.dart';
+import 'package:orario/presentation/home/settings/settings_tiles/admin_widget.dart';
 import 'package:orario/presentation/home/settings/settings_tiles/reset_widget.dart';
 import 'package:orario/presentation/welcome/welcome_page.dart';
 
@@ -14,9 +15,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  List<Widget> tileList = [
-    AboutSettingsTile(),
-  ];
+  List<Widget> tileList = [AboutSettingsTile(), AdminTile()];
 
   SettingsBloc bloc;
 
