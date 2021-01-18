@@ -31,7 +31,6 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
     return weeks;
   }
 
-//TODO: Add weekend exeption
   Future<List<LessonPair>> getPairs() async {
     DateTime now = DateTime.now();
 
