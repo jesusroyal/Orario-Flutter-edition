@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:orario/domain/model/model_export.dart';
 
 abstract class LessonTimeEditEvent extends Equatable {
   const LessonTimeEditEvent();
@@ -9,4 +10,8 @@ abstract class LessonTimeEditEvent extends Equatable {
 
 class LessonTimeOpened extends LessonTimeEditEvent {}
 
-class LessonTimePressSave extends LessonTimeEditEvent {}
+class LessonTimePressSave extends LessonTimeEditEvent {
+  final List<LessonTime> list;
+
+  LessonTimePressSave(this.list);
+}

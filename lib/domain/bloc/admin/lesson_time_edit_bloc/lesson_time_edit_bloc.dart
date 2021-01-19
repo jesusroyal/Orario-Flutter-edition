@@ -27,8 +27,15 @@ class LessonTimeEditBloc
   @override
   Stream<LessonTimeEditState> mapEventToState(
       LessonTimeEditEvent event) async* {
-    yield LessonTimeEditLoading();
-    var time = await getList();
-    yield LessonTimeEditLoaded(time);
+    if (event is LessonTimeOpened) {
+      yield LessonTimeEditLoading();
+      var time = await getList();
+      yield LessonTimeEditLoaded(time);
+    }
+    if (event is LessonTimePressSave) {
+      yield LessonTimeEditSaving();
+      print(event.list[0].start);
+      yield LessonTimeEditSaved();
+    }
   }
 }

@@ -5,6 +5,7 @@ import 'package:orario/domain/bloc/admin/lesson_time_edit_bloc/lesson_time_edit_
 import 'package:orario/domain/bloc/admin/lesson_time_edit_bloc/lesson_time_edit_state.dart';
 import 'package:orario/domain/model/model_export.dart';
 
+import 'lesson_time_edit_dialog.dart';
 import 'lesson_time_widget.dart';
 
 class LessonTimePage extends StatefulWidget {
@@ -31,7 +32,15 @@ class _LessonTimePageState extends State<LessonTimePage> {
     return BlocProvider(
       create: (_) => bloc,
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          actions: [
+            IconButton(
+                icon: Icon(Icons.save),
+                onPressed: () {
+                  bloc.add(LessonTimePressSave(list));
+                })
+          ],
+        ),
         body: BlocListener<LessonTimeEditBloc, LessonTimeEditState>(
             listener: (context, state) {
               if (state is LessonTimeEditLoading) {
@@ -42,6 +51,12 @@ class _LessonTimePageState extends State<LessonTimePage> {
                   list = state.list;
                 });
               }
+              if (state is LessonTimeEditSaving) {
+                Scaffold.of(context).showSnackBar(snackBar);
+              }
+              if (state is LessonTimeEditSaved) {
+                Navigator.pop(context);
+              }
             },
             child: ListView.builder(
                 itemCount: list.length,
@@ -49,6 +64,22 @@ class _LessonTimePageState extends State<LessonTimePage> {
                   return LessonTimeTile(
                     index: index,
                     time: list[index],
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return LessonTimeEditDialog(
+                            time: list[index],
+                            index: index,
+                            onSave: (time) {
+                              setState(() {
+                                list[index] = time;
+                              });
+                            },
+                          );
+                        },
+                      );
+                    },
                   );
                 })),
       ),

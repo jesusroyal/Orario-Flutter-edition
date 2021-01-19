@@ -17,3 +17,5 @@ class LessonTimeEditLoaded extends LessonTimeEditState {
 }
 
 class LessonTimeEditSaving extends LessonTimeEditState {}
+
+class LessonTimeEditSaved extends LessonTimeEditState {}

@@ -5,7 +5,10 @@ class LessonTimeTile extends StatelessWidget {
   final int index;
   final LessonTime time;
 
-  const LessonTimeTile({Key key, this.index, this.time}) : super(key: key);
+  final GestureTapCallback onTap;
+
+  const LessonTimeTile({Key key, this.index, this.time, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,9 @@ class LessonTimeTile extends StatelessWidget {
               : '${time.start.format(context)}-${time.end.format(context)}')
         ],
       ),
-      onTap: () async {},
+      onTap: () async {
+        onTap();
+      },
     );
   }
 }
