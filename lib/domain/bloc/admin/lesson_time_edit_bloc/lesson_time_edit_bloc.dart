@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:orario/data/api/service/admin/admin_service.dart';
 import 'package:orario/data/api/service/lesson_time/lesson_time_service.dart';
 import 'package:orario/data/api/service/settings/settings_service.dart';
+import 'package:orario/data/repository/admin/admin_data_repository.dart';
 import 'package:orario/data/repository/lesson_time/lesson_time_data_repository.dart';
 import 'package:orario/data/repository/settings/settings_data_repository.dart';
 import 'package:orario/domain/model/model_export.dart';
@@ -18,6 +20,8 @@ class LessonTimeEditBloc
   SettingsDataRepository settings =
       SettingsDataRepository(settingsService: SettingsService());
 
+  AdminDataRepository admin = AdminDataRepository(AdminService());
+
   Future<List<LessonTime>> getList() async {
     String path = await settings.getPath();
     List<LessonTime> time = await timeRepository.getLessonTime(path: path);
@@ -34,7 +38,8 @@ class LessonTimeEditBloc
     }
     if (event is LessonTimePressSave) {
       yield LessonTimeEditSaving();
-      print(event.list[0].start);
+      String path = await settings.getPath();
+      await admin.saveLessonTime(path: path, time: event.list);
       yield LessonTimeEditSaved();
     }
   }
