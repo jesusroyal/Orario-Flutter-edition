@@ -22,7 +22,7 @@ class AdminService {
     final db = FirebaseDatabase.instance;
     final ref = db.reference().child('uni/${path.split('/')[0]}/time');
 
-    for (int lesson = 0; lesson < 8; lesson++) {
+    for (int lesson = 0; lesson < 7; lesson++) {
       if (list[lesson] != null) {
         await ref.child(lesson.toString()).update(list[lesson].toApi());
       }
