@@ -5,4 +5,7 @@ abstract class AdminRepository {
   Future<bool> ferifyToken({@required String token, @required path});
   Future<void> saveLessonTime(
       {@required List<LessonTime> time, @required String path});
+
+  Future<void> saveLessons(
+      {@required String path, @required Map<int, Map> lessons});
 }
