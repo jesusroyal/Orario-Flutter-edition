@@ -29,4 +29,23 @@ class AdminService {
     }
     return;
   }
+
+  Future<void> saveLessons(
+      {@required String path, @required Map<int, Map> lessons}) async {
+    final db = FirebaseDatabase.instance;
+    var ref = db.reference().child('uni/$path/timetable');
+    for (int week = 0; week <= 1; week++) {
+      Map<int, Map> weekLesson = lessons[week];
+      for (int day = 0; day <= 5; day++) {
+        Map<int, ApiLesson> dayLessons = weekLesson[day];
+        for (int lesson = 0; lesson <= 7; lesson++) {
+          await ref
+              .child(week.toString())
+              .child(day.toString())
+              .child(lesson.toString())
+              .update(dayLessons[lesson].toApi());
+        }
+      }
+    }
+  }
 }
