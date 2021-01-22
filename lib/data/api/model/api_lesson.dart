@@ -13,4 +13,6 @@ class ApiLesson {
   Map<String, dynamic> toApi() {
     return {'name': name, 'location': location, 'don': don, 'type': type};
   }
+
+  ApiLesson({this.name, this.location, this.don, this.type});
 }
