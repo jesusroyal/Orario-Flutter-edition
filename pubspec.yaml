@@ -40,13 +40,22 @@ dependencies:
   group_list_view: ^1.0.6
 
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
-  image_path: "assets/app_icon.png"
+  image_path_ios: "assets/app_icon/ios_icon.png"
+  image_path_android: "assets/app_icon/ios_icon.png"
+  adaptive_icon_background: "assets/app_icon/bg_icon.png" 
+  adaptive_icon_foreground: "assets/app_icon/icon.png"
+
+flutter_native_splash:
+  image: assets/app_icon/icon.png
+  color: "#ffffff"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  flutter_native_splash: ^0.1.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
