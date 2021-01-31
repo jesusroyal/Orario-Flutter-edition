@@ -9,6 +9,14 @@ class LessonTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return lesson != null ? buildLesson() : buildNull();
+  }
+
+  Expanded buildNull() {
+    return Expanded(child: Text('no lesson'));
+  }
+
+  Expanded buildLesson() {
     return Expanded(
       child: Card(
         child: Column(
