@@ -5,7 +5,6 @@ import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_bloc.dart'
 import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_event.dart';
 import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_state.dart';
 import 'package:orario/domain/model/model_export.dart';
-import 'package:orario/presentation/home/admin/lesson_page/lesson_widget.dart';
 import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_row.dart';
 import 'package:orario/presentation/home/list/list_divider.dart';
 import 'package:orario/presentation/login/group_page.dart';
@@ -46,7 +45,7 @@ class _LessonPageState extends State<LessonPage> {
                   }
                 },
                 child: GroupListView(
-                  countOfItemInSection: (count) => lessons[count].length,
+                  countOfItemInSection: (count) => 8,
                   sectionsCount: lessons.keys.length,
                   itemBuilder: (context, index) {
                     return LessonRow(
