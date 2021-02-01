@@ -4,16 +4,22 @@ import 'package:orario/internal/theme.dart';
 
 class LessonTile extends StatelessWidget {
   final Lesson lesson;
+  final void Function() onTap;
+  final void Function() onExpand;
 
-  const LessonTile({Key key, this.lesson}) : super(key: key);
+  const LessonTile({Key key, this.lesson, this.onTap, this.onExpand})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return lesson != null ? buildLesson() : buildNull();
+    return GestureDetector(
+      child: lesson != null ? buildLesson() : buildNull(),
+      onTap: () => onTap,
+    );
   }
 
   Expanded buildNull() {
-    return Expanded(child: Text('no lesson'));
+    return Expanded(child: Card(child: Text('no lesson')));
   }
 
   Expanded buildLesson() {
