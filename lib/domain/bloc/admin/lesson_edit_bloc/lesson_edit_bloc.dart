@@ -25,10 +25,13 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
 
     for (int day = 0; day <= 5; day++) {
       List<Map<int, LessonPair>> oneDay = [];
-      for (int lesson = 0; lesson <= 8; lesson++) {
+      for (int lesson = 0; lesson <= 7; lesson++) {
         if (lessons[week][day][lesson] != null) {
           var pair = LessonPair(
               lesson: lessons[week][day][lesson], time: time[lesson]);
+          oneDay.add({0: pair, 1: pair});
+        } else {
+          var pair = LessonPair(lesson: null, time: time[lesson]);
           oneDay.add({0: pair, 1: pair});
         }
       }
