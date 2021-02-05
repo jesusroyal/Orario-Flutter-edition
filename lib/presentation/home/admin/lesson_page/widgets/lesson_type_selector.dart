@@ -2,14 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:orario/domain/model/model_export.dart';
 
 class LessonTypeSelector extends StatefulWidget {
-  final ValueChanged<int> onTap;
-  final int currentType;
-  const LessonTypeSelector({Key key, this.onTap, this.currentType})
+  final ValueChanged<LessonType> onChanged;
+  final LessonType currentType;
+  const LessonTypeSelector(
+      {Key key, @required this.onChanged, this.currentType})
       : super(key: key);
 
   @override
-  _LessonTypeSelectorState createState() =>
-      _LessonTypeSelectorState(currentType: currentType);
+  _LessonTypeSelectorState createState() {
+    switch (currentType) {
+      case LessonType.lab:
+        return _LessonTypeSelectorState(currentType: 0);
+      case LessonType.lecture:
+        return _LessonTypeSelectorState(currentType: 0);
+      case LessonType.seminar:
+        return _LessonTypeSelectorState(currentType: 0);
+    }
+    return _LessonTypeSelectorState();
+  }
 }
 
 class _LessonTypeSelectorState extends State<LessonTypeSelector> {
@@ -27,7 +37,7 @@ class _LessonTypeSelectorState extends State<LessonTypeSelector> {
           onTap: () {
             setState(() {
               currentType = 0;
-              widget.onTap(currentType);
+              widget.onChanged(LessonType.lecture);
             });
           },
         ),
@@ -37,7 +47,7 @@ class _LessonTypeSelectorState extends State<LessonTypeSelector> {
           onTap: () {
             setState(() {
               currentType = 1;
-              widget.onTap(currentType);
+              widget.onChanged(LessonType.lab);
             });
           },
         ),
@@ -47,7 +57,7 @@ class _LessonTypeSelectorState extends State<LessonTypeSelector> {
           onTap: () {
             setState(() {
               currentType = 2;
-              widget.onTap(currentType);
+              widget.onChanged(LessonType.seminar);
             });
           },
         ),
