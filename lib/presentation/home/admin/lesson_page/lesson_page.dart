@@ -63,6 +63,8 @@ class _LessonPageState extends State<LessonPage> {
                         showDialog(
                           context: context,
                           builder: (context) => LessonEditDialog(
+                            lessonPair: lessons[index.section][index.index]
+                                [index2],
                             onSave: (lesson) {
                               setState(() {
                                 lessons[index.section][index.index][index2] =
