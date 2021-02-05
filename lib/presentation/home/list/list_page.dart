@@ -55,11 +55,11 @@ class _ListPageState extends State<ListPage> {
                         isSecondWeek: !state.isSecondWeek));
                   },
                   label: state.isSecondWeek
-                      ? Text('Неделя II')
-                      : Text('Неделя I')),
+                      ? const Text('Неделя II')
+                      : const Text('Неделя I')),
             );
           }
-          return Center(child: Text('Something went wrong'));
+          return const Center(child: Text('Something went wrong'));
         },
       ),
     );

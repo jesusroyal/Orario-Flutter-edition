@@ -54,7 +54,7 @@ flutter_native_splash:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+  lint: ^1.0.0
   flutter_native_splash: ^0.1.9
 
 # For information on the generic Dart part of this file, see the

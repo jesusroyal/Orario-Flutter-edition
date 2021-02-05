@@ -16,7 +16,8 @@ class AdminDataRepository extends AdminRepository {
   }
 
   Future<void> saveLessonTime({List<LessonTime> time, String path}) async {
-    List<ApiLessonTime> list = []; //TODO: VERY IMPORTANT add null coalising
+    final List<ApiLessonTime> list =
+        []; //TODO: VERY IMPORTANT add null coalising
     time.forEach((element) {
       list.add(LessonTimeMapper.toApi(element));
     });
@@ -26,11 +27,11 @@ class AdminDataRepository extends AdminRepository {
 
   @override
   Future<void> saveLessons({String path, Map<int, Map> lessons}) {
-    Map<int, Map> apiLessons = {};
+    final Map<int, Map> apiLessons = {};
     for (int week = 0; week <= 1; week++) {
-      var weekLessons = Map<int, Map>();
+      var weekLessons = <int, Map>{};
       for (int day = 0; day <= 5; day++) {
-        var dayLessons = Map<int, ApiLesson>();
+        var dayLessons = <int, ApiLesson>{};
         for (int lesson = 0; lesson <= 8; lesson++) {
           if (lessons[week][day][lesson] == null) {
             dayLessons[lesson] = null;
@@ -39,10 +40,10 @@ class AdminDataRepository extends AdminRepository {
           }
         }
         weekLessons[day] = dayLessons;
-        dayLessons = Map<int, ApiLesson>();
+        dayLessons = <int, ApiLesson>{};
       }
       apiLessons[week] = weekLessons;
-      weekLessons = Map<int, Map>();
+      weekLessons = <int, Map>{};
     }
     return service.saveLessons(path: path, lessons: apiLessons);
   }

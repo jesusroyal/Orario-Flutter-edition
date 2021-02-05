@@ -14,7 +14,7 @@ class LessonTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: lesson != null ? buildLesson() : buildNull(),
-      onTap: () => onTap,
+      onTap: () => onTap(),
     );
   }
 

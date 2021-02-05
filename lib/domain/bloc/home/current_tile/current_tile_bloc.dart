@@ -20,7 +20,7 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
 
   //TODO: Refactor
   int weekNumber(DateTime date) {
-    final startOfYear = DateTime(date.year, 1, 1, 0, 0);
+    final startOfYear = DateTime(date.year, 1, 1);
     final firstMonday = startOfYear.weekday;
     final daysInFirstWeek = 8 - firstMonday;
     final diff = date.difference(startOfYear);
@@ -32,16 +32,17 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
   }
 
   Future<List<LessonPair>> getPairs() async {
-    DateTime now = DateTime.now();
+    final DateTime now = DateTime.now();
 
-    String path = await settings.getPath();
-    List<LessonPair> list = [];
-    List<LessonTime> time = await timeRepository.getLessonTime(path: path);
-    Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
-    var week = weekNumber(now).isEven ? 1 : 0;
+    final String path = await settings.getPath();
+    final List<LessonPair> list = [];
+    final List<LessonTime> time =
+        await timeRepository.getLessonTime(path: path);
+    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final week = weekNumber(now).isEven ? 1 : 0;
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][now.weekday - 1][lesson] != null) {
-        var pair = LessonPair(
+        final pair = LessonPair(
             lesson: lessons[week][now.weekday - 1][lesson], time: time[lesson]);
         list.add(pair);
       }
@@ -51,7 +52,7 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
   }
 
   bool isWeekend() {
-    DateTime now = DateTime.now();
+    final DateTime now = DateTime.now();
     return now.weekday == 7;
   }
 
@@ -61,7 +62,7 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
     if (isWeekend()) {
       yield CurrentTileNoLessons();
     } else {
-      var pairs = await getPairs();
+      final pairs = await getPairs();
       yield CurrentTileLoaded(lessons: pairs, currentLesson: 0);
     }
   }

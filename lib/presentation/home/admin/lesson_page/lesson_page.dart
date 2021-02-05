@@ -7,7 +7,6 @@ import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_state.dart
 import 'package:orario/domain/model/model_export.dart';
 import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_row.dart';
 import 'package:orario/presentation/home/list/list_divider.dart';
-import 'package:orario/presentation/login/group_page.dart';
 
 class LessonPage extends StatefulWidget {
   @override
@@ -26,7 +25,7 @@ class _LessonPageState extends State<LessonPage> {
 
   Map<int, List<Map<int, LessonPair>>> lessons = {};
 
-  final snackBar = SnackBar(content: Text('Загружаю'));
+  final snackBar = const SnackBar(content: Text('Загружаю'));
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,14 @@ class _LessonPageState extends State<LessonPage> {
                   sectionsCount: lessons.keys.length,
                   itemBuilder: (context, index) {
                     return LessonRow(
-                        lessons: lessons[index.section][index.index]);
+                      lessons: lessons[index.section][index.index],
+                      onTap: (index) {
+                        // showDialog(
+                        //   context: context,
+                        //   builder: (context) => LessonEditDialog(),
+                        // );
+                      },
+                    );
                   },
                   groupHeaderBuilder: (context, section) {
                     return ListSection(section);

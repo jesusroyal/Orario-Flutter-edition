@@ -4,8 +4,9 @@ import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_tile.d
 
 class LessonRow extends StatelessWidget {
   final Map<int, LessonPair> lessons;
+  final Function(int) onTap;
 
-  const LessonRow({Key key, this.lessons}) : super(key: key);
+  const LessonRow({Key key, this.lessons, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,13 @@ class LessonRow extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            LessonTile(lesson: lessons[0].lesson),
+            LessonTile(
+              lesson: lessons[0].lesson,
+              onTap: onTap(0),
+            ),
             LessonTile(
               lesson: lessons[1].lesson,
+              onTap: onTap(1),
             )
           ],
         ),

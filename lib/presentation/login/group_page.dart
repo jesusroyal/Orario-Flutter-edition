@@ -31,12 +31,12 @@ class _GroupPageState extends State<GroupPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Список групп'),
+            title: const Text('Список групп'),
           ),
           body: BlocBuilder<WelcomeBloc, WelcomeState>(
             builder: (context, state) {
               if (state is GroupsLoading) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
@@ -55,7 +55,7 @@ class _GroupPageState extends State<GroupPage> {
                   },
                 );
               }
-              return Text('Something went wrong');
+              return const Text('Something went wrong');
             },
           ),
         ),

@@ -22,15 +22,16 @@ class HomeTomorrowListBloc
 
 //TODO: Add weekend exeption
   Future<List<LessonPair>> getPairs() async {
-    DateTime now = DateTime.now();
-    String path = await settings.getPath();
-    List<LessonPair> list = [];
-    List<LessonTime> time = await timeRepository.getLessonTime(path: path);
-    Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
-    var week = now.weekNumber.isEven ? 1 : 0;
+    final DateTime now = DateTime.now();
+    final String path = await settings.getPath();
+    final List<LessonPair> list = [];
+    final List<LessonTime> time =
+        await timeRepository.getLessonTime(path: path);
+    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final week = now.weekNumber.isEven ? 1 : 0;
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][tomorrow()][lesson] != null) {
-        var pair = LessonPair(
+        final pair = LessonPair(
             lesson: lessons[week][tomorrow()][lesson], time: time[lesson]);
         list.add(pair);
       }
@@ -40,7 +41,7 @@ class HomeTomorrowListBloc
   }
 
   int tomorrow() {
-    DateTime now = DateTime.now();
+    final DateTime now = DateTime.now();
     if (now.weekday == 7) {
       return 0;
     } else {
@@ -49,7 +50,7 @@ class HomeTomorrowListBloc
   }
 
   bool tomorrowIsWeekend() {
-    DateTime now = DateTime.now();
+    final DateTime now = DateTime.now();
     return now.weekday == 6;
   }
 
@@ -59,7 +60,7 @@ class HomeTomorrowListBloc
     if (tomorrowIsWeekend()) {
       yield HomeTomorrowListNoLessons();
     } else {
-      var list = await getPairs();
+      final list = await getPairs();
       yield HomeTomorrowListLoaded(lessons: list);
     }
   }

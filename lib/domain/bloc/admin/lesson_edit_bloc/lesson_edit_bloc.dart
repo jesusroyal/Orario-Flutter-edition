@@ -18,25 +18,26 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
   SettingsDataRepository settings =
       SettingsDataRepository(settingsService: SettingsService());
   Future<Map<int, List<Map<int, LessonPair>>>> getPairs(int week) async {
-    String path = await settings.getPath();
-    Map<int, List<Map<int, LessonPair>>> map = {};
-    List<LessonTime> time = await timeRepository.getLessonTime(path: path);
-    Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final String path = await settings.getPath();
+    final Map<int, List<Map<int, LessonPair>>> map = {};
+    final List<LessonTime> time =
+        await timeRepository.getLessonTime(path: path);
+    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
 
     for (int day = 0; day <= 5; day++) {
       List<Map<int, LessonPair>> oneDay = [];
       for (int lesson = 0; lesson <= 7; lesson++) {
         if (lessons[week][day][lesson] != null) {
-          var pair = LessonPair(
+          final pair = LessonPair(
               lesson: lessons[week][day][lesson], time: time[lesson]);
           oneDay.add({0: pair, 1: pair});
         } else {
-          var pair = LessonPair(lesson: null, time: time[lesson]);
+          final pair = LessonPair(lesson: null, time: time[lesson]);
           oneDay.add({0: pair, 1: pair});
         }
       }
       map[day] = oneDay;
-      oneDay = List<Map<int, LessonPair>>();
+      oneDay = <Map<int, LessonPair>>[];
     }
 
     return map;
@@ -45,7 +46,7 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
   @override
   Stream<LessonEditState> mapEventToState(LessonEditEvent event) async* {
     yield LessonEditLoading();
-    var list = await getPairs(0);
+    final list = await getPairs(0);
     yield LessonEditLoaded(lessons: list);
   }
 }

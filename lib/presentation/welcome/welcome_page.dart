@@ -9,14 +9,13 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+          padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     'Orario',
@@ -35,14 +34,7 @@ class WelcomePage extends StatelessWidget {
                 width: 300.0,
               ),
               RaisedButton(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  'Выбрать ВУЗ',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w200,
-                      color: Colors.white),
-                ),
+                padding: const EdgeInsets.all(10.0),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -50,6 +42,13 @@ class WelcomePage extends StatelessWidget {
                           builder: (context) => UniversityPage()));
                 },
                 color: OrarioUI.colors.green,
+                child: const Text(
+                  'Выбрать ВУЗ',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white),
+                ),
               )
             ],
           ),

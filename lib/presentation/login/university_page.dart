@@ -24,14 +24,14 @@ class _UniversityPageState extends State<UniversityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Список ВУЗов'),
+          title: const Text('Список ВУЗов'),
         ),
         body: BlocProvider(
           create: (_) => welcomeBloc,
           child:
               BlocBuilder<WelcomeBloc, WelcomeState>(builder: (context, state) {
             if (state is WelcomeLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -58,7 +58,7 @@ class _UniversityPageState extends State<UniversityPage> {
                 },
               );
             }
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }),
         ));
   }

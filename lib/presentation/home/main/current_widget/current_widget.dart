@@ -11,7 +11,7 @@ class LessonCard extends StatelessWidget {
     return Card(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.all(20.0),
+        margin: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -26,20 +26,19 @@ class LessonCard extends StatelessWidget {
                 DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: null,
                   ),
                   child: Container(
                     width: 120.0,
-                    margin: EdgeInsets.all(10.0),
+                    margin: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
                         Text(
                           lesson.lesson.location,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         Text(
                           lesson.lesson.don,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
@@ -50,7 +49,7 @@ class LessonCard extends StatelessWidget {
                   style: OrarioUI.text.h2Bold,
                   textAlign: TextAlign.right,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 3.0,
                 )
               ],
@@ -65,8 +64,8 @@ class LessonCard extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 5.0),
-                  child: LinearProgressIndicator(
+                  margin: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: const LinearProgressIndicator(
                     minHeight: 10.0,
                     value: 5,
                   ),

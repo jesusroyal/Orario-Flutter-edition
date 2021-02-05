@@ -10,7 +10,7 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -28,8 +28,8 @@ class MainPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                child: LessonCardContainer(),
                 height: constraints.maxHeight * (0.4),
+                child: const LessonCardContainer(),
               ),
               Container(
                 height: constraints.maxHeight * (0.30),

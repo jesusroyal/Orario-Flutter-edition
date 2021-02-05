@@ -4,7 +4,7 @@ import 'package:orario/data/api/model/api_model_export.dart';
 
 class LessonTimeMapper {
   static LessonTime fromApi(ApiLessonTime apiLessonTime) {
-    TimeOfDay start = TimeOfDay(
+    final TimeOfDay start = TimeOfDay(
         hour: (apiLessonTime.start ~/ 60),
         minute: (apiLessonTime.start - (apiLessonTime.start ~/ 60) * 60));
     TimeOfDay end = TimeOfDay(

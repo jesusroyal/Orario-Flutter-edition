@@ -14,9 +14,9 @@ class LessonDataRepository extends LessonRepository {
     Map<int, Map> lessons = {};
 
     for (int week = 0; week <= 1; week++) {
-      var weekLessons = Map<int, Map>();
+      var weekLessons = <int, Map>{};
       for (int day = 0; day <= 5; day++) {
-        var dayLessons = Map<int, Lesson>();
+        var dayLessons = <int, Lesson>{};
         for (int lesson = 0; lesson <= 8; lesson++) {
           if (apiLessons[week][day][lesson] == null) {
             dayLessons[lesson] = null;
@@ -26,10 +26,10 @@ class LessonDataRepository extends LessonRepository {
           }
         }
         weekLessons[day] = dayLessons;
-        dayLessons = Map<int, Lesson>();
+        dayLessons = <int, Lesson>{};
       }
       lessons[week] = weekLessons;
-      weekLessons = Map<int, Map>();
+      weekLessons = <int, Map>{};
     }
     return lessons;
   }

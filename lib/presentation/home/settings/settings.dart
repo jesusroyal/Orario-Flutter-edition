@@ -60,8 +60,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   return AlertDialog(
                     title: Row(
                       children: [
-                        CircularProgressIndicator(),
-                        Text('Загрузки'),
+                        const CircularProgressIndicator(),
+                        const Text('Загрузки'),
                       ],
                     ),
                   );

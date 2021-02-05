@@ -18,22 +18,23 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
       SettingsDataRepository(settingsService: SettingsService());
 
   Future<Map<int, List<LessonPair>>> getPairs(int week) async {
-    String path = await settings.getPath();
-    Map<int, List<LessonPair>> map = {};
-    List<LessonTime> time = await timeRepository.getLessonTime(path: path);
-    Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final String path = await settings.getPath();
+    final Map<int, List<LessonPair>> map = {};
+    final List<LessonTime> time =
+        await timeRepository.getLessonTime(path: path);
+    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
 
     for (int day = 0; day <= 5; day++) {
       List<LessonPair> oneDay = [];
       for (int lesson = 0; lesson <= 8; lesson++) {
         if (lessons[week][day][lesson] != null) {
-          var pair = LessonPair(
+          final pair = LessonPair(
               lesson: lessons[week][day][lesson], time: time[lesson]);
           oneDay.add(pair);
         }
       }
       map[day] = oneDay;
-      oneDay = List<LessonPair>();
+      oneDay = <LessonPair>[];
     }
 
     return map;
@@ -43,17 +44,17 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
   Stream<HomeListState> mapEventToState(HomeListEvent event) async* {
     if (event is HomeListOpened) {
       yield HomeListLoading();
-      var map = await getPairs(0);
+      final map = await getPairs(0);
       yield HomeListLoaded(isSecondWeek: false, lessons: map, currentLesson: 2);
     }
     if (event is HomeListDidChooseWeek) {
       yield HomeListLoading();
       if (event.isSecondWeek) {
-        var map = await getPairs(1);
+        final map = await getPairs(1);
         yield HomeListLoaded(
             isSecondWeek: true, lessons: map, currentLesson: 2);
       } else {
-        var map = await getPairs(0);
+        final map = await getPairs(0);
         yield HomeListLoaded(
             isSecondWeek: false, lessons: map, currentLesson: 2);
       }

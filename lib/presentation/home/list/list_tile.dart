@@ -9,11 +9,11 @@ class ListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(2.0),
+      margin: const EdgeInsets.all(2.0),
       child: Container(
           height: 70.0,
           color: Colors.white,
-          margin: EdgeInsets.all(7.0),
+          margin: const EdgeInsets.all(7.0),
           child: Row(
             children: [
               Column(
@@ -22,15 +22,15 @@ class ListWidget extends StatelessWidget {
                   Text(lessonPair.time.start.format(context)),
                   Text(
                     lessonPair.time.end.format(context),
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   )
                 ],
               ),
-              VerticalDivider(
+              const VerticalDivider(
                 color: Colors.deepOrange, //TODO: Add colors
                 thickness: 1.0,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5.0,
               ),
               Expanded(
@@ -49,14 +49,14 @@ class ListWidget extends StatelessWidget {
                         Text(
                           lessonPair.lesson.don,
                           textAlign: TextAlign.right,
-                          style: TextStyle(fontWeight: FontWeight.w300),
+                          style: const TextStyle(fontWeight: FontWeight.w300),
                         ),
                       ],
                     ),
                     Text(
                       lessonPair.lesson.location,
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontWeight: FontWeight.w300),
+                      style: const TextStyle(fontWeight: FontWeight.w300),
                     ),
                   ],
                 ),

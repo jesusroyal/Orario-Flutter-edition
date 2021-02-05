@@ -7,7 +7,7 @@ import 'package:orario/domain/bloc/home/current_tile/current_tile_state.dart';
 import 'package:orario/presentation/home/main/current_widget/current_widget.dart';
 
 class LessonCardContainer extends StatefulWidget {
-  LessonCardContainer({Key key}) : super(key: key);
+  const LessonCardContainer({Key key}) : super(key: key);
 
   @override
   _LessonCardContainerState createState() => _LessonCardContainerState();
@@ -35,7 +35,6 @@ class _LessonCardContainerState extends State<LessonCardContainer> {
             scrollDirection: Axis.vertical,
             loop: false,
             itemCount: state.lessons.length,
-            control: null,
             itemBuilder: (BuildContext context, int index) {
               return LessonCard(
                 lesson: state.lessons[index],
@@ -44,12 +43,12 @@ class _LessonCardContainerState extends State<LessonCardContainer> {
           );
         }
         if (state is CurrentTileLoading) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
         if (state is CurrentTileNoLessons) {
-          return Text('No lessons');
+          return const Text('No lessons');
         }
-        return Text('error');
+        return const Text('error');
       }),
     );
   }
