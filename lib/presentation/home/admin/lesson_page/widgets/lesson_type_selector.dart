@@ -67,7 +67,7 @@ class _LessonTypeSelectorState extends State<LessonTypeSelector> {
 }
 
 class LessonTypeButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback onTap; //TODO: Change from typealias
   final bool isPressed;
   final LessonType type;
 
@@ -83,18 +83,6 @@ class LessonTypeButton extends StatelessWidget {
     return '';
   }
 
-  IconData get _icon {
-    switch (type) {
-      case LessonType.lab:
-        return Icons.computer;
-      case LessonType.lecture:
-        return Icons.book;
-      case LessonType.seminar:
-        return Icons.brush;
-    }
-    return null;
-  }
-
   LessonTypeButton({Key key, this.onTap, this.isPressed, @required this.type})
       : super(key: key);
 
@@ -102,15 +90,8 @@ class LessonTypeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       color: isPressed ? Colors.green : Colors.amber, //TODO: Change colors
-      child: Row(
-        children: [
-          Icon(_icon),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(_title),
-        ],
-      ),
+      child: Text(_title),
+
       onPressed: () => onTap(),
     );
   }
