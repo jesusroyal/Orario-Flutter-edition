@@ -11,10 +11,11 @@ class AdminDataRepository extends AdminRepository {
   AdminDataRepository(this.service);
 
   @override
-  Future<bool> ferifyToken({String token, path}) {
+  Future<bool> ferifyToken({String token, String path}) {
     return service.ferifyToken(token: token, path: path);
   }
 
+  @override
   Future<void> saveLessonTime({List<LessonTime> time, String path}) async {
     final List<ApiLessonTime> list =
         []; //TODO: VERY IMPORTANT add null coalising
@@ -26,13 +27,14 @@ class AdminDataRepository extends AdminRepository {
   }
 
   @override
-  Future<void> saveLessons({String path, Map<int, Map> lessons}) {
+  Future<void> saveLessons({String path, Map<int, List> lessons}) {
+    print(lessons);
     final Map<int, Map> apiLessons = {};
     for (int week = 0; week <= 1; week++) {
       var weekLessons = <int, Map>{};
       for (int day = 0; day <= 5; day++) {
         var dayLessons = <int, ApiLesson>{};
-        for (int lesson = 0; lesson <= 8; lesson++) {
+        for (int lesson = 0; lesson <= 7; lesson++) {
           if (lessons[week][day][lesson] == null) {
             dayLessons[lesson] = null;
           } else {

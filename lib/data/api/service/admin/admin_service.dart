@@ -39,11 +39,13 @@ class AdminService {
       for (int day = 0; day <= 5; day++) {
         Map<int, ApiLesson> dayLessons = weekLesson[day];
         for (int lesson = 0; lesson <= 7; lesson++) {
-          await ref
-              .child(week.toString())
-              .child(day.toString())
-              .child(lesson.toString())
-              .update(dayLessons[lesson].toApi());
+          if (dayLessons[lesson] != null) {
+            await ref
+                .child(week.toString())
+                .child(day.toString())
+                .child(lesson.toString())
+                .update(dayLessons[lesson].toApi());
+          }
         }
       }
     }

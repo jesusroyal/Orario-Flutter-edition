@@ -18,12 +18,15 @@ class LessonRow extends StatelessWidget {
           children: [
             LessonTile(
               lesson: lessons[0].lesson,
-              onTap: onTap(0),
+              onTap: () {
+                onTap(0);
+              },
             ),
             LessonTile(
-              lesson: lessons[1].lesson,
-              onTap: onTap(1),
-            )
+                lesson: lessons[1].lesson,
+                onTap: () {
+                  onTap(1);
+                })
           ],
         ),
       ],

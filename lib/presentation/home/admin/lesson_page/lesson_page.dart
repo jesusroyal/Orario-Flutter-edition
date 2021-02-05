@@ -5,6 +5,7 @@ import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_bloc.dart'
 import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_event.dart';
 import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_state.dart';
 import 'package:orario/domain/model/model_export.dart';
+import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_dialog.dart';
 import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_row.dart';
 import 'package:orario/presentation/home/list/list_divider.dart';
 
@@ -32,6 +33,15 @@ class _LessonPageState extends State<LessonPage> {
     return BlocProvider(
         create: (_) => bloc,
         child: Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                    icon: Icon(Icons.save),
+                    onPressed: () {
+                      bloc.add(LessonEditSave(lessons: lessons));
+                    })
+              ],
+            ),
             body: BlocListener<LessonEditBloc, LessonEditState>(
                 listener: (context, state) {
                   if (state is LessonEditLoading) {
@@ -49,11 +59,22 @@ class _LessonPageState extends State<LessonPage> {
                   itemBuilder: (context, index) {
                     return LessonRow(
                       lessons: lessons[index.section][index.index],
-                      onTap: (index) {
-                        // showDialog(
-                        //   context: context,
-                        //   builder: (context) => LessonEditDialog(),
-                        // );
+                      onTap: (index2) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => LessonEditDialog(
+                            onSave: (lesson) {
+                              setState(() {
+                                lessons[index.section][index.index][index2] =
+                                    LessonPair(
+                                        lesson: lesson,
+                                        time: lessons[index.section]
+                                                [index.index][0]
+                                            .time);
+                              });
+                            },
+                          ),
+                        );
                       },
                     );
                   },

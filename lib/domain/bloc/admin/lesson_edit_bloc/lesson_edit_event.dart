@@ -16,7 +16,7 @@ class LessonEditChangedWeek extends LessonEditEvent {
 }
 
 class LessonEditSave extends LessonEditEvent {
-  final Map<int, Map> lessons;
+  final Map<int, List> lessons;
 
   LessonEditSave({this.lessons});
 }

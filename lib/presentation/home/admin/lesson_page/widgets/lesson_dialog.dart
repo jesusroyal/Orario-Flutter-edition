@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/domain/model/model_export.dart';
+import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_type_selector.dart';
 
 class LessonEditDialog extends StatefulWidget {
   final LessonPair lessonPair;
@@ -16,10 +17,31 @@ class _LessonEditDialogState extends State<LessonEditDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('some title'),
+      content: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(hintText: 'Name'),
+          ),
+          TextField(
+            decoration: InputDecoration(hintText: 'Location'),
+          ),
+          TextField(
+            decoration: InputDecoration(hintText: 'Don'),
+          ),
+          LessonTypeSelector(
+            currentType: 0,
+            onTap: (index) {},
+          )
+        ],
+      ),
       actions: [
         FlatButton(
             onPressed: () {
-              //widget.onSave();
+              widget.onSave(Lesson(
+                  name: 'Some name',
+                  location: 'some location',
+                  don: 'some don',
+                  type: LessonType.lecture));
               Navigator.pop(context);
             },
             child: Text('Сохранить')),
