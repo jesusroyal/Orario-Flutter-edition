@@ -13,24 +13,32 @@ class LessonEditDialog extends StatefulWidget {
 }
 
 class _LessonEditDialogState extends State<LessonEditDialog> {
+  String _name;
+  String _location;
+  String _don;
+  LessonType _type;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('some title'),
+      title: Text(widget.lessonPair.time.start.format(context)),
       content: Column(
         children: [
           TextField(
-            decoration: InputDecoration(hintText: 'Name'),
+            onChanged: (value) => _name = value,
+            decoration:
+                const InputDecoration(hintText: 'Практические основы практики'),
           ),
           TextField(
-            decoration: InputDecoration(hintText: 'Location'),
-          ),
+              onChanged: (value) => _location = value,
+              decoration: const InputDecoration(hintText: '212-3')),
           TextField(
-            decoration: InputDecoration(hintText: 'Don'),
+            onChanged: (value) => _don = value,
+            decoration: const InputDecoration(hintText: 'Веренич М. С.'),
           ),
           LessonTypeSelector(
-            currentType: 0,
-            onTap: (index) {},
+            currentType: LessonType.lab,
+            onChanged: (type) => _type = type,
           )
         ],
       ),
@@ -38,18 +46,15 @@ class _LessonEditDialogState extends State<LessonEditDialog> {
         FlatButton(
             onPressed: () {
               widget.onSave(Lesson(
-                  name: 'Some name',
-                  location: 'some location',
-                  don: 'some don',
-                  type: LessonType.lecture));
+                  name: _name, location: _location, don: _don, type: _type));
               Navigator.pop(context);
             },
-            child: Text('Сохранить')),
+            child: const Text('Сохранить')),
         FlatButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Отмена'))
+            child: const Text('Отмена'))
       ],
     );
   }
