@@ -46,7 +46,7 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
   }
 
   Future<void> savePairs(Map<int, List> lessons) async {
-    Map<int, List> saveList = {};
+    List<List> saveList = [];
 
     for (int day = 0; day <= 5; day++) {
       List<Lesson> oneDay = [];
@@ -61,7 +61,7 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
       oneDay = [];
     }
 
-    admin.saveLessons(path: await settings.getPath(), lessons: saveList);
+    admin.saveLessons(path: await settings.getPath(), lessons: {0: saveList});
   }
 
   AdminDataRepository admin = AdminDataRepository(AdminService());
