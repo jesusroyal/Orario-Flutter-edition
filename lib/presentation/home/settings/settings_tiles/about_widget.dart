@@ -15,12 +15,12 @@ class AboutSettingsTile extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Orario v0.0.6 Bloc edition',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
                 ),
-                Text('Твой учебный ассистент!'),
-                Text('telegram: @shevelinsky'),
+                const Text('Твой учебный ассистент!'),
+                const Text('telegram: @shevelinsky'),
               ],
             ),
           ],
