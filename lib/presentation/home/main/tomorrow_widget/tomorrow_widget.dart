@@ -27,10 +27,10 @@ class _HomeTomorrowListWidgetState extends State<HomeTomorrowListWidget> {
         child: BlocBuilder<HomeTomorrowListBloc, HomeTomorrowListState>(
           builder: (context, state) {
             if (state is HomeTomorrowListLoading) {
-              return CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             if (state is HomeTomorrowListNoLessons) {
-              return Center(
+              return const Center(
                 child: Text('Завтра выходной!'),
               );
             }
@@ -42,7 +42,7 @@ class _HomeTomorrowListWidgetState extends State<HomeTomorrowListWidget> {
                     return TomorrowTile(lessonPair: state.lessons[index]);
                   });
             }
-            return Text('Something went wrong');
+            return const Text('Произошла ошибка');
           },
         ));
   }
