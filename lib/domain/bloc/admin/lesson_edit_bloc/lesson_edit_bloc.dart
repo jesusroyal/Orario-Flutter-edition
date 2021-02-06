@@ -31,7 +31,7 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
       for (int lesson = 0; lesson <= 7; lesson++) {
         if (lessons[week][day][lesson] != null) {
           final pair = LessonPair(
-              lesson: lessons[week][day][lesson], time: time[lesson]);
+              lesson: lessons[week][day][lesson] as Lesson, time: time[lesson]);
           oneDay.add({0: pair, 1: pair});
         } else {
           final pair = LessonPair(lesson: null, time: time[lesson]);
@@ -46,13 +46,13 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
   }
 
   Future<void> savePairs(Map<int, List> lessons) async {
-    List<List> saveList = [];
+    final List<List> saveList = [];
 
     for (int day = 0; day <= 5; day++) {
       List<Lesson> oneDay = [];
       for (int lesson = 0; lesson <= 7; lesson++) {
         if (lessons[0][day][lesson] != null) {
-          oneDay.add(lessons[0][day][lesson].lesson);
+          oneDay.add((lessons[0][day][lesson] as LessonPair).lesson);
         } else {
           oneDay.add(null);
         }
