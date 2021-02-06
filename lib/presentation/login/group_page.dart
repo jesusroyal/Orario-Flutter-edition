@@ -7,7 +7,7 @@ import 'package:orario/presentation/home/home_page.dart';
 
 class GroupPage extends StatefulWidget {
   final WelcomeBloc welcomeBloc;
-  GroupPage({@required this.welcomeBloc});
+  const GroupPage({@required this.welcomeBloc});
 
   @override
   _GroupPageState createState() => _GroupPageState();
