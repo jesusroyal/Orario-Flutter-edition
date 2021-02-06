@@ -12,7 +12,7 @@ class LessonTimeService {
     for (int lesson = 0; lesson < 8; lesson++) {
       if (snapshot.value[lesson] != 'no') {
         final data = snapshot.value[lesson];
-        list.add(ApiLessonTime.fromApi(data));
+        list.add(ApiLessonTime.fromApi(data as Map<String, String>));
       }
     }
     return list;

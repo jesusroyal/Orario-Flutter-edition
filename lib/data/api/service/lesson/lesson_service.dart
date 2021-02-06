@@ -18,7 +18,7 @@ class LessonService {
             dayLessons[lesson] = null;
           } else {
             dayLessons[lesson] = ApiLesson.fromApi(
-                snapshot.value[week][day][lesson].cast<String, dynamic>());
+                snapshot.value[week][day][lesson] as Map<String, dynamic>);
           }
         }
         weekLessons[day] = dayLessons;
