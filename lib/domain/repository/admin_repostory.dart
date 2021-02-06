@@ -7,5 +7,6 @@ abstract class AdminRepository {
       {@required List<LessonTime> time, @required String path});
 
   Future<void> saveLessons(
-      {@required String path, @required Map<int, List> lessons});
+      {@required String path,
+      @required Map<int, Map<int, Map<int, Lesson>>> lessons});
 }

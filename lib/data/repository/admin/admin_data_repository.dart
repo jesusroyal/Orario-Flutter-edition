@@ -28,7 +28,8 @@ class AdminDataRepository extends AdminRepository {
   }
 
   @override
-  Future<void> saveLessons({String path, Map<int, List> lessons}) {
+  Future<void> saveLessons(
+      {String path, Map<int, Map<int, Map<int, Lesson>>> lessons}) {
     final Map<int, Map> apiLessons = {};
     for (int week = 0; week <= 1; week++) {
       var weekLessons = <int, Map>{};

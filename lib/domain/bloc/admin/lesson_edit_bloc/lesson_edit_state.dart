@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:orario/domain/model/model_export.dart';
 
 abstract class LessonEditState extends Equatable {
   @override
@@ -8,7 +9,7 @@ abstract class LessonEditState extends Equatable {
 class LessonEditLoading extends LessonEditState {}
 
 class LessonEditLoaded extends LessonEditState {
-  final Map<int, List> lessons;
+  final Map<int, Map<int, Map<int, LessonPair>>> lessons;
 
   LessonEditLoaded({this.lessons});
 

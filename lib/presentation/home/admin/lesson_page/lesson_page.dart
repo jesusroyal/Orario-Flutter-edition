@@ -24,7 +24,7 @@ class _LessonPageState extends State<LessonPage> {
     super.initState();
   }
 
-  Map<int, List<Map<int, LessonPair>>> lessons = {};
+  Map<int, Map<int, Map<int, LessonPair>>> lessons = {0: {}};
 
   final snackBar = const SnackBar(content: Text('Загружаю'));
 
@@ -44,21 +44,28 @@ class _LessonPageState extends State<LessonPage> {
             ),
             body: BlocListener<LessonEditBloc, LessonEditState>(
                 listener: (context, state) {
+                  print(state);
                   if (state is LessonEditLoading) {
                     Scaffold.of(context).showSnackBar(snackBar);
                   }
                   if (state is LessonEditLoaded) {
+                    print(state.lessons[0].length);
                     setState(() {
                       lessons = state.lessons;
                     });
                   }
                 },
                 child: GroupListView(
-                  countOfItemInSection: (count) => 8,
-                  sectionsCount: lessons.keys.length,
+                  countOfItemInSection: (count) =>
+                      lessons[0][count].keys.length,
+                  sectionsCount: lessons[0].keys.length,
                   itemBuilder: (context, index) {
+                    print(lessons);
                     return LessonRow(
-                      lessons: lessons[index.section][index.index],
+                      lessons: {
+                        0: lessons[0][index.section][index.index],
+                        1: lessons[0][index.section][index.index]
+                      },
                       onTap: (index2) {
                         showDialog(
                           context: context,
@@ -67,7 +74,7 @@ class _LessonPageState extends State<LessonPage> {
                                 [index2],
                             onSave: (lesson) {
                               setState(() {
-                                lessons[index.section][index.index][index2] =
+                                lessons[0][index.section][index.index] =
                                     LessonPair(
                                         lesson: lesson,
                                         time: lessons[index.section]

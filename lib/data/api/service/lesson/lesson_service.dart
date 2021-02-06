@@ -17,8 +17,8 @@ class LessonService {
           if (snapshot.value[week][day][lesson] == 'no') {
             dayLessons[lesson] = null;
           } else {
-            dayLessons[lesson] = ApiLesson.fromApi(
-                snapshot.value[week][day][lesson] as Map<String, dynamic>);
+            dayLessons[lesson] = ApiLesson.fromApi(Map<String, dynamic>.from(
+                snapshot.value[week][day][lesson] as Map<dynamic, dynamic>));
           }
         }
         weekLessons[day] = dayLessons;

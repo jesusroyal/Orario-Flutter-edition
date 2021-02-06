@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:orario/domain/model/model_export.dart';
 
 abstract class LessonEditEvent extends Equatable {
   const LessonEditEvent();
@@ -16,7 +17,7 @@ class LessonEditChangedWeek extends LessonEditEvent {
 }
 
 class LessonEditSave extends LessonEditEvent {
-  final Map<int, List> lessons;
+  final Map<int, Map<int, Map<int, LessonPair>>> lessons;
 
   LessonEditSave({this.lessons});
 }
