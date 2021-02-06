@@ -33,11 +33,12 @@ class AdminService {
   Future<void> saveLessons(
       {@required String path, @required Map<int, Map> lessons}) async {
     final db = FirebaseDatabase.instance;
-    var ref = db.reference().child('uni/$path/timetable');
+    final ref = db.reference().child('uni/$path/timetable');
     for (int week = 0; week <= 1; week++) {
-      Map<int, Map> weekLesson = lessons[week];
+      final Map<int, Map> weekLesson = lessons[week] as Map<int, Map>;
       for (int day = 0; day <= 5; day++) {
-        Map<int, ApiLesson> dayLessons = weekLesson[day];
+        final Map<int, ApiLesson> dayLessons =
+            weekLesson[day] as Map<int, ApiLesson>;
         for (int lesson = 0; lesson <= 7; lesson++) {
           if (dayLessons[lesson] != null) {
             await ref
