@@ -8,7 +8,7 @@ class ApiLessonTime {
   ApiLessonTime(
       {@required this.start, @required this.end, @required this.breakDuration});
 
-  ApiLessonTime.fromApi(dynamic map)
+  ApiLessonTime.fromApi(Map<String, String> map)
       : start = int.parse(map['start']),
         end = int.parse(map['end']),
         breakDuration = int.parse(map['break']);
