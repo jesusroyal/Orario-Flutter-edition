@@ -43,7 +43,8 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][now.weekday - 1][lesson] != null) {
         final pair = LessonPair(
-            lesson: lessons[week][now.weekday - 1][lesson], time: time[lesson]);
+            lesson: lessons[week][now.weekday - 1][lesson] as Lesson,
+            time: time[lesson]);
         list.add(pair);
       }
     }
