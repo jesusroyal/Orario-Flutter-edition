@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:orario/domain/bloc/home/current_tile/current_tile_bloc.dart';
-import 'package:orario/domain/bloc/home/current_tile/current_tile_event.dart';
-import 'package:orario/domain/bloc/home/current_tile/current_tile_state.dart';
 import 'package:orario/presentation/home/main/current_widget/current_widget.dart';
+import 'package:orario/domain/bloc/home/current_tile/current_tile_domain.dart';
 
 class LessonCardContainer extends StatefulWidget {
   const LessonCardContainer({Key key}) : super(key: key);
@@ -43,12 +41,12 @@ class _LessonCardContainerState extends State<LessonCardContainer> {
           );
         }
         if (state is CurrentTileLoading) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         if (state is CurrentTileNoLessons) {
-          return const Text('No lessons');
+          return const Center(child: Text('Пар нет!'));
         }
-        return const Text('error');
+        return const Center(child: Text('Произошла ошибка'));
       }),
     );
   }
