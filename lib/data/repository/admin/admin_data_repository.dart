@@ -3,6 +3,7 @@ import 'package:orario/data/api/service/admin/admin_service.dart';
 import 'package:orario/data/mapper/lesson_mapper.dart';
 import 'package:orario/data/mapper/lesson_time_mapper.dart';
 import 'package:orario/domain/model/lesson_time.dart';
+import 'package:orario/domain/model/model_export.dart';
 import 'package:orario/domain/repository/admin_repostory.dart';
 
 class AdminDataRepository extends AdminRepository {
@@ -28,7 +29,6 @@ class AdminDataRepository extends AdminRepository {
 
   @override
   Future<void> saveLessons({String path, Map<int, List> lessons}) {
-    print(lessons);
     final Map<int, Map> apiLessons = {};
     for (int week = 0; week <= 1; week++) {
       var weekLessons = <int, Map>{};
@@ -38,7 +38,8 @@ class AdminDataRepository extends AdminRepository {
           if (lessons[week][day][lesson] == null) {
             dayLessons[lesson] = null;
           } else {
-            dayLessons[lesson] = LessonMapper.toApi(lessons[week][day][lesson]);
+            dayLessons[lesson] =
+                LessonMapper.toApi(lessons[week][day][lesson] as Lesson);
           }
         }
         weekLessons[day] = dayLessons;
