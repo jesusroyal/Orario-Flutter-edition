@@ -6,6 +6,7 @@ class LoginDataRepository extends LoginRepository {
 
   LoginDataRepository(this._loginService);
 
+  @override
   Future<Map<String, String>> getUniversities() {
     return _loginService.getUniversities();
   }
