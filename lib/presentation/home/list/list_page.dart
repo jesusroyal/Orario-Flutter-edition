@@ -29,7 +29,7 @@ class _ListPageState extends State<ListPage> {
       child: BlocBuilder<HomeListBloc, HomeListState>(
         builder: (context, state) {
           if (state is HomeListLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
