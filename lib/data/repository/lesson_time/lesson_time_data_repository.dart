@@ -14,7 +14,7 @@ class LessonTimeDataRepository extends LessonTimeRepository {
     List<ApiLessonTime> apiList = [];
     apiList = await service.getLessonTime(path: path);
 
-    List<LessonTime> list = [];
+    final List<LessonTime> list = [];
 
     apiList.forEach((apiLessonTime) {
       list.add(LessonTimeMapper.fromApi(apiLessonTime));
