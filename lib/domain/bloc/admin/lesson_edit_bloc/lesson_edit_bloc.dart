@@ -27,12 +27,12 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
         await timeRepository.getLessonTime(path: path);
     final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
 
-    Map<int, Map<int, Map<int, LessonPair>>> map = {};
+    final Map<int, Map<int, Map<int, LessonPair>>> map = {};
 
     for (int week = 0; week <= 1; week++) {
       Map<int, Map<int, LessonPair>> weekLessons = {};
       for (int day = 0; day <= 5; day++) {
-        Map<int, LessonPair> dayLesson = {};
+        final Map<int, LessonPair> dayLesson = {};
         for (int lesson = 0; lesson <= 7; lesson++) {
           if (lessons[week][day][lesson] != null) {
             final pair = LessonPair(
@@ -54,14 +54,12 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
 
   Future<void> savePairs(
       Map<int, Map<int, Map<int, LessonPair>>> lessons) async {
-    final Map<int, List> saveList = {};
-
-    Map<int, Map<int, Map<int, Lesson>>> map = {};
+    final Map<int, Map<int, Map<int, Lesson>>> map = {};
 
     for (int week = 0; week <= 1; week++) {
       Map<int, Map<int, Lesson>> weekLessons = {};
       for (int day = 0; day <= 5; day++) {
-        Map<int, Lesson> dayLesson = {};
+        final Map<int, Lesson> dayLesson = {};
         for (int lesson = 0; lesson <= 7; lesson++) {
           if (lessons[week][day][lesson].lesson != null) {
             dayLesson[lesson] = lessons[week][day][lesson].lesson;
@@ -85,11 +83,9 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
     if (event is LessonEditOpened) {
       yield LessonEditLoading();
       final list = await getPairs(0);
-      print(list);
       yield LessonEditLoaded(lessons: list);
     }
     if (event is LessonEditSave) {
-      print(event.lessons);
       savePairs(event.lessons);
     }
   }
