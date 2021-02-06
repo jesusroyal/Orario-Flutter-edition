@@ -27,22 +27,6 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
         await timeRepository.getLessonTime(path: path);
     final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
 
-    // for (int day = 0; day <= 5; day++) {
-    //   Map<int, Map<int, LessonPair>> oneDay = [];
-    //   for (int lesson = 0; lesson <= 7; lesson++) {
-    //     if (lessons[week][day][lesson] != null) {
-    //       final pair = LessonPair(
-    //           lesson: lessons[week][day][lesson] as Lesson, time: time[lesson]);
-    //       oneDay[lesson] = pair;
-    //     } else {
-    //       final pair = LessonPair(lesson: null, time: time[lesson]);
-    //       oneDay.add({0: pair, 1: pair});
-    //     }
-    //   }
-    //   map[day] = oneDay;
-    //   oneDay = <Map<int, LessonPair>>[];
-    // }
-
     Map<int, Map<int, Map<int, LessonPair>>> map = {};
 
     for (int week = 0; week <= 1; week++) {
