@@ -16,9 +16,8 @@ class LoginService {
 
   Future<Map<String, String>> getGroups({@required String university}) async {
     Map<String, String> grouplist;
-    // final ref = FirebaseDatabase.instance.reference().child('uni/$university');
 
-    await ref.child('$university').once().then((snapshot) {
+    await ref.child(university).once().then((snapshot) {
       final Map<dynamic, dynamic> snapshotData =
           snapshot.value['grouplist'] as Map<dynamic, dynamic>;
       grouplist = snapshotData.cast<String, String>();
