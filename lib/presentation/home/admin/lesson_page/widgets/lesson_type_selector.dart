@@ -83,16 +83,17 @@ class LessonTypeButton extends StatelessWidget {
     return '';
   }
 
-  LessonTypeButton({Key key, this.onTap, this.isPressed, @required this.type})
+  const LessonTypeButton(
+      {Key key, this.onTap, this.isPressed, @required this.type})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      color: isPressed ? Colors.green : Colors.amber, //TODO: Change colors
-      child: Text(_title),
+      color: isPressed ? Colors.green : Colors.amber,
 
-      onPressed: () => onTap(),
+      onPressed: () => onTap(), //TODO: Change colors
+      child: Text(_title),
     );
   }
 }

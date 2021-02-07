@@ -13,13 +13,13 @@ class LessonTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: lesson != null ? buildLesson() : buildNull(),
       onTap: () => onTap(),
+      child: lesson != null ? buildLesson() : buildNull(),
     );
   }
 
   Expanded buildNull() {
-    return Expanded(child: Card(child: Text('no lesson')));
+    return const Expanded(child: Card(child: Text('no lesson')));
   }
 
   Expanded buildLesson() {
@@ -36,12 +36,12 @@ class LessonTile extends StatelessWidget {
             Text(
               lesson.don,
               textAlign: TextAlign.right,
-              style: TextStyle(fontWeight: FontWeight.w300),
+              style: const TextStyle(fontWeight: FontWeight.w300),
             ),
             Text(
               lesson.location,
               textAlign: TextAlign.left,
-              style: TextStyle(fontWeight: FontWeight.w300),
+              style: const TextStyle(fontWeight: FontWeight.w300),
             ),
           ],
         ),

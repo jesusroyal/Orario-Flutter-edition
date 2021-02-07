@@ -18,10 +18,9 @@ class _HomePageState extends State<HomePage> {
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        items: [
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: "Сейчас"),
-          const BottomNavigationBarItem(icon: Icon(Icons.list), label: "Пары"),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Сейчас"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Пары"),
         ],
         onTap: (index) {
           setState(() {

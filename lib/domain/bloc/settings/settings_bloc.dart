@@ -22,8 +22,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
     if (event is AdminPageOpen) {
       yield SettingsLoading();
-      String path = await settings.getPath();
-      bool isValid = await admin.ferifyToken(token: event.token, path: path);
+      final String path = await settings.getPath();
+      final bool isValid =
+          await admin.ferifyToken(token: event.token, path: path);
       if (isValid) {
         yield OpenAdminPanel();
       } else {

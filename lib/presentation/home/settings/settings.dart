@@ -15,7 +15,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  List<Widget> tileList = [AboutSettingsTile()];
+  List<Widget> tileList = [const AboutSettingsTile()];
 
   SettingsBloc bloc;
 
@@ -38,16 +38,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return BlocProvider(
       create: (_) => bloc,
       child: BlocListener<SettingsBloc, SettingsState>(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Настройки'),
-          ),
-          body: ListView.builder(
-              itemCount: tileList.length,
-              itemBuilder: (context, index) {
-                return tileList[index];
-              }),
-        ),
         listener: (context, state) {
           if (state is ResetSettingsState) {
             Navigator.pushReplacement(context,
@@ -59,9 +49,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 builder: (context) {
                   return AlertDialog(
                     title: Row(
-                      children: [
-                        const CircularProgressIndicator(),
-                        const Text('Загрузки'),
+                      children: const [
+                        CircularProgressIndicator(),
+                        Text('Загрузки'),
                       ],
                     ),
                   );
@@ -73,13 +63,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text('Неправильный токен'),
+                    title: const Text('Неправильный токен'),
                     actions: [
                       FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text('Ок'))
+                          child: const Text('Ок'))
                     ],
                   );
                 });
@@ -90,6 +80,16 @@ class _SettingsPageState extends State<SettingsPage> {
                 context, MaterialPageRoute(builder: (context) => AdminPage()));
           }
         },
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Настройки'),
+          ),
+          body: ListView.builder(
+              itemCount: tileList.length,
+              itemBuilder: (context, index) {
+                return tileList[index];
+              }),
+        ),
       ),
     );
   }

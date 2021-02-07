@@ -12,7 +12,7 @@ class HomeListOpened extends HomeListEvent {}
 
 class HomeListDidChooseWeek extends HomeListEvent {
   final bool isSecondWeek;
-  HomeListDidChooseWeek({@required this.isSecondWeek});
+  const HomeListDidChooseWeek({@required this.isSecondWeek});
 
   @override
   List<Object> get props => [isSecondWeek];

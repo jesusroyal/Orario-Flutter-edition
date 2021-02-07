@@ -8,7 +8,7 @@ class ResetSettingsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
-            title: Text('Сброс настроек'),
+            title: const Text('Сброс настроек'),
             onTap: () {
               onTap();
             }));

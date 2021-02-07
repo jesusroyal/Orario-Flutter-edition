@@ -9,7 +9,7 @@ class AdminTile extends StatelessWidget {
 
   AlertDialog dialog(BuildContext context) {
     return AlertDialog(
-      title: Text('Введите ваш токен'),
+      title: const Text('Введите ваш токен'),
       content: TextField(
         obscureText: true,
         autofocus: true,
@@ -23,12 +23,12 @@ class AdminTile extends StatelessWidget {
               Navigator.pop(context);
               onSubmit(_value);
             },
-            child: Text('Ок')),
+            child: const Text('Ок')),
         FlatButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Отмена'))
+            child: const Text('Отмена'))
       ],
     );
   }
@@ -37,7 +37,7 @@ class AdminTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
-            title: Text('Войти в панель администрирования'),
+            title: const Text('Войти в панель администрирования'),
             onTap: () {
               showDialog(
                   context: context, builder: (context) => dialog(context));

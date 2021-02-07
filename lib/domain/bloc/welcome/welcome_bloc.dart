@@ -2,13 +2,12 @@ import 'package:orario/data/api/service/login/login_service.dart';
 import 'package:orario/data/api/service/settings/settings_service.dart';
 import 'package:orario/data/repository/login/login_data_repository.dart';
 import 'package:orario/data/repository/settings/settings_data_repository.dart';
-
+import 'package:bloc/bloc.dart';
 import 'welcome_event.dart';
 import 'welcome_state.dart';
-import 'package:bloc/bloc.dart';
 
 class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
-  WelcomeBloc() : super((WelcomeInitial()));
+  WelcomeBloc() : super(WelcomeInitial());
 
   LoginDataRepository loginRepository = LoginDataRepository(LoginService());
   SettingsDataRepository settings =
@@ -24,7 +23,7 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
   String group = '';
 
   List<String> mapToList(Map<String, String> map) {
-    List<String> list = [];
+    final List<String> list = [];
     map.forEach((key, value) {
       list.add(value);
     });

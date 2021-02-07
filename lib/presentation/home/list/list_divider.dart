@@ -21,7 +21,7 @@ class ListSection extends StatelessWidget {
         child: Text(
           _sectionArray[_section],
           textAlign: TextAlign.left,
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );

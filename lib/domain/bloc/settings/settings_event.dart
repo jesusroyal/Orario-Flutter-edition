@@ -13,5 +13,5 @@ class SettingsReset extends SettingsEvent {}
 class AdminPageOpen extends SettingsEvent {
   final String token;
 
-  AdminPageOpen({@required this.token});
+  const AdminPageOpen({@required this.token});
 }

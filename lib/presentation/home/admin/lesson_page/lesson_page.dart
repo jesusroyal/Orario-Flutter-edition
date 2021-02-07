@@ -36,7 +36,7 @@ class _LessonPageState extends State<LessonPage> {
             appBar: AppBar(
               actions: [
                 IconButton(
-                    icon: Icon(Icons.save),
+                    icon: const Icon(Icons.save),
                     onPressed: () {
                       bloc.add(LessonEditSave(lessons: lessons));
                     })
@@ -44,12 +44,10 @@ class _LessonPageState extends State<LessonPage> {
             ),
             body: BlocListener<LessonEditBloc, LessonEditState>(
                 listener: (context, state) {
-                  print(state);
                   if (state is LessonEditLoading) {
                     Scaffold.of(context).showSnackBar(snackBar);
                   }
                   if (state is LessonEditLoaded) {
-                    print(state.lessons[0].length);
                     setState(() {
                       lessons = state.lessons;
                     });
@@ -60,7 +58,6 @@ class _LessonPageState extends State<LessonPage> {
                       lessons[0][count].keys.length,
                   sectionsCount: lessons[0].keys.length,
                   itemBuilder: (context, index) {
-                    print(lessons);
                     return LessonRow(
                       lessons: {
                         0: lessons[0][index.section][index.index],

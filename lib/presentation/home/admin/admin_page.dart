@@ -6,7 +6,7 @@ class AdminPage extends StatelessWidget {
   Widget lessonTimeEditTile(BuildContext context) {
     return Card(
         child: ListTile(
-            title: Text('Расписания звонков'),
+            title: const Text('Расписания звонков'),
             onTap: () {
               Navigator.push(
                 context,
@@ -20,7 +20,7 @@ class AdminPage extends StatelessWidget {
   Widget lessonEditTile(BuildContext context) {
     return Card(
         child: ListTile(
-            title: Text('Расписания занятий'),
+            title: const Text('Расписания занятий'),
             onTap: () {
               Navigator.push(
                 context,
@@ -33,7 +33,10 @@ class AdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> tiles = [lessonTimeEditTile(context), lessonEditTile(context)];
+    final List<Widget> tiles = [
+      lessonTimeEditTile(context),
+      lessonEditTile(context)
+    ];
     return Scaffold(
         appBar: AppBar(),
         body: ListView.builder(

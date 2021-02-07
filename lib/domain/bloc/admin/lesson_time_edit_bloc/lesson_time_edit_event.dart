@@ -13,5 +13,5 @@ class LessonTimeOpened extends LessonTimeEditEvent {}
 class LessonTimePressSave extends LessonTimeEditEvent {
   final List<LessonTime> list;
 
-  LessonTimePressSave(this.list);
+  const LessonTimePressSave(this.list);
 }

@@ -30,7 +30,7 @@ class _LessonTimeEditDialogState extends State<LessonTimeEditDialog> {
         children: [
           FlatButton(
               onPressed: () async {
-                var selectedTime = await showTimePicker(
+                final selectedTime = await showTimePicker(
                   helpText: 'Начало пары',
                   initialTime: TimeOfDay.now(),
                   context: context,
@@ -42,7 +42,7 @@ class _LessonTimeEditDialogState extends State<LessonTimeEditDialog> {
               child: Text(start.format(context))),
           FlatButton(
               onPressed: () async {
-                var selectedTime = await showTimePicker(
+                final selectedTime = await showTimePicker(
                   helpText: 'Начало пары',
                   initialTime: TimeOfDay.now(),
                   context: context,
@@ -64,12 +64,12 @@ class _LessonTimeEditDialogState extends State<LessonTimeEditDialog> {
                       0)); //TODO: Deal with not needed break duration
               Navigator.pop(context);
             },
-            child: Text('Сохранить')),
+            child: const Text('Сохранить')),
         FlatButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Отмена'))
+            child: const Text('Отмена'))
       ],
     );
   }

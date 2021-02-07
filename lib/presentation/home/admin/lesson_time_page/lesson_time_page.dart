@@ -25,7 +25,7 @@ class _LessonTimePageState extends State<LessonTimePage> {
 
   List<LessonTime> list = [];
 
-  final snackBar = SnackBar(content: Text('Загружаю'));
+  final snackBar = const SnackBar(content: Text('Загружаю'));
 
   @override
   Widget build(BuildContext context) {
