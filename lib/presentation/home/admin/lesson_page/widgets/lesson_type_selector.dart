@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/domain/model/model_export.dart';
+import 'package:orario/internal/theme.dart';
 
 class LessonTypeSelector extends StatefulWidget {
   final ValueChanged<LessonType> onChanged;
@@ -89,11 +90,13 @@ class LessonTypeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      color: isPressed ? Colors.green : Colors.amber,
-
-      onPressed: () => onTap(), //TODO: Change colors
-      child: Text(_title),
+    return FlatButton(
+      onPressed: () => onTap(),
+      child: Text(
+        _title,
+        style:
+            TextStyle(color: isPressed ? OrarioUI.colors.green : Colors.black),
+      ),
     );
   }
 }
