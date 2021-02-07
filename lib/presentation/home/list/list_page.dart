@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:orario/domain/bloc/home/home_list/home_list_bloc.dart';
-import 'package:orario/domain/bloc/home/home_list/home_list_state.dart';
-import 'package:orario/domain/bloc/home/home_list/home_list_event.dart';
+import 'package:orario/domain/bloc/home/home_list/home_list_domain.dart';
 import 'package:group_list_view/group_list_view.dart';
 import 'package:orario/presentation/home/list/list_divider.dart';
 import 'package:orario/presentation/home/list/list_tile.dart';
