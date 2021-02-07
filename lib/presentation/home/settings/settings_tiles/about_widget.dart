@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AboutSettingsTile extends StatelessWidget {
   const AboutSettingsTile({Key key}) : super(key: key);
@@ -10,8 +11,9 @@ class AboutSettingsTile extends StatelessWidget {
         margin: const EdgeInsets.all(8.0),
         height: 70.0,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //Image(image: AssetImage('assets/orariologo.png')),
+            Container(width: 60.0, child: SvgPicture.asset('assets/logo.svg')),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
