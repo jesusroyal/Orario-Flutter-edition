@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orario/internal/theme.dart';
 
 import 'list/list_page.dart';
 import 'main/main_page.dart';
@@ -17,6 +18,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedIconTheme: IconThemeData(color: OrarioUI.colors.green),
         currentIndex: _currentIndex,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Сейчас"),
