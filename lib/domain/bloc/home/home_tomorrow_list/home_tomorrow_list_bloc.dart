@@ -32,7 +32,8 @@ class HomeTomorrowListBloc
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][tomorrow()][lesson] != null) {
         final pair = LessonPair(
-            lesson: lessons[week][tomorrow()][lesson], time: time[lesson]);
+            lesson: lessons[week][tomorrow()][lesson] as Lesson,
+            time: time[lesson]);
         list.add(pair);
       }
     }
