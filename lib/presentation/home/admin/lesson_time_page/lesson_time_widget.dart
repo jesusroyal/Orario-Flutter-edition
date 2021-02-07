@@ -12,19 +12,21 @@ class LessonTimeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('${index + 1}-я пара'),
-          Text(time == null
-              ? ' '
-              : '${time.start.format(context)}-${time.end.format(context)}')
-        ],
+    return Card(
+      child: ListTile(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('${index + 1}-я пара'),
+            Text(time == null
+                ? ' '
+                : '${time.start.format(context)}-${time.end.format(context)}')
+          ],
+        ),
+        onTap: () async {
+          onTap();
+        },
       ),
-      onTap: () async {
-        onTap();
-      },
     );
   }
 }
