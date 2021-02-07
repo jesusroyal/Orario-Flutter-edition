@@ -18,8 +18,19 @@ class LessonTile extends StatelessWidget {
     );
   }
 
-  Expanded buildNull() {
-    return const Expanded(child: Card(child: Text('no lesson')));
+  Widget buildNull() {
+    return Card(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: const [
+        Icon(Icons.add_circle),
+        SizedBox(
+          height: 50.0,
+          width: 0.0,
+        ),
+        Text('Добавить')
+      ],
+    ));
   }
 
   Expanded buildLesson() {

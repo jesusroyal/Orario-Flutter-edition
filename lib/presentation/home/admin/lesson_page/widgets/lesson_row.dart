@@ -16,17 +16,21 @@ class LessonRow extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            LessonTile(
-              lesson: lessons[0].lesson,
-              onTap: () {
-                onTap(0);
-              },
-            ),
-            LessonTile(
-                lesson: lessons[1].lesson,
+            Expanded(
+              child: LessonTile(
+                lesson: lessons[0].lesson,
                 onTap: () {
-                  onTap(1);
-                })
+                  onTap(0);
+                },
+              ),
+            ),
+            Expanded(
+              child: LessonTile(
+                  lesson: lessons[1].lesson,
+                  onTap: () {
+                    onTap(1);
+                  }),
+            )
           ],
         ),
       ],
