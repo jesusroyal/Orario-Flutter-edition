@@ -23,8 +23,9 @@ class LessonTimeEditBloc
   AdminDataRepository admin = AdminDataRepository(AdminService());
 
   Future<List<LessonTime>> getList() async {
-    String path = await settings.getPath();
-    List<LessonTime> time = await timeRepository.getLessonTime(path: path);
+    final String path = await settings.getPath();
+    final List<LessonTime> time =
+        await timeRepository.getLessonTime(path: path);
     return time;
   }
 
@@ -33,12 +34,12 @@ class LessonTimeEditBloc
       LessonTimeEditEvent event) async* {
     if (event is LessonTimeOpened) {
       yield LessonTimeEditLoading();
-      var time = await getList();
+      final time = await getList();
       yield LessonTimeEditLoaded(time);
     }
     if (event is LessonTimePressSave) {
       yield LessonTimeEditSaving();
-      String path = await settings.getPath();
+      final String path = await settings.getPath();
       await admin.saveLessonTime(path: path, time: event.list);
       yield LessonTimeEditSaved();
     }
