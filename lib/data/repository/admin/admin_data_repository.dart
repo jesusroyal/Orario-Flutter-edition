@@ -39,8 +39,7 @@ class AdminDataRepository extends AdminRepository {
           if (lessons[week][day][lesson] == null) {
             dayLessons[lesson] = null;
           } else {
-            dayLessons[lesson] =
-                LessonMapper.toApi(lessons[week][day][lesson] as Lesson);
+            dayLessons[lesson] = LessonMapper.toApi(lessons[week][day][lesson]);
           }
         }
         weekLessons[day] = dayLessons;
