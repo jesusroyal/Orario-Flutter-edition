@@ -23,6 +23,7 @@ class _LessonEditDialogState extends State<LessonEditDialog> {
     return AlertDialog(
       title: Text(widget.lessonPair.time.start.format(context)),
       content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             onChanged: (value) => _name = value,
