@@ -29,7 +29,7 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
       for (int lesson = 0; lesson <= 8; lesson++) {
         if (lessons[week][day][lesson] != null) {
           final pair = LessonPair(
-              lesson: lessons[week][day][lesson], time: time[lesson]);
+              lesson: lessons[week][day][lesson] as Lesson, time: time[lesson]);
           oneDay.add(pair);
         }
       }
