@@ -57,6 +57,11 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
           (k) => groupMap[k] == groupList[event.index],
           orElse: () => null);
       await settings.setPath(path: '$uni/$group');
+      yield SubGroupDialog();
+    }
+
+    if (event is SubGroupPressed) {
+      await settings.setSubgroup(event.subGroup);
       yield WelcomeComplete();
     }
   }

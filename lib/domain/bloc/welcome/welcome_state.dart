@@ -30,4 +30,6 @@ class GroupsLoaded extends WelcomeState {
   List<Object> get props => [groups];
 }
 
+class SubGroupDialog extends WelcomeState {}
+
 class WelcomeComplete extends WelcomeState {}

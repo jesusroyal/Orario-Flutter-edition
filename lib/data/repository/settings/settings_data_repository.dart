@@ -21,4 +21,14 @@ class SettingsDataRepository extends SettingsRepository {
   Future<void> resetPath() {
     return settingsService.resetPath();
   }
+
+  @override
+  Future<bool> setSubgroup(int index) {
+    return settingsService.setSubgroup(index);
+  }
+
+  @override
+  Future<int> getSubgroup() {
+    return settingsService.getSubgroup();
+  }
 }

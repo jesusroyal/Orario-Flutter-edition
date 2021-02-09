@@ -14,7 +14,7 @@ class WelcomePressed extends WelcomeEvent {}
 class UniversityPressed extends WelcomeEvent {
   final int index;
 
-  UniversityPressed({@required this.index});
+  const UniversityPressed({@required this.index});
   @override
   List<Object> get props => [index];
 }
@@ -22,7 +22,16 @@ class UniversityPressed extends WelcomeEvent {
 class GroupPressed extends WelcomeEvent {
   final int index;
 
-  GroupPressed({@required this.index});
+  const GroupPressed({@required this.index});
   @override
   List<Object> get props => [index];
+}
+
+class SubGroupPressed extends WelcomeEvent {
+  final int subGroup;
+
+  const SubGroupPressed(this.subGroup);
+
+  @override
+  List<Object> get props => [subGroup];
 }
