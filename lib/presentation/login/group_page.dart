@@ -14,6 +14,10 @@ class GroupPage extends StatefulWidget {
 }
 
 class _GroupPageState extends State<GroupPage> {
+  void chooseSubgroup(int index) {
+    widget.welcomeBloc.add(SubGroupPressed(index));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -21,12 +25,30 @@ class _GroupPageState extends State<GroupPage> {
       child: BlocListener<WelcomeBloc, WelcomeState>(
         listener: (context, state) {
           if (state is WelcomeComplete) {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => HomePage(),
               ),
+              ModalRoute.withName('/'),
             );
+          }
+          if (state is SubGroupDialog) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Подгруппа'),
+                    actions: [
+                      FlatButton(
+                          onPressed: () => chooseSubgroup(0),
+                          child: const Text('Первая')),
+                      FlatButton(
+                          onPressed: () => chooseSubgroup(1),
+                          child: const Text('Вторая'))
+                    ],
+                  );
+                });
           }
         },
         child: Scaffold(
