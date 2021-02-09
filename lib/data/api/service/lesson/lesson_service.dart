@@ -9,7 +9,12 @@ class LessonService {
     final DataSnapshot snapshot =
         await ref.child(path).child('timetable').once();
 
-    for (int week = 0 + subGroup; week <= (1 + subGroup); week++) {
+    int modifier = 0;
+    if (subGroup == 1) {
+      modifier = 2;
+    }
+
+    for (int week = 0 + modifier; week <= (1 + modifier); week++) {
       var weekLessons = <int, Map>{};
       for (int day = 0; day <= 5; day++) {
         var dayLessons = <int, ApiLesson>{};
@@ -24,7 +29,7 @@ class LessonService {
         weekLessons[day] = dayLessons;
         dayLessons = <int, ApiLesson>{};
       }
-      lessons[week - subGroup] = weekLessons;
+      lessons[week - modifier] = weekLessons;
       weekLessons = <int, Map>{};
     }
 
