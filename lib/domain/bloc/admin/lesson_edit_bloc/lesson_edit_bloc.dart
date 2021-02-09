@@ -20,40 +20,53 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
   SettingsDataRepository settings =
       SettingsDataRepository(settingsService: SettingsService());
 
-  Future<Map<int, Map<int, Map<int, LessonPair>>>> getPairs(int week) async {
+  Future<Map<int, Map<int, Map<int, LessonPair>>>> getPairs({int week}) async {
     final String path = await settings.getPath();
 
     final List<LessonTime> time =
         await timeRepository.getLessonTime(path: path);
     final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final Map<int, Map> lessonsS = await lessonRepository.getLessons(path, 1);
 
     final Map<int, Map<int, Map<int, LessonPair>>> map = {};
 
-    for (int week = 0; week <= 1; week++) {
+    for (int sg = 0; sg <= 1; sg++) {
       Map<int, Map<int, LessonPair>> weekLessons = {};
       for (int day = 0; day <= 5; day++) {
         final Map<int, LessonPair> dayLesson = {};
         for (int lesson = 0; lesson <= 7; lesson++) {
-          if (lessons[week][day][lesson] != null) {
-            final pair = LessonPair(
-                lesson: lessons[week][day][lesson] as Lesson,
-                time: time[lesson]);
-            dayLesson[lesson] = pair;
+          if (sg == 0) {
+            if (lessons[week][day][lesson] != null) {
+              final pair = LessonPair(
+                  lesson: lessons[week][day][lesson] as Lesson,
+                  time: time[lesson]);
+              dayLesson[lesson] = pair;
+            } else {
+              final pair = LessonPair(lesson: null, time: time[lesson]);
+              dayLesson[lesson] = pair;
+            }
           } else {
-            final pair = LessonPair(lesson: null, time: time[lesson]);
-            dayLesson[lesson] = pair;
+            if (lessonsS[week][day][lesson] != null) {
+              final pair = LessonPair(
+                  lesson: lessonsS[week][day][lesson] as Lesson,
+                  time: time[lesson]);
+              dayLesson[lesson] = pair;
+            } else {
+              final pair = LessonPair(lesson: null, time: time[lesson]);
+              dayLesson[lesson] = pair;
+            }
           }
         }
         weekLessons[day] = dayLesson;
       }
-      map[week] = weekLessons;
+      map[sg] = weekLessons;
       weekLessons = {};
     }
     return map;
   }
 
   Future<void> savePairs(
-      Map<int, Map<int, Map<int, LessonPair>>> lessons) async {
+      int week, Map<int, Map<int, Map<int, LessonPair>>> lessons) async {
     final Map<int, Map<int, Map<int, Lesson>>> map = {};
 
     for (int week = 0; week <= 1; week++) {
@@ -73,7 +86,7 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
       weekLessons = {};
     }
 
-    admin.saveLessons(path: await settings.getPath(), lessons: map);
+    admin.saveLessons(path: await settings.getPath(), week: week, lessons: map);
   }
 
   AdminDataRepository admin = AdminDataRepository(AdminService());
@@ -82,11 +95,17 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
   Stream<LessonEditState> mapEventToState(LessonEditEvent event) async* {
     if (event is LessonEditOpened) {
       yield LessonEditLoading();
-      final list = await getPairs(0);
-      yield LessonEditLoaded(lessons: list);
+      final list = await getPairs(week: 0);
+      yield LessonEditLoaded(lessons: list, week: 0);
+    }
+    if (event is LessonEditChangedWeek) {
+      final int week = event.week;
+      yield LessonEditLoading();
+      final list = await getPairs(week: week);
+      yield LessonEditLoaded(lessons: list, week: week);
     }
     if (event is LessonEditSave) {
-      savePairs(event.lessons);
+      savePairs(event.week, event.lessons);
     }
   }
 }

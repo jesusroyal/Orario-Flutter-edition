@@ -10,9 +10,10 @@ class LessonEditLoading extends LessonEditState {}
 
 class LessonEditLoaded extends LessonEditState {
   final Map<int, Map<int, Map<int, LessonPair>>> lessons;
+  final int week;
 
-  LessonEditLoaded({this.lessons});
+  LessonEditLoaded({this.week, this.lessons});
 
   @override
-  List<Object> get props => [lessons];
+  List<Object> get props => [lessons, week];
 }

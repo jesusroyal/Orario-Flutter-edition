@@ -19,6 +19,6 @@ class LessonEditChangedWeek extends LessonEditEvent {
 
 class LessonEditSave extends LessonEditEvent {
   final Map<int, Map<int, Map<int, LessonPair>>> lessons;
-
-  const LessonEditSave({@required this.lessons});
+  final int week;
+  const LessonEditSave({@required this.week, @required this.lessons});
 }

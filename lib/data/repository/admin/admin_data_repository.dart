@@ -29,7 +29,7 @@ class AdminDataRepository extends AdminRepository {
 
   @override
   Future<void> saveLessons(
-      {String path, Map<int, Map<int, Map<int, Lesson>>> lessons}) {
+      {String path, int week, Map<int, Map<int, Map<int, Lesson>>> lessons}) {
     final Map<int, Map> apiLessons = {};
     for (int week = 0; week <= 1; week++) {
       var weekLessons = <int, Map>{};
@@ -48,6 +48,6 @@ class AdminDataRepository extends AdminRepository {
       apiLessons[week] = weekLessons;
       weekLessons = <int, Map>{};
     }
-    return service.saveLessons(path: path, lessons: apiLessons);
+    return service.saveLessons(path: path, week: week, lessons: apiLessons);
   }
 }

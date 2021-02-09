@@ -8,5 +8,6 @@ abstract class AdminRepository {
 
   Future<void> saveLessons(
       {@required String path,
+      @required int week,
       @required Map<int, Map<int, Map<int, Lesson>>> lessons});
 }

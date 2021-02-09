@@ -5,6 +5,7 @@ import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_bloc.dart'
 import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_event.dart';
 import 'package:orario/domain/bloc/admin/lesson_edit_bloc/lesson_edit_state.dart';
 import 'package:orario/domain/model/model_export.dart';
+import 'package:orario/internal/theme.dart';
 import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_dialog.dart';
 import 'package:orario/presentation/home/admin/lesson_page/widgets/lesson_row.dart';
 import 'package:orario/presentation/home/list/list_divider.dart';
@@ -26,6 +27,8 @@ class _LessonPageState extends State<LessonPage> {
 
   Map<int, Map<int, Map<int, LessonPair>>> lessons = {0: {}};
 
+  int week = 0;
+
   final snackBar = const SnackBar(content: Text('Загружаю'));
 
   @override
@@ -33,12 +36,22 @@ class _LessonPageState extends State<LessonPage> {
     return BlocProvider(
         create: (_) => bloc,
         child: Scaffold(
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: FloatingActionButton.extended(
+                backgroundColor: OrarioUI.colors.green,
+                onPressed: () {
+                  bloc.add(LessonEditChangedWeek(week = 1 - week));
+                },
+                label: week != 0
+                    ? const Text('Неделя II')
+                    : const Text('Неделя I')),
             appBar: AppBar(
               actions: [
                 IconButton(
                     icon: const Icon(Icons.save),
                     onPressed: () {
-                      bloc.add(LessonEditSave(lessons: lessons));
+                      bloc.add(LessonEditSave(lessons: lessons, week: week));
                     })
               ],
             ),
@@ -50,6 +63,7 @@ class _LessonPageState extends State<LessonPage> {
                   if (state is LessonEditLoaded) {
                     setState(() {
                       lessons = state.lessons;
+                      week = state.week;
                     });
                   }
                 },
@@ -61,21 +75,21 @@ class _LessonPageState extends State<LessonPage> {
                     return LessonRow(
                       lessons: {
                         0: lessons[0][index.section][index.index],
-                        1: lessons[0][index.section][index.index]
+                        1: lessons[1][index.section][index.index]
                       },
                       onTap: (index2) {
                         showDialog(
                           context: context,
                           builder: (context) => LessonEditDialog(
-                            lessonPair: lessons[index.section][index.index]
-                                [index2],
+                            lessonPair: lessons[index2][index.section]
+                                [index.section],
                             onSave: (lesson) {
                               setState(() {
-                                lessons[0][index.section][index.index] =
+                                lessons[index2][index.section][index.index] =
                                     LessonPair(
                                         lesson: lesson,
-                                        time: lessons[index.section]
-                                                [index.index][0]
+                                        time: lessons[index2][index.section]
+                                                [index.index]
                                             .time);
                               });
                             },
