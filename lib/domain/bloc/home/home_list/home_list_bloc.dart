@@ -19,10 +19,12 @@ class HomeListBloc extends Bloc<HomeListEvent, HomeListState> {
 
   Future<Map<int, List<LessonPair>>> getPairs(int week) async {
     final String path = await settings.getPath();
+    final int subGroup = await settings.getSubgroup();
     final Map<int, List<LessonPair>> map = {};
     final List<LessonTime> time =
         await timeRepository.getLessonTime(path: path);
-    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final Map<int, Map> lessons =
+        await lessonRepository.getLessons(path, subGroup);
 
     for (int day = 0; day <= 5; day++) {
       List<LessonPair> oneDay = [];
