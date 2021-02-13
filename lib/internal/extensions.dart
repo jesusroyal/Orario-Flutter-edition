@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 extension WeekNumber on DateTime {
   int get weekNumber {
     final startOfYear = DateTime(this.year, 1, 1, 0, 0);
@@ -9,5 +11,11 @@ extension WeekNumber on DateTime {
       weeks += 1;
     }
     return weeks;
+  }
+}
+
+extension Minutes on TimeOfDay {
+  int get inMinutes {
+    return hour * 60 + minute;
   }
 }
