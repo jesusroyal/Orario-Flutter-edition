@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:orario/domain/model/lesson_pair.dart';
+import 'package:orario/domain/model/model_export.dart';
 import 'package:orario/internal/theme.dart';
+import 'package:orario/internal/extensions.dart';
 
 class LessonCard extends StatelessWidget {
   final LessonPair lesson;
 
   const LessonCard({Key key, @required this.lesson}) : super(key: key);
+
+  String estimatedLine(LessonTime time) {
+    final now = TimeOfDay.now().inMinutes;
+    if (time.start.inMinutes < now && time.end.inMinutes > now) {
+      return 'Осталось ${time.end.inMinutes - now} минут';
+    } else if (time.start.inMinutes > now) {
+      return 'Через ${time.start.inMinutes - now} минут';
+    } else {
+      return 'Закончилась ${now - time.end.inMinutes} минут назад';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,7 +30,7 @@ class LessonCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Осталось',
+              estimatedLine(lesson.time),
               style: OrarioUI.text.h3Light,
             ),
             Row(
