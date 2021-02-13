@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:orario/internal/theme.dart';
 import 'package:orario/presentation/home/main/current_widget/current_widget.dart';
 import 'package:orario/domain/bloc/home/current_tile/current_tile_domain.dart';
 
@@ -29,6 +31,9 @@ class _LessonCardContainerState extends State<LessonCardContainer> {
           builder: (context, state) {
         if (state is CurrentTileLoaded) {
           return Swiper(
+            pagination: SwiperPagination(
+                builder: DotSwiperPaginationBuilder(
+                    activeColor: OrarioUI.colors.green)),
             index: state.currentLesson,
             scrollDirection: Axis.vertical,
             loop: false,
