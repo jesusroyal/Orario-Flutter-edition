@@ -24,10 +24,12 @@ class HomeTomorrowListBloc
   Future<List<LessonPair>> getPairs() async {
     final DateTime now = DateTime.now();
     final String path = await settings.getPath();
+    final int subGroup = await settings.getSubgroup();
     final List<LessonPair> list = [];
     final List<LessonTime> time =
         await timeRepository.getLessonTime(path: path);
-    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final Map<int, Map> lessons =
+        await lessonRepository.getLessons(path, subGroup);
     final week = now.weekNumber.isEven ? 1 : 0;
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][tomorrow()][lesson] != null) {
