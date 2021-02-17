@@ -49,10 +49,37 @@ class _LessonPageState extends State<LessonPage> {
             appBar: AppBar(
               actions: [
                 IconButton(
+                    icon: const Icon(Icons.copy),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text('Вы уверены?'),
+                              content: Text(
+                                  'Вы хотети скопировать первую неделю на вторую?'),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      bloc.add(
+                                          LessonEditCopyWeek(lessons: lessons));
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Да')),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Нет'))
+                              ],
+                            );
+                          });
+                    }),
+                IconButton(
                     icon: const Icon(Icons.save),
                     onPressed: () {
                       bloc.add(LessonEditSave(lessons: lessons, week: week));
-                    })
+                    }),
               ],
             ),
             body: BlocListener<LessonEditBloc, LessonEditState>(

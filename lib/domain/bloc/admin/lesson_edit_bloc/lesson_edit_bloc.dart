@@ -104,6 +104,12 @@ class LessonEditBloc extends Bloc<LessonEditEvent, LessonEditState> {
       final list = await getPairs(week: week);
       yield LessonEditLoaded(lessons: list, week: week);
     }
+
+    if (event is LessonEditCopyWeek) {
+      savePairs(0, event.lessons);
+      yield LessonEditLoaded(lessons: event.lessons, week: 1);
+    }
+
     if (event is LessonEditSave) {
       savePairs(event.week, event.lessons);
     }
