@@ -77,6 +77,12 @@ class _LessonPageState extends State<LessonPage> {
                         0: lessons[0][index.section][index.index],
                         1: lessons[1][index.section][index.index]
                       },
+                      onExpand: () {
+                        setState(() {
+                          lessons[1][index.section][index.index] =
+                              lessons[0][index.section][index.index];
+                        });
+                      },
                       onTap: (index2) {
                         showDialog(
                           context: context,

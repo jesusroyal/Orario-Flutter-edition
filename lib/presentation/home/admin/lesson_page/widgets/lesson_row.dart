@@ -32,7 +32,9 @@ class LessonRow extends StatelessWidget {
                     width: 35.0,
                     child: FittedBox(
                       child: FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          onExpand();
+                        },
                         elevation: 2.0,
                         child: const Icon(Icons.arrow_forward),
                       ),
