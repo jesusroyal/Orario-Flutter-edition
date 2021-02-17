@@ -33,12 +33,13 @@ class CurrentTileBloc extends Bloc<CurrentTileEvent, CurrentTileState> {
 
   Future<List<LessonPair>> getPairs() async {
     final DateTime now = DateTime.now();
-
+    final int subGroup = await settings.getSubgroup();
     final String path = await settings.getPath();
     final List<LessonPair> list = [];
     final List<LessonTime> time =
         await timeRepository.getLessonTime(path: path);
-    final Map<int, Map> lessons = await lessonRepository.getLessons(path, 0);
+    final Map<int, Map> lessons =
+        await lessonRepository.getLessons(path, subGroup);
     final week = weekNumber(now).isEven ? 1 : 0;
     for (int lesson = 0; lesson <= 8; lesson++) {
       if (lessons[week][now.weekday - 1][lesson] != null) {

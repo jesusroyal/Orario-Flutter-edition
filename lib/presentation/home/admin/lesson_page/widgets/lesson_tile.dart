@@ -21,7 +21,7 @@ class LessonTile extends StatelessWidget {
   Widget buildNull() {
     return Card(
         child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: const [
         Icon(Icons.add_circle),
         SizedBox(
