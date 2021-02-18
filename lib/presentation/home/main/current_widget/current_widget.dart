@@ -48,17 +48,15 @@ class LessonCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Container(
-                    width: 120.0,
-                    margin: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
                         Text(
                           lesson.lesson.location,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                         ),
                         Text(
                           lesson.lesson.don,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ],
                     ),
