@@ -42,7 +42,7 @@ class LessonTile extends StatelessWidget {
             Text(
               lesson.name,
               style: OrarioUI.text.h4,
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
             ),
             Text(
               lesson.don,
