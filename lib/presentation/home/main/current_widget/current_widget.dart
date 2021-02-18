@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:orario/domain/model/model_export.dart';
 import 'package:orario/internal/theme.dart';
@@ -34,9 +35,10 @@ class LessonCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            AutoSizeText(
               estimatedLine(lesson.time),
               style: OrarioUI.text.h3Light,
+              maxLines: 1,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
