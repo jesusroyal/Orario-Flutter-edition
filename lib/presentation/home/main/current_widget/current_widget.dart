@@ -19,6 +19,11 @@ class LessonCard extends StatelessWidget {
     }
   }
 
+  double get progress {
+    return TimeOfDay.now().inMinutes /
+        (lesson.time.end.inMinutes - lesson.time.start.inMinutes);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -78,9 +83,10 @@ class LessonCard extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: const LinearProgressIndicator(
+                  child: LinearProgressIndicator(
+                    backgroundColor: lesson.lesson.type.color,
                     minHeight: 10.0,
-                    value: 5,
+                    value: progress,
                   ),
                 )
               ],
