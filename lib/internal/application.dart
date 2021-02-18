@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:orario/domain/bloc/setup/setup_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:orario/domain/bloc/setup/setup_event.dart';
-import 'package:orario/domain/bloc/setup/setup_state.dart';
+
+import 'package:orario/domain/bloc/setup/setup_domain.dart';
 import 'package:orario/internal/theme.dart';
+
 import 'package:orario/presentation/home/home_page.dart';
 import 'package:orario/presentation/splash_page.dart';
 import 'package:orario/presentation/welcome/welcome_page.dart';
-import 'package:flutter/services.dart';
 
 class Application extends StatefulWidget {
   @override
