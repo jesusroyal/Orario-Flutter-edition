@@ -7,6 +7,7 @@ import 'package:orario/internal/theme.dart';
 import 'package:orario/presentation/home/home_page.dart';
 import 'package:orario/presentation/splash_page.dart';
 import 'package:orario/presentation/welcome/welcome_page.dart';
+import 'package:flutter/services.dart';
 
 class Application extends StatefulWidget {
   @override
@@ -25,6 +26,10 @@ class _ApplicationState extends State<Application> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       theme: OrarioUI.ref.lightTheme,
       home: BlocProvider(
