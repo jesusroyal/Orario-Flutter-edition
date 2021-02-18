@@ -27,8 +27,8 @@ class ListWidget extends StatelessWidget {
                   )
                 ],
               ),
-              const VerticalDivider(
-                color: Colors.deepOrange, //TODO: Add colors
+              VerticalDivider(
+                color: lessonPair.lesson.type.color, //TODO: Add colors
                 thickness: 1.0,
               ),
               const SizedBox(

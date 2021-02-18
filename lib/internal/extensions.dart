@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:orario/domain/model/lesson_type.dart';
 
 extension WeekNumber on DateTime {
   int get weekNumber {
@@ -17,6 +19,20 @@ extension WeekNumber on DateTime {
 extension Minutes on TimeOfDay {
   int get inMinutes {
     return hour * 60 + minute;
+  }
+}
+
+extension TypeColor on LessonType {
+  Color get color {
+    switch (this) {
+      case LessonType.lecture:
+        return Colors.lightGreen;
+      case LessonType.lab:
+        return Colors.redAccent;
+      case LessonType.seminar:
+        return Colors.lightBlueAccent;
+    }
+    return Colors.white;
   }
 }
 

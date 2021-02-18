@@ -23,8 +23,8 @@ class TomorrowTile extends StatelessWidget {
                         fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Text(lessonPair.lesson.location),
-                  const Divider(
-                    color: Colors.amberAccent, //TODO: Add colors
+                  Divider(
+                    color: lessonPair.lesson.type.color, //TODO: Add colors
                     thickness: 1.0,
                   )
                 ])));
