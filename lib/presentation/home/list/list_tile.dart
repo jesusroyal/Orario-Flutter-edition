@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orario/domain/model/lesson_pair.dart';
 import 'package:orario/internal/theme.dart';
+import 'package:orario/internal/extensions.dart';
 
 class ListWidget extends StatelessWidget {
   final LessonPair lessonPair;
@@ -42,7 +43,7 @@ class ListWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          lessonPair.lesson.name,
+                          lessonPair.lesson.name.short,
                           style: OrarioUI.text.h4,
                           textAlign: TextAlign.left,
                         ),

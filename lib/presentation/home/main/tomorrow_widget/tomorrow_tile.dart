@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orario/domain/model/model_export.dart';
+import 'package:orario/internal/extensions.dart';
 
 class TomorrowTile extends StatelessWidget {
   final LessonPair lessonPair;
@@ -17,7 +18,7 @@ class TomorrowTile extends StatelessWidget {
                 children: [
                   Text(lessonPair.time.start.format(context)),
                   Text(
-                    lessonPair.lesson.name, //TODO: Make short name
+                    lessonPair.lesson.name.short,
                     style: const TextStyle(
                         fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),

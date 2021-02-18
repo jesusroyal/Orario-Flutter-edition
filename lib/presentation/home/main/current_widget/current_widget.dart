@@ -58,7 +58,7 @@ class LessonCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  lesson.lesson.name,
+                  lesson.lesson.name.short,
                   style: OrarioUI.text.h2Bold,
                   textAlign: TextAlign.right,
                 ),
