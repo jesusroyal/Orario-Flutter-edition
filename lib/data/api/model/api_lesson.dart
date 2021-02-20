@@ -1,10 +1,16 @@
-class ApiLesson {
-  ApiLesson({this.name, this.location, this.don, this.type});
+import 'package:meta/meta.dart';
 
+class ApiLesson {
   final String name;
   final String location;
   final String don;
   final int type;
+
+  ApiLesson(
+      {@required this.name,
+      @required this.location,
+      @required this.don,
+      @required this.type});
 
   ApiLesson.fromApi(Map<String, dynamic> map)
       : name = map['name'] as String,
