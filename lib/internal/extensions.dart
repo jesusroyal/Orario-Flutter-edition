@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:orario/domain/model/lesson_type.dart';
 
 extension WeekNumber on DateTime {
