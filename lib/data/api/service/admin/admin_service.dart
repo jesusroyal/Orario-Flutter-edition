@@ -1,12 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import 'package:orario/data/api/model/api_model.dart';
 
 class AdminService {
+  final FirebaseDatabase _db = FirebaseDatabase.instance;
+
   Future<bool> ferifyToken(
       {@required String token, @required String path}) async {
-    final db = FirebaseDatabase.instance;
-    final ref = db.reference().child('uni/$path/token');
+    final ref = _db.reference().child('uni/$path/token');
 
     bool isValid = false;
     await ref.once().then((value) {
@@ -19,8 +20,7 @@ class AdminService {
 
   Future<void> saveLessonTime(
       {@required String path, @required List<ApiLessonTime> list}) async {
-    final db = FirebaseDatabase.instance;
-    final ref = db.reference().child('uni/${path.split('/')[0]}/time');
+    final ref = _db.reference().child('uni/${path.split('/')[0]}/time');
 
     for (int lesson = 0; lesson < 7; lesson++) {
       if (list[lesson] != null) {
@@ -34,8 +34,7 @@ class AdminService {
       {@required String path,
       @required int week,
       @required Map<int, Map> lessons}) async {
-    final db = FirebaseDatabase.instance;
-    final ref = db.reference().child('uni/$path/timetable');
+    final ref = _db.reference().child('uni/$path/timetable');
 
     Map<int, Map> weekLesson = lessons[0] as Map<int, Map>;
     for (int day = 0; day <= 5; day++) {
