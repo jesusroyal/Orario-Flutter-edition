@@ -1,4 +1,4 @@
-import 'package:orario/data/api/model/api_model_export.dart';
+import 'package:orario/data/api/model/api_model.dart';
 import 'package:orario/data/api/service/lesson/lesson_service.dart';
 import 'package:orario/data/mapper/lesson_mapper.dart';
 import 'package:orario/domain/model/model_export.dart';

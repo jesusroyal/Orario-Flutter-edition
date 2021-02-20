@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:orario/data/api/model/api_model_export.dart';
+import 'package:orario/data/api/model/api_model.dart';
 
 class LessonService {
   final ref = FirebaseDatabase.instance.reference().child('uni');

@@ -1,6 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:orario/data/api/model/api_model_export.dart';
+import 'package:orario/data/api/model/api_model.dart';
 
 class LessonTimeService {
   final ref = FirebaseDatabase.instance.reference().child('uni');
