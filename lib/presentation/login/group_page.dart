@@ -4,6 +4,7 @@ import 'package:orario/domain/bloc/welcome/welcome_bloc.dart';
 import 'package:orario/domain/bloc/welcome/welcome_event.dart';
 import 'package:orario/domain/bloc/welcome/welcome_state.dart';
 import 'package:orario/presentation/home/home_page.dart';
+import './widgets/subgroup_dialog.dart';
 
 class GroupPage extends StatefulWidget {
   final WelcomeBloc welcomeBloc;
@@ -37,17 +38,7 @@ class _GroupPageState extends State<GroupPage> {
             showDialog(
                 context: context,
                 builder: (context) {
-                  return AlertDialog(
-                    title: const Text('Подгруппа'),
-                    actions: [
-                      FlatButton(
-                          onPressed: () => chooseSubgroup(0),
-                          child: const Text('Первая')),
-                      FlatButton(
-                          onPressed: () => chooseSubgroup(1),
-                          child: const Text('Вторая'))
-                    ],
-                  );
+                  return SubgroupDialog(onSelect: (index) => chooseSubgroup(0));
                 });
           }
         },
