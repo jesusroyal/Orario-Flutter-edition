@@ -44,7 +44,7 @@ class _LessonEditDialogState extends State<LessonEditDialog> {
         ],
       ),
       actions: [
-        FlatButton(
+        TextButton(
             onPressed: () {
               widget.onSave(null);
               Navigator.pop(context);
@@ -53,14 +53,14 @@ class _LessonEditDialogState extends State<LessonEditDialog> {
               'Удалить',
               style: TextStyle(color: Colors.red),
             )),
-        FlatButton(
+        TextButton(
             onPressed: () {
               widget.onSave(Lesson(
                   name: _name, location: _location, don: _don, type: _type));
               Navigator.pop(context);
             },
             child: const Text('Сохранить')),
-        FlatButton(
+        TextButton(
             onPressed: () {
               Navigator.pop(context);
             },

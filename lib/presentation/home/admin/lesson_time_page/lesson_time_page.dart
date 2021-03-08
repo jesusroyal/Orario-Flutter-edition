@@ -44,7 +44,7 @@ class _LessonTimePageState extends State<LessonTimePage> {
         body: BlocListener<LessonTimeEditBloc, LessonTimeEditState>(
             listener: (context, state) {
               if (state is LessonTimeEditLoading) {
-                Scaffold.of(context).showSnackBar(snackBar);
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               }
               if (state is LessonTimeEditLoaded) {
                 setState(() {
@@ -52,7 +52,7 @@ class _LessonTimePageState extends State<LessonTimePage> {
                 });
               }
               if (state is LessonTimeEditSaving) {
-                Scaffold.of(context).showSnackBar(snackBar);
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               }
               if (state is LessonTimeEditSaved) {
                 Navigator.pop(context);
