@@ -18,17 +18,17 @@ class AdminTile extends StatelessWidget {
         },
       ),
       actions: [
-        FlatButton(
+        TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Отмена')),
+        TextButton(
             onPressed: () {
               Navigator.pop(context);
               onSubmit(_value);
             },
             child: const Text('Ок')),
-        FlatButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Отмена'))
       ],
     );
   }
