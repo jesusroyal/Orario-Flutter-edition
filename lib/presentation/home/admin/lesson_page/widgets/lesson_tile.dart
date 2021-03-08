@@ -33,9 +33,9 @@ class LessonTile extends StatelessWidget {
     ));
   }
 
-  Expanded buildLesson() {
-    return Expanded(
-      child: Card(
+  Widget buildLesson() {
+    return Flex(direction: Axis.vertical, children: [
+      Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -57,6 +57,6 @@ class LessonTile extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ]);
   }
 }
