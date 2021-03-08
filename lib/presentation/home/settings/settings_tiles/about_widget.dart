@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,12 +18,15 @@ class AboutSettingsTile extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text(
-                  'Orario v0.0.6 Bloc edition',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                Expanded(
+                  child: AutoSizeText(
+                    'Orario v0.0.6 Bloc edition',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                  ),
                 ),
-                Text('Твой учебный ассистент!'),
-                Text('telegram: @shevelinsky'),
+                Expanded(child: Text('Твой учебный ассистент!')),
+                Expanded(child: Text('telegram: @shevelinsky')),
               ],
             ),
           ],
