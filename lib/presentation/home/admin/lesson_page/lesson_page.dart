@@ -47,6 +47,7 @@ class _LessonPageState extends State<LessonPage> {
                     ? const Text('Неделя II')
                     : const Text('Неделя I')),
             appBar: AppBar(
+              title: const Text('Редактор'),
               actions: [
                 IconButton(
                     icon: const Icon(Icons.copy),
@@ -55,22 +56,22 @@ class _LessonPageState extends State<LessonPage> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('Вы уверены?'),
-                              content: Text(
+                              title: const Text('Вы уверены?'),
+                              content: const Text(
                                   'Вы хотети скопировать первую неделю на вторую?'),
                               actions: [
-                                FlatButton(
+                                TextButton(
                                     onPressed: () {
                                       bloc.add(
                                           LessonEditCopyWeek(lessons: lessons));
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Да')),
-                                FlatButton(
+                                    child: const Text('Да')),
+                                TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Нет'))
+                                    child: const Text('Нет'))
                               ],
                             );
                           });
@@ -85,7 +86,7 @@ class _LessonPageState extends State<LessonPage> {
             body: BlocListener<LessonEditBloc, LessonEditState>(
                 listener: (context, state) {
                   if (state is LessonEditLoading) {
-                    Scaffold.of(context).showSnackBar(snackBar);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                   if (state is LessonEditLoaded) {
                     setState(() {
